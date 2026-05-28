@@ -1,0 +1,101 @@
+1.Interfaces:IBook, IUser, ICustomer, ILoan, IReservation, IDebt, IRepo (Repo = Repository), IUserRepo, ICustomerRepo, IBookRepo, ILoanRepo, IReservationRepo, IDebtRepo
+2.Models:Book (Id, Title,PublicationYear, Author, Genre, CopiesAvailable, LostChargePrice), Loan (Id, BookId, CustomerId, LoanDate, ReturnDate), Reservation (Id, BookId, CustomerId, ReserveDate), Debt (Id, CustomerId, Amount, Reason, IsPaid), Customer (Id, Name, Email, Password, IsLogedin), User (Id, Name, Email, Password, Role [Admin/Staffa], IsLogedin) 
+3.Repos: JsonDataStore, JsonBookRepo, JsonLoanRepo, ... (so on for each model) 
+4.Enums: UserStatus(Admin, Staff), DebtReason(Late return, lost)
+5.Services:User(delete, add, update, login, search, filter), Customer(Add, delete, returnBook, BorrowBook, ReserveBook,PayDebt, Search, filter, LoseBook, Update), Book(add, delete, update,filter, search). Loan(add, delete, update, filter, search ), Reservation(add, delete, update, filter, search), Debt(add, delete, update[increase, SetToZero], filter, search)
+More human readable by AI:
+
+================================================================================
+SYSTEM ARCHITECTURE & SPECIFICATIONS
+================================================================================
+
+1. INTERFACES
+--------------------------------------------------------------------------------
+* Domain Interfaces:
+  - IBook
+  - IUser
+  - ICustomer
+  - ILoan
+  - IReservation
+  - IDebt
+
+* Repository Interfaces:
+  - IRepo (Generic Repository)
+  - IUserRepo
+  - ICustomerRepo
+  - IBookRepo
+  - ILoanRepo
+  - IReservationRepo
+  - IDebtRepo
+
+
+2. MODELS
+--------------------------------------------------------------------------------
+* Book:
+  - Id, Title, PublicationYear, Author, Genre, CopiesAvailable, LostChargePrice
+
+* Loan:
+  - Id, BookId, CustomerId, LoanDate, ReturnDate
+
+* Reservation:
+  - Id, BookId, CustomerId, ReserveDate
+
+* Debt:
+  - Id, CustomerId, Amount, Reason, IsPaid
+
+* Customer:
+  - Id, Name, Email, Password, IsLogedin
+
+* User:
+  - Id, Name, Email, Password, Role (Admin/Staff), IsLogedin
+
+
+3. REPOSITORIES (REPOS)
+--------------------------------------------------------------------------------
+* JsonDataStore
+* JsonBookRepo
+* JsonLoanRepo
+* ... (and corresponding JSON repository implementations for each model)
+
+
+4. ENUMS
+--------------------------------------------------------------------------------
+* UserStatus:
+  - Admin
+  - Staff
+
+* DebtReason:
+  - Late return
+  - Lost
+
+
+5. SERVICES & METHODS
+--------------------------------------------------------------------------------
+* User Service:
+  - add, delete, update
+  - search, filter
+
+* Customer Service:
+  - Add, delete, Update
+  - BorrowBook, returnBook, ReserveBook, LoseBook
+  - PayDebt
+  - Search, filter
+
+* Book Service:
+  - add, delete, update
+  - search, filter
+
+* Loan Service:
+  - add, delete, update
+  - search, filter
+
+* Reservation Service:
+  - add, delete, update
+  - search, filter
+
+* Debt Service:
+  - add, delete
+  - update (specifically: increase, SetToZero)
+  - search, filter
+================================================================================
+ 

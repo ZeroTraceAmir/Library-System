@@ -86,7 +86,7 @@
 * **C.R.U.D:** `add`, `delete`
 * **Actions:** `update` *(Specifically: `increase`, `SetToZero`)*
 * **Query:** `search`, `filter` -->
-Here are two options to solve this issue on GitHub:
+<!-- Here are two options to solve this issue on GitHub:
 
 ### Option 1: The "No-Emoji" Pure Text Elegant Version
 This version uses only standard Markdown formatting (bolding, dividers, tables, and code blocks) to look beautiful and highly readable without relying on any icons or emojis.
@@ -182,12 +182,9 @@ This version uses only standard Markdown formatting (bolding, dividers, tables, 
 * **Query:** `search`, `filter`
 ```
 
----
+--- -->
 
-### Option 2: Using GitHub Emoji Shortcodes
-GitHub natively supports emoji shortcodes (like `:books:` or `:key:`). If you want icons that GitHub guaranteed renders correctly, use this code:
 
-```markdown
 # :books: Library System Architecture Specification
 
 ---
@@ -276,4 +273,3 @@ GitHub natively supports emoji shortcodes (like `:books:` or `:key:`). If you wa
 * **C.R.U.D:** `add`, `delete`
 * **Actions:** `update` *(Specifically: `increase`, `SetToZero`)*
 * **Query:** `search`, `filter`
-```

@@ -248,7 +248,6 @@ This version uses only standard Markdown formatting (bolding, dividers, tables, 
 
 ### User Service
 * **C.R.U.D:** `add`, `delete`, `update`
-* **Auth:** `login`
 * **Query:** `search`, `filter`
 
 ### Customer Service

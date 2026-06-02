@@ -36,6 +36,7 @@
 // }
 using System;
 using System.Windows.Forms;
+using library_system.Enums;
 using library_system.Models;
 using library_system.Repositories;
 using library_system.Services;
@@ -54,13 +55,30 @@ namespace library_system
             var store = new JsonDataStore();
             var customerRepository = new JsonCustomerRepository(store);
             var customerService = new CustomerService(customerRepository);
+            var userRepository = new JsonUserRepository(store);
+            var userService = new UserService(userRepository);
 
-            Customer? loggedIn = customerService.GetLoggedInCustomer();
-
-            if (loggedIn != null)
-                Application.Run(new Home());
+            Customer? CustomerLoggedIn = customerService.GetLoggedInCustomer();
+            User? UserLoggedIn = userService.GetLoggedInUser();
+            // if (loggedIn != null)
+            //     Application.Run(new Home());
+            // else
+            //     Application.Run(new Form1());
+            if (UserLoggedIn != null)
+            {
+                Form form = UserLoggedIn.Role == Enums.UserStatus.admin
+                    ? new AdminPanel(UserLoggedIn)
+                    : new StaffPanel(UserLoggedIn);
+                Application.Run(form);
+            }
+            else if (CustomerLoggedIn != null)
+            {
+                Application.Run(new Home(CustomerLoggedIn));
+            }
             else
+            {
                 Application.Run(new Form1());
+            }
         }
     }
 }

@@ -1,6 +1,5 @@
 using System.Drawing;
 using System.Windows.Forms;
-using library_system.Helpers;
 using library_system.Models;
 using library_system.Services;
 
@@ -108,7 +107,7 @@ namespace library_system
                 {
                     Name = txtName.Text.Trim(),
                     Number = txtNumber.Text.Trim(),
-                    HashedPassword = PasswordHasher.Hash(txtPassword.Text),
+                    Password = txtPassword.Text,
                     IsLogedin = false
                 };
 

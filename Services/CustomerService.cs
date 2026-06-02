@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using library_system.Helpers;
 using library_system.Interfaces;
 using library_system.Models;
 
@@ -17,25 +16,24 @@ namespace library_system.Services
             this.customerRepository = customerRepository;
         }
 
-
-        public void AddCustomer(Customer customer){
+        public void AddCustomer(Customer customer)
+        {
             ValidateCustomer(customer);
             List<Customer> customers = customerRepository.GetAll();
             bool numberExist = customers.Any(c => c.Number == customer.Number);
-            if (numberExist){
+            if (numberExist)
+            {
                 throw new Exception("این شماره از قبل ثبت نام کرده است");
             }
             customer.Id = customers.Count == 0 ? 1 : customers.Max(c => c.Id) + 1;
             customerRepository.Add(customer);
         }
+
         public Customer? GetLoggedInCustomer()
-{
-    List<Customer> customers = customerRepository.GetAll();
-    return customers.FirstOrDefault(c => c.IsLogedin);
-
-
-}
-
+        {
+            List<Customer> customers = customerRepository.GetAll();
+            return customers.FirstOrDefault(c => c.IsLogedin);
+        }
 
         public bool Login(string phone, string password)
         {
@@ -45,7 +43,7 @@ namespace library_system.Services
             if (customer == null)
                 return false;
 
-            if (!PasswordHasher.Verify(password, customer.HashedPassword))
+            if (customer.Password != password)
                 return false;
 
             customer.IsLogedin = true;
@@ -70,6 +68,5 @@ namespace library_system.Services
                 throw new Exception("وارد کردن شماره تماس،‌اجباری است");
             }
         }
-
     }
 }

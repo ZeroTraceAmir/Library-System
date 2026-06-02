@@ -1,12 +1,12 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using library_system.Enums;
 using library_system.Interfaces;
 using library_system.Repositories;
 using library_system.Services;
 
-
-namespace library_system 
+namespace library_system
 {
     public class Form1 : Form
     {
@@ -28,7 +28,7 @@ namespace library_system
                 AutoSize = false,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Top,
-                Height = 80
+                Height = 80,
             };
 
             // Paragraph
@@ -39,7 +39,7 @@ namespace library_system
                 AutoSize = false,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Top,
-                Height = 50
+                Height = 50,
             };
 
             // Buttons panel
@@ -48,7 +48,7 @@ namespace library_system
                 FlowDirection = FlowDirection.RightToLeft,
                 Dock = DockStyle.Top,
                 Height = 80,
-                Padding = new Padding(0, 20, 0, 0)
+                Padding = new Padding(0, 20, 0, 0),
             };
 
             Button btnRegister = new Button
@@ -59,7 +59,7 @@ namespace library_system
                 BackColor = Color.FromArgb(46, 134, 193),
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
-                Margin = new Padding(15, 0, 30, 0)
+                Margin = new Padding(15, 0, 30, 0),
             };
             btnRegister.FlatAppearance.BorderSize = 0;
             btnRegister.Click += BtnRegister_Click;
@@ -72,7 +72,7 @@ namespace library_system
                 BackColor = Color.FromArgb(39, 174, 96),
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
-                Margin = new Padding(15, 0, 15, 0)
+                Margin = new Padding(15, 0, 15, 0),
             };
             btnLogin.FlatAppearance.BorderSize = 0;
             btnLogin.Click += BtnLogin_Click;
@@ -87,25 +87,47 @@ namespace library_system
             Controls.Add(header);
         }
 
-     private void BtnRegister_Click(object sender, EventArgs e)
-{
-    JsonDataStore dataStore = new JsonDataStore();
-    ICustomerRepository customerRepository = new JsonCustomerRepository(dataStore);
-    CustomerService customerService = new CustomerService(customerRepository);
+        private void BtnRegister_Click(object sender, EventArgs e)
+        {
+            JsonDataStore dataStore = new JsonDataStore();
+            ICustomerRepository customerRepository = new JsonCustomerRepository(dataStore);
+            CustomerService customerService = new CustomerService(customerRepository);
 
-    RegisterForm registerForm = new RegisterForm(customerService);
-    registerForm.Show();
-}
- 
+            RegisterForm registerForm = new RegisterForm(customerService);
+            registerForm.Show();
+        }
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             JsonDataStore dataStore = new JsonDataStore();
             ICustomerRepository customerRepository = new JsonCustomerRepository(dataStore);
             CustomerService customerService = new CustomerService(customerRepository);
+            IUserRepository userRepository = new JsonUserRepository(dataStore);
+            UserService userService = new UserService(userRepository);
 
-            LoginForm loginForm = new LoginForm(customerService);
-            loginForm.Show();
+            LoginForm loginForm = new LoginForm(customerService, userService);
+            if (loginForm.ShowDialog() == DialogResult.OK)
+            {
+                Form nextForm;
+                if (loginForm.LoggedInUserRole == Enums.UserStatus.admin)
+                {
+                    var user = userService.GetLoggedInUser()!;
+                    nextForm = new AdminPanel(user);
+                }
+                else if (loginForm.LoggedInUserRole == Enums.UserStatus.staff)
+                {
+                    var user = userService.GetLoggedInUser()!;
+                    nextForm = new StaffPanel(user);
+                }
+                else
+                {
+                    var customer = customerService.GetLoggedInCustomer()!;
+                    nextForm = new Home(customer);
+                }
+
+                nextForm.Show();
+                this.Hide();
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace library_system.Models
          public int Id {get; set;}
         public string Name {get; set;}
         public string Number {get; set;}
-        public string HashedPassword {get; set;}
+        public string Password {get; set;}
         public bool IsLogedin {get; set;}
     }
 }

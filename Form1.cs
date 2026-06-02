@@ -100,7 +100,11 @@ namespace library_system
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
+            JsonDataStore dataStore = new JsonDataStore();
+            ICustomerRepository customerRepository = new JsonCustomerRepository(dataStore);
+            CustomerService customerService = new CustomerService(customerRepository);
+
+            LoginForm loginForm = new LoginForm(customerService);
             loginForm.Show();
         }
     }

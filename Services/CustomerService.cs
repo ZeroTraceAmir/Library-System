@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using library_system.Helpers;
 using library_system.Interfaces;
 using library_system.Models;
 
@@ -36,16 +37,20 @@ namespace library_system.Services
 }
 
 
-        public void Login(Customer customer){
+        public bool Login(string phone, string password)
+        {
             List<Customer> customers = customerRepository.GetAll();
-           bool numberDoesNotExists = customers.Any(c.Number != customer.Number);
-           if (numberDoesNotExists)
-           {
-                throw new Exception("این شماره تا کنون در کتاب خانه ثبت نام تکرده است");
-           } else if (!numberDoesNotExists && customers.)
-           {
-            
-           }
+            Customer? customer = customers.FirstOrDefault(c => c.Number == phone);
+
+            if (customer == null)
+                return false;
+
+            if (!PasswordHasher.Verify(password, customer.HashedPassword))
+                return false;
+
+            customer.IsLogedin = true;
+            customerRepository.Update(customer);
+            return true;
         }
 
         private void ValidateCustomer(Customer customer)

@@ -33,6 +33,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using library_system.Enums;
 using library_system.Services;
 
 namespace library_system
@@ -40,6 +41,9 @@ namespace library_system
     public class LoginForm : Form
     {
         private readonly CustomerService _customerService;
+        private readonly UserService _userService;
+
+        public UserStatus? LoggedInUserRole { get; private set; }
 
         // UI Controls
         private Label lblTitle;
@@ -50,9 +54,10 @@ namespace library_system
         private Button btnLogin;
         private Button btnBack;
 
-        public LoginForm(CustomerService customerService)
+        public LoginForm(CustomerService customerService, UserService userService)
         {
             _customerService = customerService ?? throw new ArgumentNullException(nameof(customerService));
+            _userService = userService ?? throw new ArgumentNullException(nameof(userService));
             InitializeComponent();
         }
 
@@ -163,13 +168,19 @@ namespace library_system
             try
             {
                 // Authenticate user via CustomerService
-                bool isAuthenticated = _customerService.Login(phone, password);
+                bool isAuthenticatedCustomer = _customerService.Login(phone, password);
+                bool isAuthenticatedUser = _userService.Login(phone, password);
 
-                if (isAuthenticated)
+                if (isAuthenticatedCustomer || isAuthenticatedUser)
                 {
                     MessageBox.Show("ورود با موفقیت انجام شد.", "موفقیت", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    // Route to the Home Form (Program.cs setup will handle tracking state)
+
+                    if (isAuthenticatedUser)
+                    {
+                        var user = _userService.GetLoggedInUser();
+                        LoggedInUserRole = user?.Role;
+                    }
+
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }

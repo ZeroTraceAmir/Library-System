@@ -5,16 +5,16 @@ using library_system.Models;
 
 namespace library_system
 {
-    public class Home : Form
+    public class AdminPanel : Form
     {
-        private readonly Customer _customer;
+        private readonly User _user;
 
-        public Home(Customer customer)
+        public AdminPanel(User user)
         {
-            _customer = customer;
-            this.Text = "Home";
+            _user = user;
+            this.Text = "Admin Panel";
             this.WindowState = FormWindowState.Maximized;
-            BuildHeader(customer.Name, customer.Number, "مشتری");
+            BuildHeader(user.Name, user.Number, "مدیر");
             BuildMenu();
         }
 
@@ -96,28 +96,22 @@ namespace library_system
                 flow.Controls.Add(btn);
             }
 
-            AddButton("دیدن کتاب های", (s, e) =>
+            AddButton("دیدن همه کارمندان کتابخانه", (s, e) =>
             {
                 this.Hide();
-                new SeeBooks().ShowDialog();
+                new SeeAllEmployees().ShowDialog();
                 this.Show();
             });
-            AddButton("دیدن کتاب هایی که رزرو کردید", (s, e) =>
+            AddButton("دیدن همه مشتریان کتابخانه", (s, e) =>
             {
                 this.Hide();
-                new MyReservations().ShowDialog();
+                new SeeAllCustomers().ShowDialog();
                 this.Show();
             });
-            AddButton("دیدن کتاب هایی که قرض گرفتید", (s, e) =>
+            AddButton("اضافه کردن کارمند به کتاب خانه", (s, e) =>
             {
                 this.Hide();
-                new MyLoans().ShowDialog();
-                this.Show();
-            });
-            AddButton("پرداخت بدهی", (s, e) =>
-            {
-                this.Hide();
-                new PayDebt().ShowDialog();
+                new AddEmployee().ShowDialog();
                 this.Show();
             });
 
@@ -126,7 +120,7 @@ namespace library_system
 
         private void BtnProfile_Click(object? sender, EventArgs e)
         {
-            var profile = new Profile(_customer.Name, _customer.Number, "مشتری");
+            var profile = new Profile(_user.Name, _user.Number, "مدیر");
             profile.Show();
             this.Hide();
         }

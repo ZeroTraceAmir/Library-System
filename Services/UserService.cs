@@ -31,6 +31,24 @@ namespace library_system.Services
             return users.FirstOrDefault(u => u.IsLogedin);
         }
 
+        public void UserProfileEdit(string name, string phone, string password, string _phone)
+        {
+            List<User> users = userRepository.GetAll();
+            User? user = users.FirstOrDefault(c => c.Number == _phone);
+            if (user.Password == password)
+            {
+                if (name != "")
+                {
+                    user.Name = name;
+                }
+                if (phone != "")
+                {
+                    user.Number = phone;
+                }
+                userRepository.Update(user);
+            }
+        }
+
         public bool Login(string phone, string password)
         {
             List<User> users = userRepository.GetAll();
@@ -46,6 +64,14 @@ namespace library_system.Services
             user.IsLogedin = true;
             userRepository.Update(user);
             return true;
+        }
+
+        public void Logout(string phone)
+        {
+            List<User> users = userRepository.GetAll();
+            User? user = users.FirstOrDefault(c => c.Number == phone);
+            user.IsLogedin = false;
+            userRepository.Update(user);
         }
     }
 }

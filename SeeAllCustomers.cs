@@ -8,13 +8,15 @@ namespace library_system
         {
             this.Text = "دیدن همه مشتریان کتابخانه";
             this.WindowState = FormWindowState.Maximized;
-            Controls.Add(new Button
-            {
-                Text = "بازگشت",
-                Dock = DockStyle.Bottom,
-                Height = 50,
-                DialogResult = DialogResult.Cancel,
-            });
+            Controls.Add(
+                new Button
+                {
+                    Text = "بازگشت",
+                    Dock = DockStyle.Bottom,
+                    Height = 50,
+                    DialogResult = DialogResult.Cancel,
+                }
+            );
         }
     }
 }

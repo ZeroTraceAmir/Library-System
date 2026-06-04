@@ -51,6 +51,24 @@ namespace library_system.Services
             return true;
         }
 
+        public void CustomerProfileEdit(string name, string phone, string password, string _phone)
+        {
+            List<Customer> customers = customerRepository.GetAll();
+            Customer? customer = customers.FirstOrDefault(c => c.Number == _phone);
+            if (customer.Password == password)
+            {
+                if (name != null)
+                {
+                    customer.Name = name;
+                }
+                if (phone != null)
+                {
+                    customer.Number = phone;
+                }
+                customerRepository.Update(customer);
+            }
+        }
+
         private void ValidateCustomer(Customer customer)
         {
             if (customer == null)
@@ -66,6 +84,26 @@ namespace library_system.Services
             if (string.IsNullOrWhiteSpace(customer.Number))
             {
                 throw new Exception("وارد کردن شماره تماس،‌اجباری است");
+            }
+        }
+
+        public void Logout(string phone)
+        {
+
+            List<Customer> customers = customerRepository.GetAll();
+            Customer? customer = customers.FirstOrDefault(c => c.Number == phone);
+            customer.IsLogedin = false;
+            customerRepository.Update(customer);
+        }
+
+        public void DeleteCustomerAcc(string phone)
+        {
+            List<Customer> customers = customerRepository.GetAll();
+            Customer? customer = customers.FirstOrDefault(c => c.Number == phone);
+            if (customer != null)
+            {
+                Logout(customer.Number);
+                customerRepository.Delete(customer.Id);
             }
         }
     }

@@ -1,10 +1,10 @@
 [
   {
     "Id": 1,
-    "Name": "Admin",
-    "Number": "09132985114",
+    "Name": "admin",
+    "Number": "12345678911",
     "Password": "admin",
     "Role": 0,
-    "IsLogedin": true
+    "IsLogedin":true 
   }
 ]

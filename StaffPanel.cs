@@ -120,9 +120,8 @@ namespace library_system
 
         private void BtnProfile_Click(object? sender, EventArgs e)
         {
-            var profile = new Profile(_user.Name, _user.Number, "کارمند");
-            profile.Show();
-            this.Hide();
+            var pf = new Profile(_user.Name, _user.Number, "کارمند", true);
+pf.ShowDialog(this);
         }
     }
 }

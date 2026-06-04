@@ -218,7 +218,12 @@ namespace library_system
                     Height = 40,
                 };
                 btnDelete.FlatAppearance.BorderSize = 0;
-                btnDelete.Click += (s, e) => _customerService.DeleteCustomerAcc(_phone);
+                btnDelete.Click += (s, e) =>
+                {
+                    _customerService.DeleteCustomerAcc(_phone);
+                    Application.Exit();
+                };
+                btnDelete.Dock = DockStyle.Top;
                 Controls.Add(btnDelete);
             }
         }

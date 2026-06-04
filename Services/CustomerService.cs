@@ -98,6 +98,13 @@ namespace library_system.Services
 
         public void DeleteCustomerAcc(string phone)
         {
+            List<Customer> customers = customerRepository.GetAll();
+            Customer? customer = customers.FirstOrDefault(c => c.Number == phone);
+            if (customer != null)
+            {
+                Logout(customer.Number);
+                customerRepository.Delete(customer.Id);
+            }
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using library_system.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace library_system.Models
 {
-    internal class Loan : IEntity
+    internal class Loan : IEntity 
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }

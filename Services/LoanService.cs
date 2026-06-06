@@ -25,7 +25,7 @@ namespace library_system.Services
         {
             return loanRepository.GetAll();
         }
-        public Loan? GetLoanById(int Id )
+        public Loan? GetLoanById(int id )
         {
             return loanRepository.GetById(id);
         }

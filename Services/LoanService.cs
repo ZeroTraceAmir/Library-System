@@ -18,7 +18,7 @@ namespace library_system.Services
         {
             List<Loan> loans = loanRepository.GetAll();
 
-            loan.Id = loan.Count == 0 ? 1 :
+            loan.Id = loans.Count == 0 ? 1 :
                 loans.Max(l => l.Id) + 1;
             loanRepository.Add(loan);
         }

@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using library_system.Models;
 
 namespace library_system.Repositories
 {
-    internal class JsonDebtRepository : JsonDebtRepository<Debt>, IDebtRepository 
+    internal class JsonDebtRepository : JsonRepository<Debt>, IDebtRepository 
     {
-        public JsonDabtRepository(JsonDataStore store)
+        public JsonDebtRepository(JsonDataStore store)
             : base(store, "debts.json")
         {
         }

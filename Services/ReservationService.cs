@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using library_system.Models;
 
 namespace library_system.Services
 {
@@ -21,10 +22,10 @@ namespace library_system.Services
         {
             return reservationRepository.GetById(id);
         }
-        public AddReservation(Reservation reservation)
+        public void AddReservation(Reservation reservation)
         {
-            List<reservation> reservations = reservationRepository.GetAll();
-            reservation.Id = reservations.count == 0 ? 1 : reservations.Max(r => r.Id) + 1;
+            List<Reservation> reservations = reservationRepository.GetAll();
+            reservation.Id = reservations.Count == 0 ? 1 : reservations.Max(r => r.Id) + 1;
             reservationRepository.Add(reservation);
         }
     }

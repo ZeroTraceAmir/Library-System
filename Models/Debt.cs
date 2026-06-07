@@ -5,7 +5,7 @@ using System.Text;
 
 namespace library_system.Models
 {
-    internal class Debt : IEntity
+     public class Debt : IEntity
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }

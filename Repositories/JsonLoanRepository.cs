@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using library_system.Models;
 
 namespace library_system.Repositories
 {
     internal class JsonLoanRepository : JsonRepository<Loan>, ILoanRepository 
     {
-        public JsonLaonRepository(JsonDataStore store)
-            : base(store, "loan.json")
+        public JsonLoanRepository(JsonDataStore store)
+            : base(store, "loans.json")
         {
         }
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace library_system.Models
 {
-    internal class Reservation : IEntity 
+    public class Reservation : IEntity 
     {
         public int Id { get; set; }
         public int CustomerId { get; set; }

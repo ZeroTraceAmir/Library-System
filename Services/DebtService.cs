@@ -44,11 +44,14 @@ namespace library_system.Services
         {
             Debt? debt = debtRepository.GetById(debtId);
 
-            if (debt != null)
+            if (debt == null)
             {
-                debt.Amount += amount;
-                debtRepository.Update(debt);
+                return;
             }
+
+            debt.Amount += amount;
+
+            debtRepository.Update(debt);
         }
         public void SetDebtToZero(int debtId)
         {

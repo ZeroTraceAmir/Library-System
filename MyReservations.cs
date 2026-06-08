@@ -4,17 +4,37 @@ namespace library_system
 {
     public class MyReservations : Form
     {
+        private DataGridView dgvReservations;
+        private Button btnBack;
+
         public MyReservations()
         {
-            this.Text = "دیدن کتاب هایی که رزرو کردید";
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            this.Text = "رزروهای من";
             this.WindowState = FormWindowState.Maximized;
-            Controls.Add(new Button
+
+            dgvReservations = new DataGridView
+            {
+                Dock = DockStyle.Fill,
+                ReadOnly = true,
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            };
+
+            btnBack = new Button
             {
                 Text = "بازگشت",
                 Dock = DockStyle.Bottom,
                 Height = 50,
-                DialogResult = DialogResult.Cancel,
-            });
+                DialogResult = DialogResult.Cancel
+            };
+
+            Controls.Add(dgvReservations);
+            Controls.Add(btnBack);
         }
     }
+
 }

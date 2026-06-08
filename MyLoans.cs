@@ -4,17 +4,37 @@ namespace library_system
 {
     public class MyLoans : Form
     {
+        private DataGridView dgvLoans;
+        private Button btnBack;
+
         public MyLoans()
         {
-            this.Text = "دیدن کتاب هایی که قرض گرفتید";
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            this.Text = "امانت های من";
             this.WindowState = FormWindowState.Maximized;
-            Controls.Add(new Button
+
+            dgvLoans = new DataGridView
+            {
+                Dock = DockStyle.Fill,
+                ReadOnly = true,
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            };
+
+            btnBack = new Button
             {
                 Text = "بازگشت",
                 Dock = DockStyle.Bottom,
                 Height = 50,
-                DialogResult = DialogResult.Cancel,
-            });
+                DialogResult = DialogResult.Cancel
+            };
+
+            Controls.Add(dgvLoans);
+            Controls.Add(btnBack);
         }
     }
+
 }

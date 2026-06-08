@@ -49,7 +49,7 @@ namespace library_system.Services
         {
             Debt? debt = debtRepository.GetById(debtId);
             
-            if (debt =! null)
+            if (debt != null)
             {
                 debt.Amount = 0;
                 debt.IsPaid = true;

@@ -33,7 +33,7 @@ namespace library_system.Services
 
         public void UpdateLoan(Loan loan)
         {
-            loanRepository.Update(losn);
+            loanRepository.Update(loan);
         }
         public void DeleteLoan(int id)
         {

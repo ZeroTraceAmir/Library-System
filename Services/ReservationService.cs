@@ -44,6 +44,32 @@ namespace library_system.Services
             .Where(r => r.CustomerId == customerId)
                 .ToList();
         }
-        
+
+        public void ReserveBook(int customerId, int bookId)
+        {
+            Reservation reservation = new Reservation
+            {
+                CustomerId = customerId,
+                BookId = bookId,
+                ReservationDate = DateTime.Now,
+                IsActive = true
+            };
+
+            AddReservation(reservation);
+        }
+
+        public void CancelReservation(int reservationId)
+        {
+            Reservation? reservation = reservationRepository.GetById(reservationId);
+
+            if (reservation == null)
+            {
+                return;
+            }
+            reservation.IsActive = false;
+
+            reservationRepository.Update(reservation);
+        }
+
     }
 }

@@ -45,7 +45,19 @@ namespace library_system.Services
             .Where(l => l.CustomerId == customerId)
                 .ToList();
         }
-        
 
+        public void ReturnBook(int loanId)
+        {
+            Loan? loan = loanRepository.GetById(loanId);
+
+            if (loan == null)
+            {
+                return;
+            }
+
+            loan.ReturnDate = DateTime.Now;
+
+            loanRepository.Update(loan);
+        }
     }
 }

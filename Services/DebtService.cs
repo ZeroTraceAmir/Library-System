@@ -30,6 +30,11 @@ namespace library_system.Services
             debtRepository.Add(debt);
         }
 
+        public void UpdateDebt(Debt debt)
+        {
+            debtRepository.Update(debt);
+        }
+
         public void DeleteDebt(int id)
         {
             debtRepository.Delete(id);
@@ -62,6 +67,33 @@ namespace library_system.Services
             return debtRepository.GetAll()
             .Where(d => d.CustomerId == customerId)
                 .ToList();
+        }
+
+        public void IncreaseDebt(int debtId, decimal amount)
+        {
+            Debt? debt = debtRepository.GetById(debtId);
+
+            if (debt == null)
+            {
+                return;
+            }
+
+            debt.Amount += amount;
+
+            debtRepository.Update(debt);
+        }
+        public void PayDebt(int debtId)
+        {
+            Debt? debt = debtRepository.GetById(debetId);
+
+            if (debt == null)
+            {
+                return;
+            }
+
+            debt.IsPaid = true;
+
+            debtRepository.Update(debt);
         }
     }
 }

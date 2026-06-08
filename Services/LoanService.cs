@@ -52,7 +52,7 @@ namespace library_system.Services
 
             if (loan == null)
             {
-                throw new Exception("امانت مورد نظر یافت نشد")ک
+                throw new Exception("امانت مورد نظر یافت نشد");
             }
 
             loan.ReturnDate = DateTime.Now;

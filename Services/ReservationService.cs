@@ -14,7 +14,7 @@ namespace library_system.Services
         {
             this.reservationRepository = reservationRepository;
         }
-        public List<Reservation> GetAllReservation()
+        public List<Reservation> GetAllReservations()
         {
             return reservationRepository.GetAll();
         }
@@ -28,7 +28,7 @@ namespace library_system.Services
             reservation.Id = reservations.Count == 0 ? 1 : reservations.Max(r => r.Id) + 1;
             reservationRepository.Add(reservation);
         }
-        public void UpdateResrervation(Reservation reservation)
+        public void UpdateReservation(Reservation reservation)
         {
             reservationRepository.Update(reservation);
         }

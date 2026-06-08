@@ -74,7 +74,7 @@ namespace library_system.Services
 
         public void PayDebt(int debtId)
         {
-            Debt? debt = debtRepository.GetById(debetId);
+            Debt? debt = debtRepository.GetById(debtId);
 
             if (debt == null)
             {

@@ -55,18 +55,19 @@ namespace library_system.Services
         {
             List<Customer> customers = customerRepository.GetAll();
             Customer? customer = customers.FirstOrDefault(c => c.Number == _phone);
-            if (customer.Password == password)
-            {
-                if (name != null)
-                {
-                    customer.Name = name;
-                }
-                if (phone != null)
-                {
-                    customer.Number = phone;
-                }
-                customerRepository.Update(customer);
-            }
+            if (customer == null)
+                return;
+
+            if (customer.Password != password)
+                return;
+
+            if (name != null)
+                customer.Name = name;
+
+            if (phone != null)
+                customer.Number = phone;
+
+            customerRepository.Update(customer);
         }
 
         private void ValidateCustomer(Customer customer)
@@ -89,11 +90,31 @@ namespace library_system.Services
 
         public void Logout(string phone)
         {
-
             List<Customer> customers = customerRepository.GetAll();
             Customer? customer = customers.FirstOrDefault(c => c.Number == phone);
+            if (customer == null)
+                return;
+
             customer.IsLogedin = false;
             customerRepository.Update(customer);
+        }
+
+        public List<Customer> GetAllCustomers()
+        {
+            return customerRepository.GetAll();
+        }
+
+        public List<Customer> GetFilteredCustomers(int filterIndex)
+        {
+            var customers = customerRepository.GetAll();
+
+            return filterIndex switch
+            {
+                1 => customers.Where(c => c.HasBorrowedBook).ToList(),
+                2 => customers.Where(c => c.HasReservedBook).ToList(),
+                3 => customers.Where(c => c.Debt > 0).ToList(),
+                _ => customers,
+            };
         }
 
         public void DeleteCustomerAcc(string phone)

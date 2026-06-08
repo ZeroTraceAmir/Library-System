@@ -12,5 +12,8 @@ namespace library_system.Models
         public string Number {get; set;}
         public string Password {get; set;}
         public bool IsLogedin {get; set;}
+        public bool HasBorrowedBook { get; set; }
+        public bool HasReservedBook { get; set; }
+        public decimal Debt { get; set; }
     }
 }

@@ -72,19 +72,6 @@ namespace library_system.Services
                 .ToList();
         }
 
-        public void IncreaseDebt(int debtId, decimal amount)
-        {
-            Debt? debt = debtRepository.GetById(debtId);
-
-            if (debt == null)
-            {
-                return;
-            }
-
-            debt.Amount += amount;
-
-            debtRepository.Update(debt);
-        }
         public void PayDebt(int debtId)
         {
             Debt? debt = debtRepository.GetById(debetId);
@@ -97,6 +84,22 @@ namespace library_system.Services
             debt.IsPaid = true;
 
             debtRepository.Update(debt);
+        }
+
+        public void LoseBook(Book book, int customerId)
+        {
+            Debt debt = new Debt
+            {
+                Id = debtRepository.GetAll().Any()?
+                debtRepository.GetAll().Max(d => d.Id) + 1 : 1,
+
+                CustomerId = customerId,
+                Amount = (decimal)book.LostChargePrice,
+                Reason = "گمشده است",
+                IsPaid = false
+            };
+
+            debtRepository.Add(debt);
         }
     }
 }

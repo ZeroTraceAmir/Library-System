@@ -45,17 +45,20 @@ namespace library_system.Services
                 .ToList();
         }
 
-        public void ReserveBook(int customerId, int bookId)
+        public void ReserveBook(Book book, int customerId)
         {
             Reservation reservation = new Reservation
             {
+                Id = reservationRepository.GetAll().Any()?
+                reservationRepository.GetAll().Max(r => r.Id) + 1 : 1,
+
                 CustomerId = customerId,
-                BookId = bookId,
+                BookId = book.Id,
                 ReservationDate = DateTime.Now,
                 IsActive = true
             };
 
-            AddReservation(reservation);
+            reservationRepository.Add(reservation);
         }
 
         public void CancelReservation(int reservationId)

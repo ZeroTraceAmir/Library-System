@@ -46,18 +46,41 @@ namespace library_system.Services
                 .ToList();
         }
 
-        public void ReturnBook(int loanId)
+        public void ReturnBook(int loanId, Book book )
         {
             Loan? loan = loanRepository.GetById(loanId);
 
             if (loan == null)
             {
-                return;
+                throw new Exception("امانت مورد نظر یافت نشد")ک
             }
 
             loan.ReturnDate = DateTime.Now;
 
+            book.CopiesAvailable++;
+
             loanRepository.Update(loan);
+        }
+
+        public void BorrowBook(Book book, int customerId)
+        {
+            if (book.CopiesAvailable <= 0)
+                throw new Exception("کتاب در دسترس نمی باشد");
+
+            book.CopiesAvailable--;
+
+            Loan loan = new Loan
+            {
+                Id = loanRepository.GetAll().Any() ?
+                loanRepository.GetAll().Max(l => l.Id) + 1 : 1,
+
+                CustomerId = customerId,
+                BookId = book.Id,
+                LoanDate = DateTime.Now,
+                DueDate = DateTime.Now.AddDays(14)
+            };
+
+            loanRepository.Add(loan);
         }
     }
 }

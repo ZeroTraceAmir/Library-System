@@ -28,5 +28,22 @@ namespace library_system.Services
             reservation.Id = reservations.Count == 0 ? 1 : reservations.Max(r => r.Id) + 1;
             reservationRepository.Add(reservation);
         }
+        public void UpdateResrervation(Reservation reservation)
+        {
+            reservationRepository.Update(reservation);
+        }
+
+        public void DeleteReservation(int id)
+        {
+            reservationRepository.Delete(id);
+        }
+
+        public List<Reservation> GetReservationsByCustomerId(int customerId)
+        {
+            return reservationRepository.GetAll()
+            .Where(r => r.CustomerId == customerId)
+                .ToList();
+        }
+        
     }
 }

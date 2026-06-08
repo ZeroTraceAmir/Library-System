@@ -30,6 +30,21 @@ namespace library_system.Services
         {
             return loanRepository.GetById(id);
         }
+
+        public void UpdateLoan(Loan loan)
+        {
+            loanRepository.Update(losn);
+        }
+        public void DeleteLoan(int id)
+        {
+            loanRepository.Delete(id);
+        }
+        public List<Loan> GetLoansByCustomerId(int customerId)
+        {
+            return loanRepository.GetAll()
+            .Where(l => l.CustomerId == customerId)
+                .ToList();
+        }
         
 
     }

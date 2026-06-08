@@ -29,5 +29,39 @@ namespace library_system.Services
             debt.Id = debts.Count == 0 ? 1 : debts.Max(d => d.Id) + 1;
             debtRepository.Add(debt);
         }
+
+        public void DeleteDebt(int id)
+        {
+            debtRepository.Delete(id);
+        }
+
+        public void IncreaseDebt(int debtId, decimal amount)
+        {
+            Debt? debt = debtRepository.GetById(debtId);
+
+            if (debt != null)
+            {
+                debt.Amount += amount;
+                debtRepository.Update(debt);
+            }
+        }
+        public void SetDebtToZero(int debtId)
+        {
+            Debt? debt = debtRepository.GetById(debtId);
+            
+            if (debt =! null)
+            {
+                debt.Amount = 0;
+                debt.IsPaid = true;
+                debtRepository.Update(debt);
+            }
+        }
+
+        public List<Debt> GetCustomerDebts(int customerId)
+        {
+            return debtRepository.GetAll()
+            .Where(d => d.CustomerId == customerId)
+                .ToList();
+        }
     }
 }

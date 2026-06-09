@@ -3,7 +3,7 @@ using library_system.Interfaces;
 
 namespace library_system.Models
 {
-    public class Book : IEntity
+    public class Book : IBook
     {
         public int Id {get; set;}
         public string Title {get; set;} = string.Empty;

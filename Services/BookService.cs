@@ -52,21 +52,24 @@ namespace library_system.Services
 
         public List<Book> SearchByTitle(string title)
         {
-            return bookRepository.GetAll()
+            return bookRepository
+                .GetAll()
                 .Where(b => b.Title.Contains(title, StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
 
         public List<Book> SearchByAuthor(string author)
         {
-            return bookRepository.GetAll()
+            return bookRepository
+                .GetAll()
                 .Where(b => b.Author.Contains(author, StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }
 
         public List<Book> FilterByGenre(string genre)
         {
-            return bookRepository.GetAll()
+            return bookRepository
+                .GetAll()
                 .Where(b => b.Genre.Equals(genre, StringComparison.OrdinalIgnoreCase))
                 .ToList();
         }

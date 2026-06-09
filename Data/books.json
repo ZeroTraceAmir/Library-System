@@ -1,0 +1,11 @@
+[
+  {
+    "Id": 1,
+    "Title": "test",
+    "Author": "test",
+    "CopiesAvailable": 2,
+    "Genre": "test",
+    "PublicationYear": 1234,
+    "LostChargePrice": 20000
+  }
+]

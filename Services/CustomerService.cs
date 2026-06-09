@@ -51,6 +51,25 @@ namespace library_system.Services
             return true;
         }
 
+        public void CustomerProfileEdit(string name, string phone, string password, string _phone)
+        {
+            List<Customer> customers = customerRepository.GetAll();
+            Customer? customer = customers.FirstOrDefault(c => c.Number == _phone);
+            if (customer == null)
+                return;
+
+            if (customer.Password != password)
+                return;
+
+            if (name != null)
+                customer.Name = name;
+
+            if (phone != null)
+                customer.Number = phone;
+
+            customerRepository.Update(customer);
+        }
+
         private void ValidateCustomer(Customer customer)
         {
             if (customer == null)
@@ -66,6 +85,46 @@ namespace library_system.Services
             if (string.IsNullOrWhiteSpace(customer.Number))
             {
                 throw new Exception("وارد کردن شماره تماس،‌اجباری است");
+            }
+        }
+
+        public void Logout(string phone)
+        {
+            List<Customer> customers = customerRepository.GetAll();
+            Customer? customer = customers.FirstOrDefault(c => c.Number == phone);
+            if (customer == null)
+                return;
+
+            customer.IsLogedin = false;
+            customerRepository.Update(customer);
+        }
+
+        public List<Customer> GetAllCustomers()
+        {
+            return customerRepository.GetAll();
+        }
+
+        public List<Customer> GetFilteredCustomers(int filterIndex)
+        {
+            var customers = customerRepository.GetAll();
+
+            return filterIndex switch
+            {
+                1 => customers.Where(c => c.HasBorrowedBook).ToList(),
+                2 => customers.Where(c => c.HasReservedBook).ToList(),
+                3 => customers.Where(c => c.Debt > 0).ToList(),
+                _ => customers,
+            };
+        }
+
+        public void DeleteCustomerAcc(string phone)
+        {
+            List<Customer> customers = customerRepository.GetAll();
+            Customer? customer = customers.FirstOrDefault(c => c.Number == phone);
+            if (customer != null)
+            {
+                Logout(customer.Number);
+                customerRepository.Delete(customer.Id);
             }
         }
     }

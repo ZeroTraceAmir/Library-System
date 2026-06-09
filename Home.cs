@@ -24,7 +24,7 @@ namespace library_system
             {
                 Dock = DockStyle.Top,
                 Height = 60,
-                BackColor = Color.FromArgb(52, 73, 94)
+                BackColor = Color.FromArgb(52, 73, 94),
             };
 
             var btnProfile = new Button
@@ -49,14 +49,20 @@ namespace library_system
 
             void AddLabel(string text, float fontSize, bool bold, Color color)
             {
-                flow.Controls.Add(new Label
-                {
-                    Text = text,
-                    Font = new Font("Tahoma", fontSize, bold ? FontStyle.Bold : FontStyle.Regular),
-                    ForeColor = color,
-                    AutoSize = true,
-                    Margin = new Padding(20, 15, 0, 0)
-                });
+                flow.Controls.Add(
+                    new Label
+                    {
+                        Text = text,
+                        Font = new Font(
+                            "Tahoma",
+                            fontSize,
+                            bold ? FontStyle.Bold : FontStyle.Regular
+                        ),
+                        ForeColor = color,
+                        AutoSize = true,
+                        Margin = new Padding(20, 15, 0, 0),
+                    }
+                );
             }
 
             AddLabel(role, 11F, true, Color.FromArgb(46, 204, 113));
@@ -96,39 +102,50 @@ namespace library_system
                 flow.Controls.Add(btn);
             }
 
-            AddButton("دیدن کتاب های", (s, e) =>
-            {
-                this.Hide();
-                new SeeBooks().ShowDialog();
-                this.Show();
-            });
-            AddButton("دیدن کتاب هایی که رزرو کردید", (s, e) =>
-            {
-                this.Hide();
-                new MyReservations().ShowDialog();
-                this.Show();
-            });
-            AddButton("دیدن کتاب هایی که قرض گرفتید", (s, e) =>
-            {
-                this.Hide();
-                new MyLoans().ShowDialog();
-                this.Show();
-            });
-            AddButton("پرداخت بدهی", (s, e) =>
-            {
-                this.Hide();
-                new PayDebt().ShowDialog();
-                this.Show();
-            });
+            AddButton(
+                "دیدن کتاب های",
+                (s, e) =>
+                {
+                    this.Hide();
+                    new SeeBooks().ShowDialog();
+                    this.Show();
+                }
+            );
+            AddButton(
+                "دیدن کتاب هایی که رزرو کردید",
+                (s, e) =>
+                {
+                    this.Hide();
+                    new MyReservations().ShowDialog();
+                    this.Show();
+                }
+            );
+            AddButton(
+                "دیدن کتاب هایی که قرض گرفتید",
+                (s, e) =>
+                {
+                    this.Hide();
+                    new MyLoans().ShowDialog();
+                    this.Show();
+                }
+            );
+            AddButton(
+                "پرداخت بدهی",
+                (s, e) =>
+                {
+                    this.Hide();
+                    new PayDebt().ShowDialog();
+                    this.Show();
+                }
+            );
 
             Controls.Add(flow);
         }
 
         private void BtnProfile_Click(object? sender, EventArgs e)
         {
-            var profile = new Profile(_customer.Name, _customer.Number, "مشتری");
-            profile.Show();
-            this.Hide();
+            var pf = new Profile(_customer.Name, _customer.Number, "مشتری", false);
+pf.ShowDialog(this);
         }
     }
 }

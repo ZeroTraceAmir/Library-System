@@ -32,6 +32,13 @@
     "Name": "customer",
     "Number": "09332985114",
     "Password": "test",
-    "IsLogedin":false 
+    "IsLogedin": false
+  },
+  {
+    "Id": 6,
+    "Name": "test",
+    "Number": "test",
+    "Password": "test",
+    "IsLogedin": false
   }
 ]

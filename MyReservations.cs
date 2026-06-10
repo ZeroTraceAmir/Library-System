@@ -1,4 +1,7 @@
 using System.Windows.Forms;
+using library_system.Repositories;
+using library_system.Services;
+using library_system.Models;
 
 namespace library_system
 {
@@ -10,6 +13,7 @@ namespace library_system
         public MyReservations()
         {
             InitializeComponent();
+            LoadReservations();
         }
 
         private void InitializeComponent()
@@ -34,6 +38,28 @@ namespace library_system
 
             Controls.Add(dgvReservations);
             Controls.Add(btnBack);
+        }
+
+        private void LoadReservations()
+        {
+            JsonDataStore store = new JsonDataStore();
+
+            var customerRepository = new JsonCustomerRepository(store);
+            var customerService = new CustomerService(customerRepository);
+
+            Customer? customer = customerService.GetLoggedInCustomer();
+
+            if (customer == null)
+                return;
+
+            var reservationRepository =
+                new JsonReservationRepository(store);
+
+            var reservationService =
+                new ReservationService(reservationRepository);
+
+            dgvReservations.DataSource =
+                reservationService.GetReservationsByCustomerId(customer.Id);
         }
     }
 

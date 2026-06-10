@@ -1,4 +1,8 @@
 using System.Windows.Forms;
+using library_system.Repositories;
+using library_system.Services;
+using library_system.Models;
+using System;
 
 namespace library_system
 {
@@ -11,6 +15,8 @@ namespace library_system
         public PayDebt()
         {
             InitializeComponent();
+            LoadDebts();
+            btnPay.Click += BtnPay_Click;
         }
 
         private void InitializeComponent()
@@ -43,6 +49,49 @@ namespace library_system
             Controls.Add(dgvDebts);
             Controls.Add(btnPay);
             Controls.Add(btnBack);
+        }
+
+        private void LoadDebts()
+        {
+            JsonDataStore store = new JsonDataStore();
+
+            var customerRepository = new JsonCustomerRepository(store);
+            var customerService = new CustomerService(customerRepository);
+
+            Customer? customer = customerService.GetLoggedInCustomer();
+
+            if (customer == null)
+                return;
+
+            var debtRepository = new JsonDebtRepository(store);
+            var debtService = new DebtService(debtRepository);
+
+            dgvDebts.DataSource =
+                debtService.GetCustomerDebts(customer.Id);
+        }
+
+        private void BtnPay_Click(object? sender, EventArgs e)
+        {
+            if (dgvDebts.CurrentRow == null)
+                return;
+
+            int debtId =
+                Convert.ToInt32(
+                    dgvDebts.CurrentRow.Cells["Id"].Value);
+
+            JsonDataStore store = new JsonDataStore();
+
+            var debtRepository =
+                new JsonDebtRepository(store);
+
+            var debtService =
+                new DebtService(debtRepository);
+
+            debtService.PayDebt(debtId);
+
+            LoadDebts();
+
+            MessageBox.Show("بدهی با موفقیت پرداخت شد");
         }
     }
 

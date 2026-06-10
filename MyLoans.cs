@@ -1,4 +1,7 @@
 using System.Windows.Forms;
+using library_system.Repositories;
+using library_system.Services;
+using library_system.Models;
 
 namespace library_system
 {
@@ -10,6 +13,7 @@ namespace library_system
         public MyLoans()
         {
             InitializeComponent();
+            LoadLoans();
         }
 
         private void InitializeComponent()
@@ -34,6 +38,25 @@ namespace library_system
 
             Controls.Add(dgvLoans);
             Controls.Add(btnBack);
+        }
+
+        private void LoadLoans()
+        {
+            JsonDataStore store = new JsonDataStore();
+
+            var customerRepository = new JsonCustomerRepository(store);
+            var customerService = new CustomerService(customerRepository);
+
+            Customer? customer = customerService.GetLoggedInCustomer();
+
+            if (customer == null)
+                return;
+
+            var loanRepository = new JsonLoanRepository(store);
+            var loanService = new LoanService(loanRepository);
+
+            dgvLoans.DataSource =
+                loanService.GetLoansByCustomerId(customer.Id);
         }
     }
 

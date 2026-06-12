@@ -96,6 +96,11 @@ namespace library_system.Services
             };
         }
 
+        public void DeleteUser(int id)
+        {
+            userRepository.Delete(id);
+        }
+
         public void AddEmployee(
             string name,
             string phone,

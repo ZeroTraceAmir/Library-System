@@ -8,6 +8,7 @@ namespace library_system
     public class MyReservations : Form
     {
         private DataGridView dgvReservations;
+        private Button btnCancelReservation;
         private Button btnBack;
 
         public MyReservations()
@@ -28,6 +29,15 @@ namespace library_system
                 AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
 
+            btnCancelReservation = new Button
+            {
+                Text = "لغو رزرو",
+                Dock = DockStyle.Bottom,
+                Height = 50
+            };
+
+            btnCancelReservation.Click += BtnCancelReservation_Click;
+
             btnBack = new Button
             {
                 Text = "بازگشت",
@@ -37,6 +47,7 @@ namespace library_system
             };
 
             Controls.Add(dgvReservations);
+            Controls.Add(btnCancelReservation);
             Controls.Add(btnBack);
         }
 
@@ -60,6 +71,34 @@ namespace library_system
 
             dgvReservations.DataSource =
                 reservationService.GetReservationsByCustomerId(customer.Id);
+        }
+
+        private void BtnCancelReservation_Click(object? sender, EventArgs e)
+        {
+            if (dgvReservations.CurrentRow == null)
+            {
+                MessageBox.Show("ابتدا یک رزرو را انتخاب کنید");
+                return;
+            }
+
+            int reservationId =
+                Convert.ToInt32(
+                    dgvReservations.CurrentRow.Cells["Id"].Value);
+
+            JsonDataStore store = new JsonDataStore();
+
+            var reservationRepository =
+                new JsonReservationRepository(store);
+
+            var reservationService =
+                new ReservationService(reservationRepository);
+
+            reservationService.CancelReservation(reservationId);
+
+            LoadReservations();
+
+            MessageBox.Show("رزرو با موفقیت لغو شد");
+
         }
     }
 

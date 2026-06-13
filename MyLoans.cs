@@ -8,6 +8,7 @@ namespace library_system
     public class MyLoans : Form
     {
         private DataGridView dgvLoans;
+        private Button btnReturn;
         private Button btnBack;
 
         public MyLoans()
@@ -28,6 +29,15 @@ namespace library_system
                 AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
             };
 
+            btnReturn = new Button
+            {
+                Text = "برگرداندن کتاب",
+                Dock = DockStyle.Bottom,
+                Height = 50
+            };
+
+            btnReturn.Click += BtnReturn_Click;
+
             btnBack = new Button
             {
                 Text = "بازگشت",
@@ -37,6 +47,7 @@ namespace library_system
             };
 
             Controls.Add(dgvLoans);
+            Controls.Add(btnReturn);
             Controls.Add(btnBack);
         }
 
@@ -57,6 +68,51 @@ namespace library_system
 
             dgvLoans.DataSource =
                 loanService.GetLoansByCustomerId(customer.Id);
+        }
+
+        private void BtnReturn_Click(object? sender, EventArgs e)
+        {
+            if (dgvLoans.CurrentRow == null)
+            {
+                MessageBox.Show("ابتدا یک امانت را انتخاب کنید");
+                return;
+            }
+
+            int loanId =
+                Convert.ToInt32(
+                    dgvLoans.CurrentRow.Cells["Id"].Value);
+
+            JsonDataStore store = new JsonDataStore();
+
+            var loanRepository =
+                new JsonLoanRepository(store);
+
+            var loanService =
+                new LoanService(loanRepository);
+
+            Loan? loan =
+                loanService.GetLoanById(loanId);
+
+            if (loan == null)
+                return;
+
+            var bookRepository =
+                new JsonBookRepository(store);
+
+            Book? book =
+                bookRepository.GetById(loan.BookId);
+
+            if (book == null)
+                return;
+
+            loanService.ReturnBook(loanId, book);
+
+            bookRepository.Update(book);
+
+            LoadLoans();
+
+            MessageBox.Show("کتاب با موفقیت برگردانده شد");
+
         }
     }
 

@@ -107,7 +107,7 @@ namespace library_system
                 (s, e) =>
                 {
                     this.Hide();
-                    new SeeBooks().ShowDialog();
+                    new SeeBooks(_customer).ShowDialog();
                     this.Show();
                 }
             );

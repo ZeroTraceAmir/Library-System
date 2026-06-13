@@ -28,7 +28,9 @@ namespace library_system
             {
                 Dock = DockStyle.Fill,
                 ReadOnly = true,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                SelectionMode = DataGridViewSelectionMode.FullRowSelect,
+                MultiSelect = false
             };
 
             btnPay = new Button
@@ -73,7 +75,10 @@ namespace library_system
         private void BtnPay_Click(object? sender, EventArgs e)
         {
             if (dgvDebts.CurrentRow == null)
+            {
+                MessageBox.Show("ابتدا یک بدهی را انتخاب کنید");
                 return;
+            }
 
             int debtId =
                 Convert.ToInt32(

@@ -20,7 +20,7 @@ namespace library_system
             _role = role;
             _isUser = isUser;
 
-            var store = new Repositories.JsonDataStore();
+            Repositories.JsonDataStore store = new Repositories.JsonDataStore();
             _userService = new UserService(new Repositories.JsonUserRepository(store));
             _customerService = new CustomerService(new Repositories.JsonCustomerRepository(store));
 
@@ -35,14 +35,14 @@ namespace library_system
 
         private void BuildHeader(string name, string phone, string role)
         {
-            var panel = new Panel
+            Panel panel = new Panel
             {
                 Dock = DockStyle.Top,
                 Height = 60,
                 BackColor = Color.FromArgb(52, 73, 94),
             };
 
-            var flow = new FlowLayoutPanel
+            FlowLayoutPanel flow = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 FlowDirection = FlowDirection.RightToLeft,
@@ -77,7 +77,7 @@ namespace library_system
 
         private void BuildLogoutButton()
         {
-            var btnLogout = new Button
+            Button btnLogout = new Button
             {
                 Text = "خروج",
                 Font = new Font("Tahoma", 11F),
@@ -109,7 +109,7 @@ namespace library_system
 
         private void BuildFields()
         {
-            var table = new TableLayoutPanel
+            TableLayoutPanel table = new TableLayoutPanel
             {
                 Dock = DockStyle.Top,
                 ColumnCount = 2,
@@ -123,9 +123,9 @@ namespace library_system
             string[] labels = { "نام:", "شماره تماس:", "رمز عبور:" };
             string[] values = { _name, _phone, "" };
 
-            var txtName = new TextBox();
-            var txtPhone = new TextBox();
-            var txtPassword = new TextBox();
+            TextBox txtName = new TextBox();
+            TextBox txtPhone = new TextBox();
+            TextBox txtPassword = new TextBox();
             txtPassword.PasswordChar = '*';
 
             TextBox[] inputs = { txtName, txtPhone, txtPassword };

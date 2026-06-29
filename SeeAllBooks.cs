@@ -15,13 +15,13 @@ namespace library_system
 
         public SeeAllBooks()
         {
-            var store = new Repositories.JsonDataStore();
+            Repositories.JsonDataStore store = new Repositories.JsonDataStore();
             _bookService = new BookService(new Repositories.JsonBookRepository(store));
 
             this.Text = "دیدن همه کتاب ها";
             this.WindowState = FormWindowState.Maximized;
 
-            var topPanel = new FlowLayoutPanel
+            FlowLayoutPanel topPanel = new FlowLayoutPanel
             {
                 Dock = DockStyle.Top,
                 FlowDirection = FlowDirection.RightToLeft,
@@ -77,14 +77,14 @@ namespace library_system
         {
             _cmbFilter.Items.Add("همه");
 
-            var genres = _bookService.GetAllBooks()
+            List<string> genres = _bookService.GetAllBooks()
                 .Select(b => b.Genre)
                 .Where(g => !string.IsNullOrWhiteSpace(g))
                 .Distinct(StringComparer.OrdinalIgnoreCase)
                 .OrderBy(g => g)
                 .ToList();
 
-            foreach (var genre in genres)
+            foreach (string genre in genres)
                 _cmbFilter.Items.Add(genre);
 
             _cmbFilter.SelectedIndex = 0;
@@ -92,14 +92,14 @@ namespace library_system
 
         private void RefreshGrid()
         {
-            var search = _txtSearch.Text.Trim().ToLower();
+            string search = _txtSearch.Text.Trim().ToLower();
 
             var books = _bookService.GetAllBooks()
                 .Where(b =>
                 {
                     if (_cmbFilter.SelectedIndex > 0)
                     {
-                        var selectedGenre = _cmbFilter.SelectedItem.ToString();
+                        string selectedGenre = _cmbFilter.SelectedItem.ToString();
                         if (!b.Genre.Equals(selectedGenre, StringComparison.OrdinalIgnoreCase))
                             return false;
                     }

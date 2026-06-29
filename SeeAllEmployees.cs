@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using library_system.Enums;
 using library_system.Models;
 using library_system.Services;
 
@@ -17,13 +18,13 @@ namespace library_system
 
         public SeeAllEmployees()
         {
-            var store = new Repositories.JsonDataStore();
+            Repositories.JsonDataStore store = new Repositories.JsonDataStore();
             _userService = new UserService(new Repositories.JsonUserRepository(store));
 
             this.Text = "دیدن همه کارمندان کتابخانه";
             this.WindowState = FormWindowState.Maximized;
 
-            var topPanel = new FlowLayoutPanel
+            FlowLayoutPanel topPanel = new FlowLayoutPanel
             {
                 Dock = DockStyle.Top,
                 FlowDirection = FlowDirection.RightToLeft,
@@ -63,7 +64,7 @@ namespace library_system
                 RightToLeft = RightToLeft.Yes,
             };
 
-            var loggedInUser = _userService.GetLoggedInUser();
+            User? loggedInUser = _userService.GetLoggedInUser();
             if (loggedInUser != null && loggedInUser.Role == Enums.UserStatus.admin)
             {
                 _deleteColumn = new DataGridViewButtonColumn
@@ -99,11 +100,11 @@ namespace library_system
             if (e.ColumnIndex != _deleteColumn.Index)
                 return;
 
-            var row = _grid.Rows[e.RowIndex];
-            var userId = Convert.ToInt32(row.Cells["Id"].Value);
-            var targetRole = Convert.ToInt32(row.Cells["Role"].Value);
+            DataGridViewRow row = _grid.Rows[e.RowIndex];
+            int userId = Convert.ToInt32(row.Cells["Id"].Value);
+            int targetRole = Convert.ToInt32(row.Cells["Role"].Value);
 
-            var loggedInUser = _userService.GetLoggedInUser();
+            User? loggedInUser = _userService.GetLoggedInUser();
             if (loggedInUser == null)
                 return;
 
@@ -119,7 +120,7 @@ namespace library_system
                 return;
             }
 
-            var result = MessageBox.Show(
+            DialogResult result = MessageBox.Show(
                 "آیا از حذف این کارمند اطمینان دارید؟",
                 "تأیید حذف",
                 MessageBoxButtons.YesNo,
@@ -134,9 +135,9 @@ namespace library_system
 
         private void RefreshGrid()
         {
-            var search = _txtSearch.Text.Trim().ToLower();
+            string search = _txtSearch.Text.Trim().ToLower();
 
-            var users = _userService.GetFilteredUsers(_cmbFilter.SelectedIndex)
+            var users = _userService.GetFilteredUsers((UserFilter)_cmbFilter.SelectedIndex)
                 .Where(u => string.IsNullOrEmpty(search) ||
                     u.Name.ToLower().Contains(search) ||
                     u.Number.ToLower().Contains(search))

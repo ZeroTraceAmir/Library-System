@@ -1,6 +1,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using library_system.Enums;
 using library_system.Services;
 
 namespace library_system
@@ -14,13 +15,13 @@ namespace library_system
 
         public SeeAllCustomers()
         {
-            var store = new Repositories.JsonDataStore();
+            Repositories.JsonDataStore store = new Repositories.JsonDataStore();
             _customerService = new CustomerService(new Repositories.JsonCustomerRepository(store));
 
             this.Text = "دیدن همه مشتریان کتابخانه";
             this.WindowState = FormWindowState.Maximized;
 
-            var topPanel = new FlowLayoutPanel
+            FlowLayoutPanel topPanel = new FlowLayoutPanel
             {
                 Dock = DockStyle.Top,
                 FlowDirection = FlowDirection.RightToLeft,
@@ -77,9 +78,9 @@ namespace library_system
 
         private void RefreshGrid()
         {
-            var search = _txtSearch.Text.Trim().ToLower();
+            string search = _txtSearch.Text.Trim().ToLower();
 
-            var customers = _customerService.GetFilteredCustomers(_cmbFilter.SelectedIndex)
+            var customers = _customerService.GetFilteredCustomers((CustomerFilter)_cmbFilter.SelectedIndex)
                 .Where(c => string.IsNullOrEmpty(search) ||
                     c.Name.ToLower().Contains(search) ||
                     c.Number.ToLower().Contains(search))

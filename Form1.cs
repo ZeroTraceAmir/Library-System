@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using library_system.Enums;
 using library_system.Interfaces;
+using library_system.Models;
 using library_system.Repositories;
 using library_system.Services;
 
@@ -111,17 +112,17 @@ namespace library_system
                 Form nextForm;
                 if (loginForm.LoggedInUserRole == Enums.UserStatus.admin)
                 {
-                    var user = userService.GetLoggedInUser()!;
+                    User user = userService.GetLoggedInUser()!;
                     nextForm = new AdminPanel(user);
                 }
                 else if (loginForm.LoggedInUserRole == Enums.UserStatus.staff)
                 {
-                    var user = userService.GetLoggedInUser()!;
+                    User user = userService.GetLoggedInUser()!;
                     nextForm = new StaffPanel(user);
                 }
                 else
                 {
-                    var customer = customerService.GetLoggedInCustomer()!;
+                    Customer customer = customerService.GetLoggedInCustomer()!;
                     nextForm = new Home(customer);
                 }
 

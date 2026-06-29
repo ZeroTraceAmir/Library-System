@@ -18,6 +18,8 @@ namespace library_system
         public RegisterForm(CustomerService customerService)
         {
             this.customerService = customerService;
+            customerService.CustomerRegistered += c =>
+                ShowMessage($"خوش آمدید {c.Name}! ثبت نام با موفقیت انجام شد", "موفق", MessageBoxIcon.Information);
             BuildUi();
         }
 
@@ -34,7 +36,7 @@ namespace library_system
             ClientSize = new Size(380, 320);
             BackColor = Color.White;
 
-            var layout = new TableLayoutPanel
+            TableLayoutPanel layout = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 Padding = new Padding(20),
@@ -103,7 +105,7 @@ namespace library_system
                 if (txtPassword.Text.Length < 4)
                     throw new Exception("رمز عبور باید حداقل ۴ کاراکتر باشد");
 
-                var customer = new Customer
+                Customer customer = new Customer
                 {
                     Name = txtName.Text.Trim(),
                     Number = txtNumber.Text.Trim(),

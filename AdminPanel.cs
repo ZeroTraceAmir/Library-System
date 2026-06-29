@@ -14,20 +14,20 @@ namespace library_system
             _user = user;
             this.Text = "Admin Panel";
             this.WindowState = FormWindowState.Maximized;
-            BuildHeader(user.Name, user.Number, "مدیر");
+            BuildHeader(user.Name, user.Number, user.GetRoleLabel());
             BuildMenu();
         }
 
         private void BuildHeader(string name, string phone, string role)
         {
-            var panel = new Panel
+            Panel panel = new Panel
             {
                 Dock = DockStyle.Top,
                 Height = 60,
                 BackColor = Color.FromArgb(52, 73, 94)
             };
 
-            var btnProfile = new Button
+            Button btnProfile = new Button
             {
                 Text = "پروفایل",
                 Dock = DockStyle.Left,
@@ -40,7 +40,7 @@ namespace library_system
             };
             btnProfile.Click += BtnProfile_Click;
 
-            var flow = new FlowLayoutPanel
+            FlowLayoutPanel flow = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 FlowDirection = FlowDirection.RightToLeft,
@@ -70,7 +70,7 @@ namespace library_system
 
         private void BuildMenu()
         {
-            var flow = new FlowLayoutPanel
+            FlowLayoutPanel flow = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 FlowDirection = FlowDirection.TopDown,
@@ -80,7 +80,7 @@ namespace library_system
 
             void AddButton(string text, EventHandler onClick)
             {
-                var btn = new Button
+                Button btn = new Button
                 {
                     Text = text,
                     Font = new Font("Tahoma", 11F),
@@ -120,7 +120,7 @@ namespace library_system
 
         private void BtnProfile_Click(object? sender, EventArgs e)
         {
-            var pf = new Profile(_user.Name, _user.Number, "مدیر", true);
+            Profile pf = new Profile(_user.Name, _user.Number, _user.GetRoleLabel(), true);
 pf.ShowDialog(this);
         }
     }

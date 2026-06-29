@@ -1,52 +1,12 @@
 [
   {
-    "Id": 1,
-    "Name": "\u0627\u0628\u062F\u0648\u0644 \u0645\u0627\u0644\u06A9",
-    "Number": "09332891451",
+    "HasBorrowedBook": false,
+    "HasReservedBook": false,
+    "Debt": 0,
+    "Number": "123",
     "Password": "1234",
-    "IsLogedin": false,
-    "HasBorrowedBook": false,
-    "HasReservedBook": false,
-    "Debt": 0
-  },
-  {
-    "Id": 2,
-    "Name": "\u0645\u0638\u0641\u0631",
-    "Number": "\u06F0\u06F9\u06F3\u06F3\u06F1\u06F2\u06F3\u06F1\u06F2\u06F3",
-    "Password": "1234",
-    "IsLogedin": false,
-    "HasBorrowedBook": false,
-    "HasReservedBook": false,
-    "Debt": 0
-  },
-  {
-    "Id": 3,
-    "Name": "admin",
-    "Number": "091234567890",
-    "Password": "1234",
-    "IsLogedin": false,
-    "HasBorrowedBook": false,
-    "HasReservedBook": false,
-    "Debt": 0
-  },
-  {
-    "Id": 4,
-    "Name": "admin",
-    "Number": "09123456789",
-    "Password": "1234",
-    "IsLogedin": false,
-    "HasBorrowedBook": false,
-    "HasReservedBook": false,
-    "Debt": 0
-  },
-  {
-    "Id": 5,
-    "Name": "customer",
-    "Number": "09332985114",
-    "Password": "test",
-    "IsLogedin": false,
-    "HasBorrowedBook": false,
-    "HasReservedBook": false,
-    "Debt": 0
+    "IsLogedin": true,
+    "Name": "123",
+    "Id": 1
   }
 ]

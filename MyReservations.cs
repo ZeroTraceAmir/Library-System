@@ -55,18 +55,18 @@ namespace library_system
         {
             JsonDataStore store = new JsonDataStore();
 
-            var customerRepository = new JsonCustomerRepository(store);
-            var customerService = new CustomerService(customerRepository);
+            JsonCustomerRepository customerRepository = new JsonCustomerRepository(store);
+            CustomerService customerService = new CustomerService(customerRepository);
 
             Customer? customer = customerService.GetLoggedInCustomer();
 
             if (customer == null)
                 return;
 
-            var reservationRepository =
+            JsonReservationRepository reservationRepository =
                 new JsonReservationRepository(store);
 
-            var reservationService =
+            ReservationService reservationService =
                 new ReservationService(reservationRepository);
 
             dgvReservations.DataSource =
@@ -87,10 +87,10 @@ namespace library_system
 
             JsonDataStore store = new JsonDataStore();
 
-            var reservationRepository =
+            JsonReservationRepository reservationRepository =
                 new JsonReservationRepository(store);
 
-            var reservationService =
+            ReservationService reservationService =
                 new ReservationService(reservationRepository);
 
             reservationService.CancelReservation(reservationId);

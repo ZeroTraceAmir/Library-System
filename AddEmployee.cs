@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Windows.Forms;
+using library_system.Enums;
 using library_system.Services;
 
 namespace library_system
@@ -10,13 +11,13 @@ namespace library_system
 
         public AddEmployee()
         {
-            var store = new Repositories.JsonDataStore();
+            Repositories.JsonDataStore store = new Repositories.JsonDataStore();
             _userService = new UserService(new Repositories.JsonUserRepository(store));
 
             this.Text = "اضافه کردن کارمند به کتاب خانه";
             this.WindowState = FormWindowState.Maximized;
 
-            var table = new TableLayoutPanel
+            TableLayoutPanel table = new TableLayoutPanel
             {
                 Dock = DockStyle.Top,
                 ColumnCount = 2,
@@ -28,11 +29,11 @@ namespace library_system
             table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70));
 
             string[] labels = { "نام:", "شماره تماس:", "رمز عبور:", "تکرار رمز عبور:", "نقش:" };
-            var txtName = new TextBox();
-            var txtPhone = new TextBox();
-            var txtPassword = new TextBox { PasswordChar = '*' };
-            var txtRepeatPassword = new TextBox { PasswordChar = '*' };
-            var cmbRole = new ComboBox
+            TextBox txtName = new TextBox();
+            TextBox txtPhone = new TextBox();
+            TextBox txtPassword = new TextBox { PasswordChar = '*' };
+            TextBox txtRepeatPassword = new TextBox { PasswordChar = '*' };
+            ComboBox cmbRole = new ComboBox
             {
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Items = { "ادمین", "کارمند" },
@@ -57,7 +58,7 @@ namespace library_system
                 table.Controls.Add(inputs[i], 1, i);
             }
 
-            var btnAdd = new Button
+            Button btnAdd = new Button
             {
                 Text = "اضافه کردن",
                 Font = new Font("Tahoma", 11F),
@@ -68,11 +69,11 @@ namespace library_system
             {
                 try
                 {
-                    var name = txtName.Text.Trim();
-                    var phone = txtPhone.Text.Trim();
-                    var password = txtPassword.Text.Trim();
-                    var repeatPassword = txtRepeatPassword.Text.Trim();
-                    var role = cmbRole.SelectedIndex;
+                    string name = txtName.Text.Trim();
+                    string phone = txtPhone.Text.Trim();
+                    string password = txtPassword.Text.Trim();
+                    string repeatPassword = txtRepeatPassword.Text.Trim();
+                    UserStatus role = (UserStatus)cmbRole.SelectedIndex;
 
                     _userService.AddEmployee(name, phone, password, repeatPassword, role);
 

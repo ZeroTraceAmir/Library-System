@@ -3,9 +3,8 @@ using System;
 
 namespace library_system.Models
 {
-    public class Reservation : IEntity 
+    public class Reservation : BaseEntity, IReservation
     {
-        public int Id { get; set; }
         public int CustomerId { get; set; }
         public int BookId { get; set; }
         public DateTime ReservationDate { get; set; } 

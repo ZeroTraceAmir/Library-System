@@ -34,6 +34,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using library_system.Enums;
+using library_system.Models;
 using library_system.Services;
 
 namespace library_system
@@ -177,7 +178,7 @@ namespace library_system
 
                     if (isAuthenticatedUser)
                     {
-                        var user = _userService.GetLoggedInUser();
+                        User? user = _userService.GetLoggedInUser();
                         LoggedInUserRole = user?.Role;
                     }
 

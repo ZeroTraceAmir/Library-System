@@ -3,9 +3,8 @@ using System;
 
 namespace library_system.Models
 {
-    public class Debt : IEntity
+    public class Debt : BaseEntity, IDebt
     {
-        public int Id { get; set; }
         public int CustomerId { get; set; }
         public decimal Amount { get; set; }
         public string Reason { get; set; }

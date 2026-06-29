@@ -55,16 +55,16 @@ namespace library_system
         {
             JsonDataStore store = new JsonDataStore();
 
-            var customerRepository = new JsonCustomerRepository(store);
-            var customerService = new CustomerService(customerRepository);
+            JsonCustomerRepository customerRepository = new JsonCustomerRepository(store);
+            CustomerService customerService = new CustomerService(customerRepository);
 
             Customer? customer = customerService.GetLoggedInCustomer();
 
             if (customer == null)
                 return;
 
-            var loanRepository = new JsonLoanRepository(store);
-            var loanService = new LoanService(loanRepository);
+            JsonLoanRepository loanRepository = new JsonLoanRepository(store);
+            LoanService loanService = new LoanService(loanRepository);
 
             dgvLoans.DataSource =
                 loanService.GetLoansByCustomerId(customer.Id);
@@ -84,10 +84,10 @@ namespace library_system
 
             JsonDataStore store = new JsonDataStore();
 
-            var loanRepository =
+            JsonLoanRepository loanRepository =
                 new JsonLoanRepository(store);
 
-            var loanService =
+            LoanService loanService =
                 new LoanService(loanRepository);
 
             Loan? loan =
@@ -96,7 +96,7 @@ namespace library_system
             if (loan == null)
                 return;
 
-            var bookRepository =
+            JsonBookRepository bookRepository =
                 new JsonBookRepository(store);
 
             Book? book =

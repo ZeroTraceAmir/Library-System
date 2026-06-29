@@ -57,16 +57,16 @@ namespace library_system
         {
             JsonDataStore store = new JsonDataStore();
 
-            var customerRepository = new JsonCustomerRepository(store);
-            var customerService = new CustomerService(customerRepository);
+            JsonCustomerRepository customerRepository = new JsonCustomerRepository(store);
+            CustomerService customerService = new CustomerService(customerRepository);
 
             Customer? customer = customerService.GetLoggedInCustomer();
 
             if (customer == null)
                 return;
 
-            var debtRepository = new JsonDebtRepository(store);
-            var debtService = new DebtService(debtRepository);
+            JsonDebtRepository debtRepository = new JsonDebtRepository(store);
+            DebtService debtService = new DebtService(debtRepository);
 
             dgvDebts.DataSource =
                 debtService.GetCustomerDebts(customer.Id);
@@ -86,10 +86,10 @@ namespace library_system
 
             JsonDataStore store = new JsonDataStore();
 
-            var debtRepository =
+            JsonDebtRepository debtRepository =
                 new JsonDebtRepository(store);
 
-            var debtService =
+            DebtService debtService =
                 new DebtService(debtRepository);
 
             debtService.PayDebt(debtId);

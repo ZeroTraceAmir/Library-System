@@ -45,6 +45,8 @@ namespace library_system.Services
                 .ToList();
         }
 
+        public event BookEventHandler? BookReserved;
+
         public void ReserveBook(Book book, int customerId)
         {
             Reservation reservation = new Reservation
@@ -59,6 +61,7 @@ namespace library_system.Services
             };
 
             reservationRepository.Add(reservation);
+            BookReserved?.Invoke(book);
         }
 
         public void CancelReservation(int reservationId)

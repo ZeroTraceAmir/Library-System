@@ -3,9 +3,8 @@ using System;
 
 namespace library_system.Models
 {
-    public class Loan : IEntity 
+    public class Loan : BaseEntity, ILoan
     {
-        public int Id { get; set; }
         public int CustomerId { get; set; }
         public int BookId { get; set; }
         public DateTime LoanDate { get; set; }

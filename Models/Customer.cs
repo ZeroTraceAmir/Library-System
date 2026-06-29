@@ -1,19 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using library_system.Interfaces;
+
 namespace library_system.Models
 {
-    public class Customer: ICustomer
+    public class Customer : Account, ICustomer
     {
-         public int Id {get; set;}
-        public string Name {get; set;}
-        public string Number {get; set;}
-        public string Password {get; set;}
-        public bool IsLogedin {get; set;}
         public bool HasBorrowedBook { get; set; }
         public bool HasReservedBook { get; set; }
         public decimal Debt { get; set; }
+
+        public override string GetRoleLabel() => "مشتری";
     }
 }

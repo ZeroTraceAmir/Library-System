@@ -7,7 +7,7 @@ using library_system.Models;
 
 namespace library_system.Services
 {
-    public class BookService
+    public class BookService : BaseService<Book>
     {
         private readonly IBookRepository bookRepository;
 
@@ -28,16 +28,29 @@ namespace library_system.Services
 
         public void AddBook(Book book)
         {
-            ValidateBook(book);
+            Validate(book);
 
             List<Book> books = bookRepository.GetAll();
             book.Id = books.Any() ? books.Max(b => b.Id) + 1 : 1;
             bookRepository.Add(book);
         }
 
+        public void AddBook(string title, string author, int copiesAvailable, string genre, int publicationYear, double lostChargePrice)
+        {
+            AddBook(new Book
+            {
+                Title = title,
+                Author = author,
+                CopiesAvailable = copiesAvailable,
+                Genre = genre,
+                PublicationYear = publicationYear,
+                LostChargePrice = lostChargePrice,
+            });
+        }
+
         public void UpdateBook(Book book)
         {
-            ValidateBook(book);
+            Validate(book);
             bookRepository.Update(book);
         }
 
@@ -74,7 +87,7 @@ namespace library_system.Services
                 .ToList();
         }
 
-        private void ValidateBook(Book book)
+        protected override void Validate(Book book)
         {
             if (book == null)
                 throw new Exception("Book cannot be null.");

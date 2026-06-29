@@ -6,9 +6,14 @@ using library_system.Models;
 
 namespace library_system.Services
 {
+    public delegate void BookEventHandler(Book book);
+
     public class LoanService
     {
         private readonly ILoanRepository loanRepository;
+
+        public event BookEventHandler? BookBorrowed;
+        public event BookEventHandler? BookReturned;
 
         public LoanService(ILoanRepository loanRepository)
         {
@@ -60,6 +65,7 @@ namespace library_system.Services
             book.CopiesAvailable++;
 
             loanRepository.Update(loan);
+            BookReturned?.Invoke(book);
         }
 
         public void BorrowBook(Book book, int customerId)
@@ -81,6 +87,7 @@ namespace library_system.Services
             };
 
             loanRepository.Add(loan);
+            BookBorrowed?.Invoke(book);
         }
     }
 }

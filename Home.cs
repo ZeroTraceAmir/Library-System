@@ -14,20 +14,20 @@ namespace library_system
             _customer = customer;
             this.Text = "Home";
             this.WindowState = FormWindowState.Maximized;
-            BuildHeader(customer.Name, customer.Number, "مشتری");
+            BuildHeader(customer.Name, customer.Number, customer.GetRoleLabel());
             BuildMenu();
         }
 
         private void BuildHeader(string name, string phone, string role)
         {
-            var panel = new Panel
+            Panel panel = new Panel
             {
                 Dock = DockStyle.Top,
                 Height = 60,
                 BackColor = Color.FromArgb(52, 73, 94),
             };
 
-            var btnProfile = new Button
+            Button btnProfile = new Button
             {
                 Text = "پروفایل",
                 Dock = DockStyle.Left,
@@ -40,7 +40,7 @@ namespace library_system
             };
             btnProfile.Click += BtnProfile_Click;
 
-            var flow = new FlowLayoutPanel
+            FlowLayoutPanel flow = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 FlowDirection = FlowDirection.RightToLeft,
@@ -76,7 +76,7 @@ namespace library_system
 
         private void BuildMenu()
         {
-            var flow = new FlowLayoutPanel
+            FlowLayoutPanel flow = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 FlowDirection = FlowDirection.TopDown,
@@ -86,7 +86,7 @@ namespace library_system
 
             void AddButton(string text, EventHandler onClick)
             {
-                var btn = new Button
+                Button btn = new Button
                 {
                     Text = text,
                     Font = new Font("Tahoma", 11F),
@@ -144,7 +144,7 @@ namespace library_system
 
         private void BtnProfile_Click(object? sender, EventArgs e)
         {
-            var pf = new Profile(_customer.Name, _customer.Number, "مشتری", false);
+            Profile pf = new Profile(_customer.Name, _customer.Number, _customer.GetRoleLabel(), false);
 pf.ShowDialog(this);
         }
     }

@@ -23,11 +23,11 @@ namespace library_system
         {
             this.customer = customer;
 
-            var store = new JsonDataStore();
+            JsonDataStore store = new JsonDataStore();
 
-            var bookRepository = new JsonBookRepository(store);
-            var loanRepository = new JsonLoanRepository(store);
-            var reservationRepository = new JsonReservationRepository(store);
+            JsonBookRepository bookRepository = new JsonBookRepository(store);
+            JsonLoanRepository loanRepository = new JsonLoanRepository(store);
+            JsonReservationRepository reservationRepository = new JsonReservationRepository(store);
 
             bookService = new BookService(bookRepository);
             loanService = new LoanService(loanRepository);

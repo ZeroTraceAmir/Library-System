@@ -25,7 +25,7 @@
     "Debt": 0,
     "Number": "1234",
     "Password": "notif",
-    "IsLogedin": true,
+    "IsLogedin": false,
     "Name": "notif",
     "Id": 3
   }

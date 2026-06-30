@@ -15,50 +15,65 @@ namespace library_system
         {
             // Form settings
             Text = "کتابخانه";
-            Size = new Size(500, 350);
+            Size = new Size(1360, 720);
             StartPosition = FormStartPosition.CenterScreen;
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
-            BackColor = Color.White;
+            BackColor = ColorTranslator.FromHtml("#111520");
 
             // Header
             Label header = new Label
             {
                 Text = "کتابخانه",
-                Font = new Font("Tahoma", 24F, FontStyle.Bold),
+                // Font = new Font("Tahoma", 24F, FontStyle.Bold),
                 AutoSize = false,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Top,
                 Height = 80,
+                ForeColor = Color.White,
+                Font = new Font("Vazir", 30F, FontStyle.Bold),
             };
 
             // Paragraph
             Label paragraph = new Label
             {
                 Text = "برای استفاده از کتابخانه، وارد شوید",
-                Font = new Font("Tahoma", 12F, FontStyle.Regular),
+                // Font = new Font("Tahoma", 12F, FontStyle.Regular),
                 AutoSize = false,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Dock = DockStyle.Top,
                 Height = 50,
+                Font = new Font("Vazir", 12F, FontStyle.Regular),
+                ForeColor = Color.White,
             };
 
             // Buttons panel
-            FlowLayoutPanel buttonPanel = new FlowLayoutPanel
-            {
-                FlowDirection = FlowDirection.RightToLeft,
-                Dock = DockStyle.Top,
-                Height = 80,
-                Padding = new Padding(0, 20, 0, 0),
-            };
+            // FlowLayoutPanel buttonPanel = new FlowLayoutPanel
+            // {
+            //     FlowDirection = FlowDirection.RightToLeft,
+            //     Height = 80,
+            //     Width = 300,
+            //     Padding = new Padding(0, 20, 0, 0),
+
+            // };
+
+            // FlowLayoutPanel buttonPanel = new FlowLayoutPanel
+            // {
+            //     AutoSize = true,
+            //     FlowDirection = FlowDirection.RightToLeft,
+            //     Padding = new Padding(0, 20, 0, 0),
+            //     Height = 80,
+            //     WrapContents = false,
+            // };
+            Panel buttonPanel = new Panel { Dock = DockStyle.Top, Height = 80 };
 
             Button btnRegister = new Button
             {
                 Text = "ثبت نام",
-                Font = new Font("Tahoma", 11F),
+                Font = new Font("Vazir", 11F),
                 Size = new Size(140, 45),
-                BackColor = Color.FromArgb(46, 134, 193),
-                ForeColor = Color.White,
+                BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                ForeColor = ColorTranslator.FromHtml("#111520"),
                 FlatStyle = FlatStyle.Flat,
                 Margin = new Padding(15, 0, 30, 0),
             };
@@ -68,12 +83,28 @@ namespace library_system
             Button btnLogin = new Button
             {
                 Text = "ورود",
-                Font = new Font("Tahoma", 11F),
+                Font = new Font("Vazir", 11F),
                 Size = new Size(140, 45),
-                BackColor = Color.FromArgb(39, 174, 96),
-                ForeColor = Color.White,
+                BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                ForeColor = ColorTranslator.FromHtml("#111520"),
                 FlatStyle = FlatStyle.Flat,
                 Margin = new Padding(15, 0, 15, 0),
+            };
+            btnRegister.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#02a9af");
+
+            btnLogin.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#02a9af");
+            btnRegister.Location = new Point((buttonPanel.Width / 2) - btnRegister.Width - 10, 20);
+
+            btnLogin.Location = new Point((buttonPanel.Width / 2) + 10, 20);
+
+            buttonPanel.Resize += (s, e) =>
+            {
+                btnRegister.Location = new Point(
+                    (buttonPanel.Width / 2) - btnRegister.Width - 10,
+                    20
+                );
+
+                btnLogin.Location = new Point((buttonPanel.Width / 2) + 10, 20);
             };
             btnLogin.FlatAppearance.BorderSize = 0;
             btnLogin.Click += BtnLogin_Click;

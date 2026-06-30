@@ -18,6 +18,7 @@ namespace library_system
         private readonly BookService bookService;
         private readonly LoanService loanService;
         private readonly ReservationService reservationService;
+        private readonly NotificationService notificationService;
 
         public SeeBooks(Customer customer)
         {
@@ -28,10 +29,18 @@ namespace library_system
             JsonBookRepository bookRepository = new JsonBookRepository(store);
             JsonLoanRepository loanRepository = new JsonLoanRepository(store);
             JsonReservationRepository reservationRepository = new JsonReservationRepository(store);
+            JsonNotificationRepository notificationRepository = new JsonNotificationRepository(store);
 
             bookService = new BookService(bookRepository);
             loanService = new LoanService(loanRepository);
             reservationService = new ReservationService(reservationRepository);
+            notificationService = new NotificationService(notificationRepository);
+
+            reservationService.BookReserved += (book, _, customerId) =>
+                notificationService.CreateReservationConfirmedNotification(customerId, book.Id);
+
+            loanService.BookBorrowed += (book, _, customerId) =>
+                notificationService.CreateBookBorrowedNotification(customerId, book.Id);
 
             InitializeComponent();
             LoadBooks();
@@ -95,6 +104,7 @@ namespace library_system
             Book book = (Book)dgvBooks.CurrentRow.DataBoundItem;
 
             loanService.BorrowBook(book, customer.Id);
+            bookService.UpdateBook(book);
 
             MessageBox.Show("کتاب با موفقیت امانت گرفته شد");
 

@@ -1,11 +1,11 @@
 [
   {
-    "Id": 1,
     "Title": "test",
     "Author": "test",
-    "CopiesAvailable": 2,
+    "CopiesAvailable": 3,
     "Genre": "test",
     "PublicationYear": 1234,
-    "LostChargePrice": 20000
+    "LostChargePrice": 20000,
+    "Id": 1
   }
 ]

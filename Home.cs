@@ -39,6 +39,17 @@ namespace library_system
                 Width = 100,
             };
             btnProfile.Click += BtnProfile_Click;
+            Button notifBtn = new Button
+            {
+                Text = "اعلان ها",
+                Dock = DockStyle.Left,
+                FlatAppearance = { BorderSize = 2 },
+                BackColor = Color.Teal,
+                ForeColor = Color.White,
+                Font = new Font("Tahoma", 10F, FontStyle.Underline),
+                Width = 80,
+            };
+            notifBtn.Click += (s, e) => new Notifications(_customer).ShowDialog(this);
 
             FlowLayoutPanel flow = new FlowLayoutPanel
             {
@@ -70,6 +81,7 @@ namespace library_system
             AddLabel(name, 11F, true, Color.White);
 
             panel.Controls.Add(flow);
+            panel.Controls.Add(notifBtn);
             panel.Controls.Add(btnProfile);
             Controls.Add(panel);
         }
@@ -81,7 +93,7 @@ namespace library_system
                 Dock = DockStyle.Fill,
                 FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
-                Padding = new Padding(50, 40, 50, 0),
+                Padding = new Padding(50, 100, 50, 0),
             };
 
             void AddButton(string text, EventHandler onClick)
@@ -103,7 +115,7 @@ namespace library_system
             }
 
             AddButton(
-                "دیدن کتاب های",
+                "دیدن کتاب ها",
                 (s, e) =>
                 {
                     this.Hide();
@@ -144,8 +156,13 @@ namespace library_system
 
         private void BtnProfile_Click(object? sender, EventArgs e)
         {
-            Profile pf = new Profile(_customer.Name, _customer.Number, _customer.GetRoleLabel(), false);
-pf.ShowDialog(this);
+            Profile pf = new Profile(
+                _customer.Name,
+                _customer.Number,
+                _customer.GetRoleLabel(),
+                false
+            );
+            pf.ShowDialog(this);
         }
     }
 }

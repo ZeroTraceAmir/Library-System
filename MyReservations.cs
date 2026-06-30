@@ -93,7 +93,21 @@ namespace library_system
             ReservationService reservationService =
                 new ReservationService(reservationRepository);
 
+            Reservation? reservation = reservationService.GetReservationById(reservationId);
+
             reservationService.CancelReservation(reservationId);
+
+            if (reservation != null)
+            {
+                JsonNotificationRepository notificationRepository =
+                    new JsonNotificationRepository(store);
+
+                NotificationService notificationService =
+                    new NotificationService(notificationRepository);
+
+                notificationService.CreateReservationCancelledNotification(
+                    reservation.CustomerId, reservation.BookId);
+            }
 
             LoadReservations();
 

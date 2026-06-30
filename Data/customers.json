@@ -5,8 +5,28 @@
     "Debt": 0,
     "Number": "123",
     "Password": "1234",
-    "IsLogedin": true,
+    "IsLogedin": false,
     "Name": "123",
     "Id": 1
+  },
+  {
+    "HasBorrowedBook": true,
+    "HasReservedBook": false,
+    "Debt": 50000,
+    "Number": "456",
+    "Password": "4567",
+    "IsLogedin": false,
+    "Name": "test",
+    "Id": 2
+  },
+  {
+    "HasBorrowedBook": false,
+    "HasReservedBook": false,
+    "Debt": 0,
+    "Number": "1234",
+    "Password": "notif",
+    "IsLogedin": true,
+    "Name": "notif",
+    "Id": 3
   }
 ]

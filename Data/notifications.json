@@ -1,0 +1,103 @@
+[
+  {
+    "$type": "OverdueNotification",
+    "DueDate": "2026-06-27T10:00:00",
+    "BookId": 1,
+    "CustomerId": 1,
+    "CreatedAt": "2026-06-28T10:00:00",
+    "Type": 0,
+    "Id": 1
+  },
+  {
+    "$type": "ReturnReminderNotification",
+    "DueDate": "2026-06-30T10:00:00",
+    "BookId": 2,
+    "CustomerId": 1,
+    "CreatedAt": "2026-06-29T08:00:00",
+    "Type": 1,
+    "Id": 2
+  },
+  {
+    "$type": "ReservationConfirmedNotification",
+    "BookId": 3,
+    "CustomerId": 1,
+    "CreatedAt": "2026-06-29T12:00:00",
+    "Type": 2,
+    "Id": 3
+  },
+  {
+    "$type": "ReservationCancelledNotification",
+    "BookId": 4,
+    "CustomerId": 1,
+    "CreatedAt": "2026-06-29T14:00:00",
+    "Type": 3,
+    "Id": 4
+  },
+  {
+    "$type": "OverdueNotification",
+    "DueDate": "2026-06-25T09:00:00",
+    "BookId": 5,
+    "CustomerId": 2,
+    "CreatedAt": "2026-06-27T09:00:00",
+    "Type": 0,
+    "Id": 5
+  },
+  {
+    "$type": "ReturnReminderNotification",
+    "DueDate": "2026-06-30T10:00:00",
+    "BookId": 6,
+    "CustomerId": 2,
+    "CreatedAt": "2026-06-29T11:00:00",
+    "Type": 1,
+    "Id": 6
+  },
+  {
+    "$type": "ReservationConfirmedNotification",
+    "BookId": 1,
+    "CustomerId": 1,
+    "CreatedAt": "2026-06-29T07:58:27.8887159+03:30",
+    "Type": 2,
+    "Id": 7
+  },
+  {
+    "$type": "ReservationConfirmedNotification",
+    "BookId": 1,
+    "CustomerId": 3,
+    "CreatedAt": "2026-06-29T07:59:40.6572189+03:30",
+    "Type": 2,
+    "Id": 8
+  },
+  {
+    "$type": "ReturnReminderNotification",
+    "DueDate": "2026-06-30T08:00:06.9668373+03:30",
+    "BookId": 1,
+    "CustomerId": 3,
+    "CreatedAt": "2026-06-29T08:04:27.6909535+03:30",
+    "Type": 1,
+    "Id": 9
+  },
+  {
+    "$type": "ReservationCancelledNotification",
+    "BookId": 1,
+    "CustomerId": 3,
+    "CreatedAt": "2026-06-29T08:05:00.5111897+03:30",
+    "Type": 3,
+    "Id": 10
+  },
+  {
+    "$type": "ReservationConfirmedNotification",
+    "BookId": 1,
+    "CustomerId": 3,
+    "CreatedAt": "2026-06-29T08:05:07.2708791+03:30",
+    "Type": 2,
+    "Id": 11
+  },
+  {
+    "$type": "BookBorrowedNotification",
+    "BookId": 1,
+    "CustomerId": 3,
+    "CreatedAt": "2026-06-29T08:05:09.1111412+03:30",
+    "Type": 4,
+    "Id": 12
+  }
+]

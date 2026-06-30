@@ -1,10 +1,42 @@
 [
   {
-    "Id": 1,
     "CustomerId": 1,
     "BookId": 1,
     "LoanDate": "2026-06-13T23:38:08.0929858+03:30",
     "DueDate": "2026-06-27T23:38:08.0930094+03:30",
-    "ReturnDate": null
+    "ReturnDate": null,
+    "Id": 1
+  },
+  {
+    "CustomerId": 1,
+    "BookId": 1,
+    "LoanDate": "2026-06-29T07:03:52.1724587+03:30",
+    "DueDate": "2026-06-30T07:03:52.1724905+03:30",
+    "ReturnDate": null,
+    "Id": 2
+  },
+  {
+    "CustomerId": 1,
+    "BookId": 1,
+    "LoanDate": "2026-06-29T07:58:29.7907489+03:30",
+    "DueDate": "2026-06-30T07:58:29.7907502+03:30",
+    "ReturnDate": null,
+    "Id": 3
+  },
+  {
+    "CustomerId": 3,
+    "BookId": 1,
+    "LoanDate": "2026-06-29T08:00:06.9668358+03:30",
+    "DueDate": "2026-06-30T08:00:06.9668373+03:30",
+    "ReturnDate": "2026-06-29T08:04:37.4090411+03:30",
+    "Id": 4
+  },
+  {
+    "CustomerId": 3,
+    "BookId": 1,
+    "LoanDate": "2026-06-29T08:05:09.110146+03:30",
+    "DueDate": "2026-06-30T08:05:09.1101475+03:30",
+    "ReturnDate": null,
+    "Id": 5
   }
 ]

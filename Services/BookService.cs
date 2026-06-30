@@ -35,17 +35,26 @@ namespace library_system.Services
             bookRepository.Add(book);
         }
 
-        public void AddBook(string title, string author, int copiesAvailable, string genre, int publicationYear, double lostChargePrice)
+        public void AddBook(
+            string title,
+            string author,
+            int copiesAvailable,
+            string genre,
+            int publicationYear,
+            double lostChargePrice
+        )
         {
-            AddBook(new Book
-            {
-                Title = title,
-                Author = author,
-                CopiesAvailable = copiesAvailable,
-                Genre = genre,
-                PublicationYear = publicationYear,
-                LostChargePrice = lostChargePrice,
-            });
+            AddBook(
+                new Book
+                {
+                    Title = title,
+                    Author = author,
+                    CopiesAvailable = copiesAvailable,
+                    Genre = genre,
+                    PublicationYear = publicationYear,
+                    LostChargePrice = lostChargePrice,
+                }
+            );
         }
 
         public void UpdateBook(Book book)

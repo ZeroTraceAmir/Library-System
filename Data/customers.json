@@ -15,7 +15,7 @@
     "Debt": 50000,
     "Number": "456",
     "Password": "4567",
-    "IsLogedin": false,
+    "IsLogedin": true,
     "Name": "test",
     "Id": 2
   },

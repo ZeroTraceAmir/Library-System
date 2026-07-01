@@ -90,7 +90,7 @@ namespace library_system.Services
 
         public void CheckOverdueAndReminders(List<Loan> loans)
         {
-            var allNotifications = _repository.GetAll();
+            List<Notification> allNotifications = _repository.GetAll();
 
             foreach (Loan loan in loans)
             {

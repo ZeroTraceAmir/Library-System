@@ -64,9 +64,9 @@ namespace library_system
             List<Loan> customerLoans = loanService.GetLoansByCustomerId(_customer.Id);
             service.CheckOverdueAndReminders(customerLoans);
 
-            var notifications = service.GetNotificationsForCustomer(_customer.Id);
+            List<Notification> notifications = service.GetNotificationsForCustomer(_customer.Id);
 
-            foreach (var notification in notifications)
+            foreach (Notification notification in notifications)
             {
                 flowPanel.Controls.Add(CreateNotificationBox(notification));
             }

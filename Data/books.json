@@ -1,11 +1,902 @@
 [
   {
-    "Title": "test",
-    "Author": "test",
-    "CopiesAvailable": 3,
-    "Genre": "test",
-    "PublicationYear": 1234,
-    "LostChargePrice": 20000,
+    "Title": "Vast Canyon",
+    "Author": "Iris Finch",
+    "CopiesAvailable": 2,
+    "Genre": "Solarpunk",
+    "PublicationYear": 1847,
+    "LostChargePrice": 386657,
     "Id": 1
+  },
+  {
+    "Title": "Luminous\u0022\u0022\u0022 Anchor",
+    "Author": "Elena Barrett",
+    "CopiesAvailable": 1,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1908,
+    "LostChargePrice": 51713,
+    "Id": 2
+  },
+  {
+    "Title": "Brittle Comet",
+    "Author": "Clara Finch",
+    "CopiesAvailable": 10,
+    "Genre": "Magical Realism",
+    "PublicationYear": 1967,
+    "LostChargePrice": 304295,
+    "Id": 3
+  },
+  {
+    "Title": "Shattered Engine",
+    "Author": "Silas Mercer",
+    "CopiesAvailable": 2,
+    "Genre": "Magical Realism",
+    "PublicationYear": 1665,
+    "LostChargePrice": 517473,
+    "Id": 4
+  },
+  {
+    "Title": "Infinite Glitch",
+    "Author": "Iris Hayes",
+    "CopiesAvailable": 10,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1727,
+    "LostChargePrice": 365220,
+    "Id": 5
+  },
+  {
+    "Title": "Hollow Gear",
+    "Author": "Silas Mercer",
+    "CopiesAvailable": 3,
+    "Genre": "Magical Realism",
+    "PublicationYear": 1933,
+    "LostChargePrice": 134882,
+    "Id": 6
+  },
+  {
+    "Title": "Obsolete Engine",
+    "Author": "Maya Hayes",
+    "CopiesAvailable": 10,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1614,
+    "LostChargePrice": 325807,
+    "Id": 7
+  },
+  {
+    "Title": "Hollow Vector",
+    "Author": "Jonas Barrett",
+    "CopiesAvailable": 8,
+    "Genre": "Cyberpunk",
+    "PublicationYear": 2025,
+    "LostChargePrice": 132184,
+    "Id": 8
+  },
+  {
+    "Title": "Shattered Nebula",
+    "Author": "Marcus Finch",
+    "CopiesAvailable": 1,
+    "Genre": "Solarpunk",
+    "PublicationYear": 1840,
+    "LostChargePrice": 488880,
+    "Id": 9
+  },
+  {
+    "Title": "Obsolete Gear",
+    "Author": "Elena Calder",
+    "CopiesAvailable": 5,
+    "Genre": "Cosmic Horror",
+    "PublicationYear": 1734,
+    "LostChargePrice": 707010,
+    "Id": 10
+  },
+  {
+    "Title": "Shattered Matrix",
+    "Author": "Clara Thorne",
+    "CopiesAvailable": 0,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1879,
+    "LostChargePrice": 132859,
+    "Id": 11
+  },
+  {
+    "Title": "Primal Engine",
+    "Author": "Silas Thorne",
+    "CopiesAvailable": 10,
+    "Genre": "Cosmic Horror",
+    "PublicationYear": 1618,
+    "LostChargePrice": 101107,
+    "Id": 12
+  },
+  {
+    "Title": "Ancient Canyon",
+    "Author": "Maya Calder",
+    "CopiesAvailable": 10,
+    "Genre": "Magical Realism",
+    "PublicationYear": 1786,
+    "LostChargePrice": 987129,
+    "Id": 13
+  },
+  {
+    "Title": "Ancient Glitch",
+    "Author": "Maya Sterling",
+    "CopiesAvailable": 3,
+    "Genre": "Space Opera",
+    "PublicationYear": 1822,
+    "LostChargePrice": 544905,
+    "Id": 14
+  },
+  {
+    "Title": "Ancient Canyon",
+    "Author": "Iris Thorne",
+    "CopiesAvailable": 3,
+    "Genre": "Cyberpunk",
+    "PublicationYear": 1843,
+    "LostChargePrice": 989814,
+    "Id": 15
+  },
+  {
+    "Title": "Crimson Gear",
+    "Author": "Jonas Hayes",
+    "CopiesAvailable": 0,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1989,
+    "LostChargePrice": 605316,
+    "Id": 16
+  },
+  {
+    "Title": "Vast Glitch",
+    "Author": "Maya Barrett",
+    "CopiesAvailable": 6,
+    "Genre": "Space Opera",
+    "PublicationYear": 1951,
+    "LostChargePrice": 536915,
+    "Id": 17
+  },
+  {
+    "Title": "Infinite Comet",
+    "Author": "Maya Thorne",
+    "CopiesAvailable": 0,
+    "Genre": "Urban Fantasy",
+    "PublicationYear": 1509,
+    "LostChargePrice": 377084,
+    "Id": 18
+  },
+  {
+    "Title": "Vast Gear",
+    "Author": "Nova Barrett",
+    "CopiesAvailable": 0,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1551,
+    "LostChargePrice": 962625,
+    "Id": 19
+  },
+  {
+    "Title": "Brittle Matrix",
+    "Author": "Tristan Thorne",
+    "CopiesAvailable": 9,
+    "Genre": "Cyberpunk",
+    "PublicationYear": 1585,
+    "LostChargePrice": 467976,
+    "Id": 20
+  },
+  {
+    "Title": "Obsolete Summit",
+    "Author": "Clara Hayes",
+    "CopiesAvailable": 9,
+    "Genre": "Magical Realism",
+    "PublicationYear": 2002,
+    "LostChargePrice": 377602,
+    "Id": 21
+  },
+  {
+    "Title": "Obsolete Comet",
+    "Author": "Silas Vance",
+    "CopiesAvailable": 3,
+    "Genre": "Solarpunk",
+    "PublicationYear": 1944,
+    "LostChargePrice": 838687,
+    "Id": 22
+  },
+  {
+    "Title": "Primal Vector",
+    "Author": "Iris Sterling",
+    "CopiesAvailable": 5,
+    "Genre": "Historical Fiction",
+    "PublicationYear": 1835,
+    "LostChargePrice": 624178,
+    "Id": 23
+  },
+  {
+    "Title": "Infinite Summit",
+    "Author": "Elena Calder",
+    "CopiesAvailable": 3,
+    "Genre": "Magical Realism",
+    "PublicationYear": 1693,
+    "LostChargePrice": 955676,
+    "Id": 24
+  },
+  {
+    "Title": "Shattered Canyon",
+    "Author": "Clara Vance",
+    "CopiesAvailable": 1,
+    "Genre": "Grimdark",
+    "PublicationYear": 1643,
+    "LostChargePrice": 249739,
+    "Id": 25
+  },
+  {
+    "Title": "Infinite Anchor",
+    "Author": "Clara Sterling",
+    "CopiesAvailable": 5,
+    "Genre": "Solarpunk",
+    "PublicationYear": 1646,
+    "LostChargePrice": 855892,
+    "Id": 26
+  },
+  {
+    "Title": "Luminous\u0022\u0022\u0022 Matrix",
+    "Author": "Leo Barrett",
+    "CopiesAvailable": 9,
+    "Genre": "Urban Fantasy",
+    "PublicationYear": 1597,
+    "LostChargePrice": 129134,
+    "Id": 27
+  },
+  {
+    "Title": "Vast Summit",
+    "Author": "Nova Thorne",
+    "CopiesAvailable": 8,
+    "Genre": "Magical Realism",
+    "PublicationYear": 1726,
+    "LostChargePrice": 157719,
+    "Id": 28
+  },
+  {
+    "Title": "Luminous\u0022\u0022\u0022 Gear",
+    "Author": "Nova Barrett",
+    "CopiesAvailable": 10,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1696,
+    "LostChargePrice": 555482,
+    "Id": 29
+  },
+  {
+    "Title": "Crimson Engine",
+    "Author": "Tristan Cross",
+    "CopiesAvailable": 2,
+    "Genre": "Cosmic Horror",
+    "PublicationYear": 1533,
+    "LostChargePrice": 980971,
+    "Id": 30
+  },
+  {
+    "Title": "Crimson Comet",
+    "Author": "Silas Sterling",
+    "CopiesAvailable": 9,
+    "Genre": "Cosmic Horror",
+    "PublicationYear": 1782,
+    "LostChargePrice": 510369,
+    "Id": 31
+  },
+  {
+    "Title": "Hollow Summit",
+    "Author": "Nova Calder",
+    "CopiesAvailable": 7,
+    "Genre": "Grimdark",
+    "PublicationYear": 1990,
+    "LostChargePrice": 263252,
+    "Id": 32
+  },
+  {
+    "Title": "Ancient Vector",
+    "Author": "Iris Calder",
+    "CopiesAvailable": 4,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1669,
+    "LostChargePrice": 730798,
+    "Id": 33
+  },
+  {
+    "Title": "Ancient Gear",
+    "Author": "Tristan Calder",
+    "CopiesAvailable": 0,
+    "Genre": "Solarpunk",
+    "PublicationYear": 1858,
+    "LostChargePrice": 581489,
+    "Id": 34
+  },
+  {
+    "Title": "Obsolete Gear",
+    "Author": "Tristan Barrett",
+    "CopiesAvailable": 8,
+    "Genre": "Grimdark",
+    "PublicationYear": 1895,
+    "LostChargePrice": 537665,
+    "Id": 35
+  },
+  {
+    "Title": "Ancient Matrix",
+    "Author": "Marcus Calder",
+    "CopiesAvailable": 8,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1776,
+    "LostChargePrice": 564401,
+    "Id": 36
+  },
+  {
+    "Title": "Brittle Engine",
+    "Author": "Leo Mercer",
+    "CopiesAvailable": 10,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1794,
+    "LostChargePrice": 360879,
+    "Id": 37
+  },
+  {
+    "Title": "Obsolete Matrix",
+    "Author": "Clara Barrett",
+    "CopiesAvailable": 7,
+    "Genre": "Space Opera",
+    "PublicationYear": 1749,
+    "LostChargePrice": 29908,
+    "Id": 38
+  },
+  {
+    "Title": "Luminous\u0022\u0022\u0022 Comet",
+    "Author": "Iris Calder",
+    "CopiesAvailable": 4,
+    "Genre": "Historical Fiction",
+    "PublicationYear": 1854,
+    "LostChargePrice": 648383,
+    "Id": 39
+  },
+  {
+    "Title": "Brittle Engine",
+    "Author": "Nova Calder",
+    "CopiesAvailable": 6,
+    "Genre": "Cyberpunk",
+    "PublicationYear": 1754,
+    "LostChargePrice": 357654,
+    "Id": 40
+  },
+  {
+    "Title": "Luminous\u0022\u0022\u0022 Comet",
+    "Author": "Marcus Barrett",
+    "CopiesAvailable": 6,
+    "Genre": "Space Opera",
+    "PublicationYear": 1705,
+    "LostChargePrice": 168091,
+    "Id": 41
+  },
+  {
+    "Title": "Infinite Anchor",
+    "Author": "Leo Mercer",
+    "CopiesAvailable": 3,
+    "Genre": "Solarpunk",
+    "PublicationYear": 1709,
+    "LostChargePrice": 234547,
+    "Id": 42
+  },
+  {
+    "Title": "Ancient Comet",
+    "Author": "Marcus Barrett",
+    "CopiesAvailable": 8,
+    "Genre": "Historical Fiction",
+    "PublicationYear": 1548,
+    "LostChargePrice": 511835,
+    "Id": 43
+  },
+  {
+    "Title": "Infinite Nebula",
+    "Author": "Marcus Finch",
+    "CopiesAvailable": 6,
+    "Genre": "Grimdark",
+    "PublicationYear": 1923,
+    "LostChargePrice": 959994,
+    "Id": 44
+  },
+  {
+    "Title": "Infinite Nebula",
+    "Author": "Tristan Cross",
+    "CopiesAvailable": 5,
+    "Genre": "Grimdark",
+    "PublicationYear": 1788,
+    "LostChargePrice": 365269,
+    "Id": 45
+  },
+  {
+    "Title": "Luminous\u0022\u0022\u0022 Anchor",
+    "Author": "Jonas Thorne",
+    "CopiesAvailable": 4,
+    "Genre": "Urban Fantasy",
+    "PublicationYear": 1601,
+    "LostChargePrice": 361647,
+    "Id": 46
+  },
+  {
+    "Title": "Brittle Matrix",
+    "Author": "Elena Cross",
+    "CopiesAvailable": 9,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1986,
+    "LostChargePrice": 576180,
+    "Id": 47
+  },
+  {
+    "Title": "Vast Canyon",
+    "Author": "Elena Barrett",
+    "CopiesAvailable": 5,
+    "Genre": "Historical Fiction",
+    "PublicationYear": 1710,
+    "LostChargePrice": 28485,
+    "Id": 48
+  },
+  {
+    "Title": "Crimson Summit",
+    "Author": "Elena Cross",
+    "CopiesAvailable": 3,
+    "Genre": "Grimdark",
+    "PublicationYear": 2022,
+    "LostChargePrice": 15964,
+    "Id": 49
+  },
+  {
+    "Title": "Primal Comet",
+    "Author": "Jonas Vance",
+    "CopiesAvailable": 2,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1942,
+    "LostChargePrice": 857887,
+    "Id": 50
+  },
+  {
+    "Title": "Ancient Comet",
+    "Author": "Tristan Calder",
+    "CopiesAvailable": 6,
+    "Genre": "Historical Fiction",
+    "PublicationYear": 1541,
+    "LostChargePrice": 866288,
+    "Id": 51
+  },
+  {
+    "Title": "Crimson Summit",
+    "Author": "Clara Mercer",
+    "CopiesAvailable": 8,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1751,
+    "LostChargePrice": 789995,
+    "Id": 52
+  },
+  {
+    "Title": "Shattered Glitch",
+    "Author": "Jonas Vance",
+    "CopiesAvailable": 10,
+    "Genre": "Historical Fiction",
+    "PublicationYear": 1646,
+    "LostChargePrice": 745257,
+    "Id": 53
+  },
+  {
+    "Title": "Hollow Vector",
+    "Author": "Leo Sterling",
+    "CopiesAvailable": 10,
+    "Genre": "Cosmic Horror",
+    "PublicationYear": 1536,
+    "LostChargePrice": 412681,
+    "Id": 54
+  },
+  {
+    "Title": "Vast Anchor",
+    "Author": "Nova Barrett",
+    "CopiesAvailable": 1,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1968,
+    "LostChargePrice": 916744,
+    "Id": 55
+  },
+  {
+    "Title": "Primal Nebula",
+    "Author": "Elena Thorne",
+    "CopiesAvailable": 6,
+    "Genre": "Historical Fiction",
+    "PublicationYear": 1620,
+    "LostChargePrice": 495917,
+    "Id": 56
+  },
+  {
+    "Title": "Brittle Comet",
+    "Author": "Marcus Barrett",
+    "CopiesAvailable": 1,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1849,
+    "LostChargePrice": 768705,
+    "Id": 57
+  },
+  {
+    "Title": "Hollow Gear",
+    "Author": "Silas Cross",
+    "CopiesAvailable": 8,
+    "Genre": "Space Opera",
+    "PublicationYear": 1910,
+    "LostChargePrice": 572506,
+    "Id": 58
+  },
+  {
+    "Title": "Shattered Nebula",
+    "Author": "Iris Finch",
+    "CopiesAvailable": 2,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1827,
+    "LostChargePrice": 88596,
+    "Id": 59
+  },
+  {
+    "Title": "Shattered Nebula",
+    "Author": "Maya Vance",
+    "CopiesAvailable": 10,
+    "Genre": "Cosmic Horror",
+    "PublicationYear": 1675,
+    "LostChargePrice": 72953,
+    "Id": 60
+  },
+  {
+    "Title": "Hollow Canyon",
+    "Author": "Iris Hayes",
+    "CopiesAvailable": 1,
+    "Genre": "Magical Realism",
+    "PublicationYear": 1520,
+    "LostChargePrice": 73891,
+    "Id": 61
+  },
+  {
+    "Title": "Infinite Anchor",
+    "Author": "Iris Cross",
+    "CopiesAvailable": 1,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1756,
+    "LostChargePrice": 579173,
+    "Id": 62
+  },
+  {
+    "Title": "Shattered Matrix",
+    "Author": "Iris Hayes",
+    "CopiesAvailable": 3,
+    "Genre": "Space Opera",
+    "PublicationYear": 1847,
+    "LostChargePrice": 946240,
+    "Id": 63
+  },
+  {
+    "Title": "Crimson Matrix",
+    "Author": "Elena Thorne",
+    "CopiesAvailable": 8,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1895,
+    "LostChargePrice": 25271,
+    "Id": 64
+  },
+  {
+    "Title": "Shattered Vector",
+    "Author": "Clara Finch",
+    "CopiesAvailable": 6,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1837,
+    "LostChargePrice": 502185,
+    "Id": 65
+  },
+  {
+    "Title": "Brittle Glitch",
+    "Author": "Nova Sterling",
+    "CopiesAvailable": 3,
+    "Genre": "Magical Realism",
+    "PublicationYear": 1837,
+    "LostChargePrice": 881216,
+    "Id": 66
+  },
+  {
+    "Title": "Primal Nebula",
+    "Author": "Clara Finch",
+    "CopiesAvailable": 8,
+    "Genre": "Space Opera",
+    "PublicationYear": 1760,
+    "LostChargePrice": 816822,
+    "Id": 67
+  },
+  {
+    "Title": "Vast Vector",
+    "Author": "Marcus Vance",
+    "CopiesAvailable": 3,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1630,
+    "LostChargePrice": 704973,
+    "Id": 68
+  },
+  {
+    "Title": "Shattered Matrix",
+    "Author": "Clara Mercer",
+    "CopiesAvailable": 7,
+    "Genre": "Urban Fantasy",
+    "PublicationYear": 1760,
+    "LostChargePrice": 252772,
+    "Id": 69
+  },
+  {
+    "Title": "Brittle Glitch",
+    "Author": "Tristan Calder",
+    "CopiesAvailable": 9,
+    "Genre": "Cyberpunk",
+    "PublicationYear": 1660,
+    "LostChargePrice": 868817,
+    "Id": 70
+  },
+  {
+    "Title": "Hollow Comet",
+    "Author": "Iris Barrett",
+    "CopiesAvailable": 8,
+    "Genre": "Space Opera",
+    "PublicationYear": 1719,
+    "LostChargePrice": 219339,
+    "Id": 71
+  },
+  {
+    "Title": "Obsolete Canyon",
+    "Author": "Jonas Winters",
+    "CopiesAvailable": 6,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1517,
+    "LostChargePrice": 361514,
+    "Id": 72
+  },
+  {
+    "Title": "Luminous\u0022\u0022\u0022 Nebula",
+    "Author": "Silas Calder",
+    "CopiesAvailable": 1,
+    "Genre": "Space Opera",
+    "PublicationYear": 1728,
+    "LostChargePrice": 994206,
+    "Id": 73
+  },
+  {
+    "Title": "Infinite Vector",
+    "Author": "Tristan Thorne",
+    "CopiesAvailable": 5,
+    "Genre": "Historical Fiction",
+    "PublicationYear": 1757,
+    "LostChargePrice": 134937,
+    "Id": 74
+  },
+  {
+    "Title": "Infinite Engine",
+    "Author": "Elena Mercer",
+    "CopiesAvailable": 8,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1758,
+    "LostChargePrice": 726690,
+    "Id": 75
+  },
+  {
+    "Title": "Ancient Engine",
+    "Author": "Silas Hayes",
+    "CopiesAvailable": 10,
+    "Genre": "Cyberpunk",
+    "PublicationYear": 1639,
+    "LostChargePrice": 555512,
+    "Id": 76
+  },
+  {
+    "Title": "Luminous\u0022\u0022\u0022 Canyon",
+    "Author": "Tristan Winters",
+    "CopiesAvailable": 5,
+    "Genre": "High Fantasy",
+    "PublicationYear": 2010,
+    "LostChargePrice": 202795,
+    "Id": 77
+  },
+  {
+    "Title": "Primal Anchor",
+    "Author": "Nova Mercer",
+    "CopiesAvailable": 0,
+    "Genre": "Grimdark",
+    "PublicationYear": 1852,
+    "LostChargePrice": 23333,
+    "Id": 78
+  },
+  {
+    "Title": "Infinite Gear",
+    "Author": "Silas Winters",
+    "CopiesAvailable": 10,
+    "Genre": "Space Opera",
+    "PublicationYear": 1514,
+    "LostChargePrice": 508264,
+    "Id": 79
+  },
+  {
+    "Title": "Hollow Summit",
+    "Author": "Jonas Vance",
+    "CopiesAvailable": 2,
+    "Genre": "Cyberpunk",
+    "PublicationYear": 1653,
+    "LostChargePrice": 382607,
+    "Id": 80
+  },
+  {
+    "Title": "Brittle Comet",
+    "Author": "Marcus Thorne",
+    "CopiesAvailable": 5,
+    "Genre": "Urban Fantasy",
+    "PublicationYear": 2010,
+    "LostChargePrice": 721471,
+    "Id": 81
+  },
+  {
+    "Title": "Hollow Vector",
+    "Author": "Elena Barrett",
+    "CopiesAvailable": 4,
+    "Genre": "Historical Fiction",
+    "PublicationYear": 1599,
+    "LostChargePrice": 799146,
+    "Id": 82
+  },
+  {
+    "Title": "Vast Engine",
+    "Author": "Clara Calder",
+    "CopiesAvailable": 3,
+    "Genre": "Urban Fantasy",
+    "PublicationYear": 1631,
+    "LostChargePrice": 874315,
+    "Id": 83
+  },
+  {
+    "Title": "Vast Summit",
+    "Author": "Clara Sterling",
+    "CopiesAvailable": 8,
+    "Genre": "Cyberpunk",
+    "PublicationYear": 1777,
+    "LostChargePrice": 486378,
+    "Id": 84
+  },
+  {
+    "Title": "Shattered Nebula",
+    "Author": "Jonas Finch",
+    "CopiesAvailable": 2,
+    "Genre": "Psychological Thriller",
+    "PublicationYear": 1570,
+    "LostChargePrice": 527984,
+    "Id": 85
+  },
+  {
+    "Title": "Crimson Comet",
+    "Author": "Elena Mercer",
+    "CopiesAvailable": 1,
+    "Genre": "Space Opera",
+    "PublicationYear": 1810,
+    "LostChargePrice": 376282,
+    "Id": 86
+  },
+  {
+    "Title": "Crimson Nebula",
+    "Author": "Silas Finch",
+    "CopiesAvailable": 9,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1715,
+    "LostChargePrice": 787728,
+    "Id": 87
+  },
+  {
+    "Title": "Hollow Gear",
+    "Author": "Silas Winters",
+    "CopiesAvailable": 8,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1972,
+    "LostChargePrice": 378944,
+    "Id": 88
+  },
+  {
+    "Title": "Infinite Canyon",
+    "Author": "Iris Sterling",
+    "CopiesAvailable": 3,
+    "Genre": "Cyberpunk",
+    "PublicationYear": 1707,
+    "LostChargePrice": 547606,
+    "Id": 89
+  },
+  {
+    "Title": "Shattered Nebula",
+    "Author": "Maya Barrett",
+    "CopiesAvailable": 10,
+    "Genre": "Urban Fantasy",
+    "PublicationYear": 1635,
+    "LostChargePrice": 313084,
+    "Id": 90
+  },
+  {
+    "Title": "Vast Anchor",
+    "Author": "Iris Vance",
+    "CopiesAvailable": 10,
+    "Genre": "Grimdark",
+    "PublicationYear": 2017,
+    "LostChargePrice": 703536,
+    "Id": 91
+  },
+  {
+    "Title": "Crimson Nebula",
+    "Author": "Maya Hayes",
+    "CopiesAvailable": 7,
+    "Genre": "Urban Fantasy",
+    "PublicationYear": 1599,
+    "LostChargePrice": 262313,
+    "Id": 92
+  },
+  {
+    "Title": "Brittle Canyon",
+    "Author": "Tristan Thorne",
+    "CopiesAvailable": 7,
+    "Genre": "Historical Fiction",
+    "PublicationYear": 1582,
+    "LostChargePrice": 437207,
+    "Id": 93
+  },
+  {
+    "Title": "Brittle Anchor",
+    "Author": "Tristan Finch",
+    "CopiesAvailable": 4,
+    "Genre": "Grimdark",
+    "PublicationYear": 1925,
+    "LostChargePrice": 756555,
+    "Id": 94
+  },
+  {
+    "Title": "Obsolete Anchor",
+    "Author": "Leo Calder",
+    "CopiesAvailable": 4,
+    "Genre": "Solarpunk",
+    "PublicationYear": 1892,
+    "LostChargePrice": 683669,
+    "Id": 95
+  },
+  {
+    "Title": "Luminous\u0022\u0022\u0022 Comet",
+    "Author": "Leo Thorne",
+    "CopiesAvailable": 8,
+    "Genre": "Magical Realism",
+    "PublicationYear": 1584,
+    "LostChargePrice": 487386,
+    "Id": 96
+  },
+  {
+    "Title": "Primal Vector",
+    "Author": "Elena Hayes",
+    "CopiesAvailable": 5,
+    "Genre": "Solarpunk",
+    "PublicationYear": 1830,
+    "LostChargePrice": 587762,
+    "Id": 97
+  },
+  {
+    "Title": "Primal Nebula",
+    "Author": "Leo Sterling",
+    "CopiesAvailable": 1,
+    "Genre": "Magical Realism",
+    "PublicationYear": 1817,
+    "LostChargePrice": 18588,
+    "Id": 98
+  },
+  {
+    "Title": "Hollow Gear",
+    "Author": "Maya Mercer",
+    "CopiesAvailable": 3,
+    "Genre": "Space Opera",
+    "PublicationYear": 1916,
+    "LostChargePrice": 595247,
+    "Id": 99
+  },
+  {
+    "Title": "Obsolete Nebula",
+    "Author": "Jonas Cross",
+    "CopiesAvailable": 6,
+    "Genre": "High Fantasy",
+    "PublicationYear": 1781,
+    "LostChargePrice": 796863,
+    "Id": 100
   }
 ]

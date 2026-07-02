@@ -165,5 +165,62 @@
     "CreatedAt": "2026-06-30T12:11:11.1898233+03:30",
     "Type": 3,
     "Id": 20
+  },
+  {
+    "$type": "BookBorrowedNotification",
+    "BookId": 69,
+    "CustomerId": 2,
+    "CreatedAt": "2026-07-02T10:04:31.3058903+03:30",
+    "Type": 4,
+    "Id": 21
+  },
+  {
+    "$type": "ReservationConfirmedNotification",
+    "BookId": 21,
+    "CustomerId": 2,
+    "CreatedAt": "2026-07-02T10:07:21.2257765+03:30",
+    "Type": 2,
+    "Id": 22
+  },
+  {
+    "$type": "BookBorrowedNotification",
+    "BookId": 1,
+    "CustomerId": 2,
+    "CreatedAt": "2026-07-02T10:07:22.7755162+03:30",
+    "Type": 4,
+    "Id": 23
+  },
+  {
+    "$type": "BookBorrowedNotification",
+    "BookId": 1,
+    "CustomerId": 2,
+    "CreatedAt": "2026-07-02T10:20:02.1668635+03:30",
+    "Type": 4,
+    "Id": 24
+  },
+  {
+    "$type": "BookBorrowedNotification",
+    "BookId": 19,
+    "CustomerId": 2,
+    "CreatedAt": "2026-07-02T10:24:37.1849774+03:30",
+    "Type": 4,
+    "Id": 25
+  },
+  {
+    "$type": "BookBorrowedNotification",
+    "BookId": 21,
+    "CustomerId": 2,
+    "CreatedAt": "2026-07-02T10:42:25.5677719+03:30",
+    "Type": 4,
+    "Id": 26
+  },
+  {
+    "$type": "OverdueNotification",
+    "DueDate": "2026-07-02T10:44:25.5650276+03:30",
+    "BookId": 21,
+    "CustomerId": 2,
+    "CreatedAt": "2026-07-02T10:51:47.5970918+03:30",
+    "Type": 0,
+    "Id": 27
   }
 ]

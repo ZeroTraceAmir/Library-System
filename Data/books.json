@@ -2,7 +2,7 @@
   {
     "Title": "Vast Canyon",
     "Author": "Iris Finch",
-    "CopiesAvailable": 2,
+    "CopiesAvailable": 3,
     "Genre": "Solarpunk",
     "PublicationYear": 1847,
     "LostChargePrice": 386657,
@@ -164,7 +164,7 @@
   {
     "Title": "Vast Gear",
     "Author": "Nova Barrett",
-    "CopiesAvailable": 0,
+    "CopiesAvailable": 1,
     "Genre": "High Fantasy",
     "PublicationYear": 1551,
     "LostChargePrice": 962625,
@@ -182,7 +182,7 @@
   {
     "Title": "Obsolete Summit",
     "Author": "Clara Hayes",
-    "CopiesAvailable": 9,
+    "CopiesAvailable": 8,
     "Genre": "Magical Realism",
     "PublicationYear": 2002,
     "LostChargePrice": 377602,
@@ -614,7 +614,7 @@
   {
     "Title": "Shattered Matrix",
     "Author": "Clara Mercer",
-    "CopiesAvailable": 7,
+    "CopiesAvailable": 8,
     "Genre": "Urban Fantasy",
     "PublicationYear": 1760,
     "LostChargePrice": 252772,

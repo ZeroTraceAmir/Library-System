@@ -12,7 +12,7 @@
   {
     "HasBorrowedBook": true,
     "HasReservedBook": false,
-    "Debt": 50000,
+    "Debt": 95000,
     "Number": "456",
     "Password": "4567",
     "IsLogedin": true,

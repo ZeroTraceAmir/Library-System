@@ -40,5 +40,12 @@
     "ReservationDate": "2026-06-30T12:10:55.3148455+03:30",
     "IsActive": false,
     "Id": 6
+  },
+  {
+    "CustomerId": 2,
+    "BookId": 21,
+    "ReservationDate": "2026-07-02T10:07:21.2129521+03:30",
+    "IsActive": true,
+    "Id": 7
   }
 ]

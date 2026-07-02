@@ -25,9 +25,9 @@ namespace library_system
         private void InitializeComponent()
         {
             this.Text = "اعلان ها";
-            this.Size = new Size(500, 720);
+            this.Size = new Size(510, 720);
             this.StartPosition = FormStartPosition.CenterParent;
-
+            this.BackColor = ColorTranslator.FromHtml("#111520");
             flowPanel = new FlowLayoutPanel
             {
                 Dock = DockStyle.Fill,
@@ -35,6 +35,7 @@ namespace library_system
                 WrapContents = false,
                 AutoScroll = true,
                 Padding = new Padding(10),
+                Font = new Font("Vazir", 11F, FontStyle.Regular),
             };
 
             Button btnBack = new Button
@@ -43,9 +44,9 @@ namespace library_system
                 Dock = DockStyle.Bottom,
                 Height = 50,
                 DialogResult = DialogResult.Cancel,
-                Font = new Font("Tahoma", 10F, FontStyle.Bold),
-                BackColor = Color.FromArgb(52, 73, 94),
-                ForeColor = Color.White,
+                Font = new Font("Vazir", 15F, FontStyle.Bold),
+                BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                ForeColor = ColorTranslator.FromHtml("#111520"),
                 FlatStyle = FlatStyle.Flat,
             };
 
@@ -60,7 +61,10 @@ namespace library_system
             NotificationService service = new NotificationService(repository);
 
             JsonLoanRepository loanRepo = new JsonLoanRepository(store);
-            LoanService loanService = new LoanService(loanRepo);
+            JsonBookRepository bookRepo = new JsonBookRepository(store);
+            JsonDebtRepository debtRepo = new JsonDebtRepository(store);
+            JsonCustomerRepository customerRepo = new JsonCustomerRepository(store);
+            LoanService loanService = new LoanService(loanRepo, bookRepo, debtRepo, customerRepo);
             List<Loan> customerLoans = loanService.GetLoansByCustomerId(_customer.Id);
             service.CheckOverdueAndReminders(customerLoans);
 
@@ -76,7 +80,7 @@ namespace library_system
                 Label emptyLabel = new Label
                 {
                     Text = "اعلانی وجود ندارد",
-                    Font = new Font("Tahoma", 12F),
+                    Font = new Font("Vazir", 12F),
                     ForeColor = Color.Gray,
                     AutoSize = true,
                     Margin = new Padding(10),
@@ -109,23 +113,23 @@ namespace library_system
             Label messageLabel = new Label
             {
                 Text = notification.GetMessage(),
-                Font = new Font("Tahoma", 11F, FontStyle.Bold),
+                Font = new Font("Vazir", 11F, FontStyle.Bold),
                 ForeColor = Color.White,
                 AutoSize = false,
                 Width = 430,
                 Height = 30,
-                TextAlign = ContentAlignment.MiddleLeft,
+                TextAlign = ContentAlignment.MiddleRight,
             };
 
             Label dateLabel = new Label
             {
                 Text = notification.CreatedAt.ToString("yyyy/MM/dd HH:mm"),
-                Font = new Font("Tahoma", 9F),
+                Font = new Font("Vazir", 9F),
                 ForeColor = Color.FromArgb(255, 255, 255, 200),
                 AutoSize = false,
                 Width = 430,
                 Height = 20,
-                TextAlign = ContentAlignment.MiddleLeft,
+                TextAlign = ContentAlignment.MiddleRight,
                 Top = 35,
             };
 

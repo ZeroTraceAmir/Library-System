@@ -19,7 +19,11 @@ namespace library_system
         {
             JsonDataStore store = new JsonDataStore();
             _customerService = new CustomerService(new JsonCustomerRepository(store));
-            _loanService = new LoanService(new JsonLoanRepository(store));
+            _loanService = new LoanService(
+                new JsonLoanRepository(store),
+                new JsonBookRepository(store),
+                new JsonDebtRepository(store),
+                new JsonCustomerRepository(store));
             _bookService = new BookService(new JsonBookRepository(store));
 
             InitializeComponent();
@@ -133,13 +137,24 @@ namespace library_system
             if (book == null)
                 return;
 
-            _loanService.ReturnBook(loanId, book);
+            //_loanService.ReturnBook(loanId, book);
+            //
+            //LoadLoans();
+            //
+            //MessageBox.Show("کتاب با موفقیت برگردانده شد");
 
-            _bookService.UpdateBook(book);
+            try
+            {
+                _loanService.ReturnBook(loanId, book);
 
-            LoadLoans();
+                LoadLoans();
 
-            MessageBox.Show("کتاب با موفقیت برگردانده شد");
+                MessageBox.Show("کتاب با موفقیت برگردانده شد");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private record LoanDisplay

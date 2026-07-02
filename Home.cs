@@ -35,7 +35,7 @@ namespace library_system
                 FlatAppearance = { BorderSize = 0 },
                 BackColor = Color.FromArgb(41, 128, 185),
                 ForeColor = Color.White,
-                Font = new Font("Tahoma", 10F, FontStyle.Bold),
+                Font = new Font("Vazir", 10F, FontStyle.Bold),
                 Width = 100,
             };
             btnProfile.Click += BtnProfile_Click;
@@ -46,7 +46,7 @@ namespace library_system
                 FlatAppearance = { BorderSize = 2 },
                 BackColor = Color.Teal,
                 ForeColor = Color.White,
-                Font = new Font("Tahoma", 10F, FontStyle.Underline),
+                Font = new Font("Vazir", 10F, FontStyle.Underline),
                 Width = 80,
             };
             notifBtn.Click += (s, e) => new Notifications(_customer).ShowDialog(this);
@@ -65,7 +65,7 @@ namespace library_system
                     {
                         Text = text,
                         Font = new Font(
-                            "Tahoma",
+                            "Vazir",
                             fontSize,
                             bold ? FontStyle.Bold : FontStyle.Regular
                         ),
@@ -101,7 +101,7 @@ namespace library_system
                 Button btn = new Button
                 {
                     Text = text,
-                    Font = new Font("Tahoma", 11F),
+                    Font = new Font("Vazir", 11F),
                     BackColor = Color.FromArgb(52, 73, 94),
                     ForeColor = Color.White,
                     FlatStyle = FlatStyle.Flat,

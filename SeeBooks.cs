@@ -29,10 +29,19 @@ namespace library_system
             JsonBookRepository bookRepository = new JsonBookRepository(store);
             JsonLoanRepository loanRepository = new JsonLoanRepository(store);
             JsonReservationRepository reservationRepository = new JsonReservationRepository(store);
-            JsonNotificationRepository notificationRepository = new JsonNotificationRepository(store);
+            JsonNotificationRepository notificationRepository = new JsonNotificationRepository(
+                store
+            );
+            JsonDebtRepository debtRepository = new JsonDebtRepository(store);
+            JsonCustomerRepository customerRepository = new JsonCustomerRepository(store);
 
             bookService = new BookService(bookRepository);
-            loanService = new LoanService(loanRepository);
+            loanService = new LoanService(
+                loanRepository,
+                bookRepository,
+                debtRepository,
+                customerRepository
+            );
             reservationService = new ReservationService(reservationRepository);
             notificationService = new NotificationService(notificationRepository);
 
@@ -56,21 +65,27 @@ namespace library_system
                 Dock = DockStyle.Fill,
                 ReadOnly = true,
                 AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                SelectionMode = DataGridViewSelectionMode.FullRowSelect
+                SelectionMode = DataGridViewSelectionMode.FullRowSelect,
             };
 
             btnBorrow = new Button
             {
                 Text = "قرض گرفتن",
                 Dock = DockStyle.Bottom,
-                Height = 50
+                BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                ForeColor = ColorTranslator.FromHtml("#111520"),
+                Font = new Font("Vazir", 11F, FontStyle.Bold),
+                Height = 50,
             };
 
             btnReserve = new Button
             {
                 Text = "رزرو کردن",
                 Dock = DockStyle.Bottom,
-                Height = 50
+                BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                ForeColor = ColorTranslator.FromHtml("#111520"),
+                Font = new Font("Vazir", 11F, FontStyle.Bold),
+                Height = 50,
             };
 
             btnBack = new Button
@@ -78,8 +93,25 @@ namespace library_system
                 Text = "بازگشت",
                 Dock = DockStyle.Bottom,
                 Height = 50,
-                DialogResult = DialogResult.Cancel
+                BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                ForeColor = ColorTranslator.FromHtml("#111520"),
+                Font = new Font("Vazir", 11F, FontStyle.Bold),
+                DialogResult = DialogResult.Cancel,
             };
+
+            dgvBooks.DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#1f293d"); // Choose your color
+            dgvBooks.DefaultCellStyle.ForeColor = Color.White; // Text color
+            dgvBooks.DefaultCellStyle.Font = new Font("Vazir", 9F);
+            dgvBooks.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#00ff9c"); // Highlight color when clicked
+            dgvBooks.DefaultCellStyle.SelectionForeColor = ColorTranslator.FromHtml("#111520");
+
+            // Enable headers visual styles if you haven't already (important for header colors to show up)
+            dgvBooks.EnableHeadersVisualStyles = false;
+            dgvBooks.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#00ff9c");
+            dgvBooks.ColumnHeadersDefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#111520");
+            dgvBooks.ColumnHeadersDefaultCellStyle.Font = new Font("Vazir", 9F, FontStyle.Bold);
+            dgvBooks.ColumnHeadersDefaultCellStyle.Alignment =
+                DataGridViewContentAlignment.MiddleCenter;
 
             btnBorrow.Click += BtnBorrow_Click;
             btnReserve.Click += BtnReserve_Click;
@@ -103,12 +135,19 @@ namespace library_system
 
             Book book = (Book)dgvBooks.CurrentRow.DataBoundItem;
 
-            loanService.BorrowBook(book, customer.Id);
-            bookService.UpdateBook(book);
+            try
+            {
+                loanService.BorrowBook(book, customer.Id);
+                bookService.UpdateBook(book);
 
-            MessageBox.Show("کتاب با موفقیت امانت گرفته شد");
+                MessageBox.Show("کتاب با موفقیت امانت گرفته شد");
 
-            LoadBooks();
+                LoadBooks();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BtnReserve_Click(object? sender, EventArgs e)
@@ -125,5 +164,4 @@ namespace library_system
             LoadBooks();
         }
     }
-
 }

@@ -1,5 +1,59 @@
 # Q&A
 
+## Q: How does the UI get CustomerId, BookId, LoanDate etc. and how can I change the column text?
+
+**A:** The DataGridView auto-generates columns from the public properties of the `Loan` model class (`Models/Loan.cs:8-12`):
+
+```csharp
+public int CustomerId { get; set; }
+public int BookId { get; set; }
+public DateTime LoanDate { get; set; }
+public DateTime DueDate { get; set; }
+public DateTime? ReturnDate { get; set; }
+```
+
+When `LoadLoans()` sets `dgvLoans.DataSource = _loanService.GetLoansByCustomerId(customer.Id)`, the grid reads these properties and creates a column for each one, using the property name (e.g. `"CustomerId"`) as the column header.
+
+To show Persian/desired headers while keeping the same data, you have two options:
+
+### Option 1 — `[DisplayName]` attribute on the model (simpler)
+Add `using System.ComponentModel;` and decorate each property:
+
+```csharp
+[DisplayName("آیدی")]
+public int Id { get; set; }
+[DisplayName("شناسه مشتری")]
+public int CustomerId { get; set; }
+[DisplayName("شناسه کتاب")]
+public int BookId { get; set; }
+[DisplayName("تاریخ امانت")]
+public DateTime LoanDate { get; set; }
+[DisplayName("تاریخ بازگشت")]
+public DateTime DueDate { get; set; }
+[DisplayName("تاریخ برگردانده شده")]
+public DateTime? ReturnDate { get; set; }
+```
+
+### Option 2 — Set headers manually after binding (more control)
+In `LoadLoans()` after setting `DataSource`:
+
+```csharp
+dgvLoans.DataSource = _loanService.GetLoansByCustomerId(customer.Id);
+
+dgvLoans.Columns["Id"].HeaderText = "آیدی";
+dgvLoans.Columns["CustomerId"].HeaderText = "شناسه مشتری";
+dgvLoans.Columns["BookId"].HeaderText = "شناسه کتاب";
+dgvLoans.Columns["LoanDate"].HeaderText = "تاریخ امانت";
+dgvLoans.Columns["DueDate"].HeaderText = "تاریخ بازگشت";
+dgvLoans.Columns["ReturnDate"].HeaderText = "تاریخ برگردانده شده";
+```
+
+### Which to use?
+- **Option 1** is cleaner if you always want the same headers everywhere `Loan` is displayed.
+- **Option 2** is better if different forms need different header text for the same model.
+
+---
+
 ## Q: In `LoanService.cs`, what does `BookReturned?.Invoke(book)` mean? Which events are being called when a book is returned?
 
 **A:** `BookReturned?.Invoke(book)` fires the `BookReturned` event (a `BookEventHandler` delegate), passing the returned `Book` object to any subscribed handlers.

@@ -14,6 +14,7 @@ namespace library_system
             _customer = customer;
             this.Text = "Home";
             this.WindowState = FormWindowState.Maximized;
+            this.BackColor = ColorTranslator.FromHtml("#111520");
             BuildHeader(customer.Name, customer.Number, customer.GetRoleLabel());
             BuildMenu();
         }
@@ -24,7 +25,7 @@ namespace library_system
             {
                 Dock = DockStyle.Top,
                 Height = 60,
-                BackColor = Color.FromArgb(52, 73, 94),
+                BackColor = ColorTranslator.FromHtml("#252836"),
             };
 
             Button btnProfile = new Button
@@ -32,56 +33,73 @@ namespace library_system
                 Text = "پروفایل",
                 Dock = DockStyle.Left,
                 FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(52, 73, 94),
                 FlatAppearance = { BorderSize = 0 },
-                BackColor = Color.FromArgb(41, 128, 185),
                 ForeColor = Color.White,
-                Font = new Font("Tahoma", 10F, FontStyle.Bold),
+                Font = new Font("Vazir", 10F, FontStyle.Bold),
                 Width = 100,
             };
             btnProfile.Click += BtnProfile_Click;
+            Panel separator = new Panel
+            {
+                Dock = DockStyle.Left,
+                Width = 15, // This acts as your margin/gap size
+            };
             Button notifBtn = new Button
             {
                 Text = "اعلان ها",
                 Dock = DockStyle.Left,
-                FlatAppearance = { BorderSize = 2 },
-                BackColor = Color.Teal,
+                FlatStyle = FlatStyle.Flat,
+                FlatAppearance = { BorderSize = 0 },
+                BackColor = Color.FromArgb(52, 88, 94),
                 ForeColor = Color.White,
-                Font = new Font("Tahoma", 10F, FontStyle.Underline),
+                Font = new Font("Vazir", 10F, FontStyle.Bold),
                 Width = 80,
             };
             notifBtn.Click += (s, e) => new Notifications(_customer).ShowDialog(this);
 
-            FlowLayoutPanel flow = new FlowLayoutPanel
+            // FlowLayoutPanel flow = new FlowLayoutPanel
+            // {
+            //     Dock = DockStyle.Fill,
+            //     FlowDirection = FlowDirection.RightToLeft,
+            //     Padding = new Padding(15),
+            // };
+
+            // void AddLabel(string text, float fontSize, bool bold, Color color)
+            // {
+            //     flow.Controls.Add(
+            //         new Label
+            //         {
+            //             Text = text,
+            //             Font = new Font(
+            //                 "Vazir",
+            //                 fontSize,
+            //                 bold ? FontStyle.Bold : FontStyle.Regular
+            //             ),
+            //             ForeColor = color,
+            //             AutoSize = true,
+            //             Margin = new Padding(20, 15, 0, 0),
+            //         }
+            //     );
+            // }
+
+            // AddLabel(role, 11F, true, Color.FromArgb(46, 204, 113));
+            // AddLabel(phone, 10F, false, Color.White);
+            // AddLabel(name, 11F, true, Color.White);
+
+            // panel.Controls.Add(flow);
+            Label greeting = new Label
             {
-                Dock = DockStyle.Fill,
-                FlowDirection = FlowDirection.RightToLeft,
-                Padding = new Padding(15),
+                Text = $"❤️به سامانه امانت الکترونیک خوش امدی !{name} سلام",
+                Font = new Font("Vazir", 15F, FontStyle.Bold),
+                ForeColor = Color.Wheat,
+                Dock = DockStyle.Right,
+                AutoSize = true,
+                TextAlign = ContentAlignment.MiddleCenter,
             };
-
-            void AddLabel(string text, float fontSize, bool bold, Color color)
-            {
-                flow.Controls.Add(
-                    new Label
-                    {
-                        Text = text,
-                        Font = new Font(
-                            "Tahoma",
-                            fontSize,
-                            bold ? FontStyle.Bold : FontStyle.Regular
-                        ),
-                        ForeColor = color,
-                        AutoSize = true,
-                        Margin = new Padding(20, 15, 0, 0),
-                    }
-                );
-            }
-
-            AddLabel(role, 11F, true, Color.FromArgb(46, 204, 113));
-            AddLabel(phone, 10F, false, Color.White);
-            AddLabel(name, 11F, true, Color.White);
-
-            panel.Controls.Add(flow);
+            panel.Controls.Add(greeting);
             panel.Controls.Add(notifBtn);
+            panel.Controls.Add(separator);
             panel.Controls.Add(btnProfile);
             Controls.Add(panel);
         }
@@ -101,7 +119,7 @@ namespace library_system
                 Button btn = new Button
                 {
                     Text = text,
-                    Font = new Font("Tahoma", 11F),
+                    Font = new Font("Vazir", 11F),
                     BackColor = Color.FromArgb(52, 73, 94),
                     ForeColor = Color.White,
                     FlatStyle = FlatStyle.Flat,

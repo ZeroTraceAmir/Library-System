@@ -151,7 +151,7 @@ namespace library_system
                 table.Controls.Add(inputs[i], 1, i);
             }
 
-            var btnSave = new Button
+            Button btnSave = new Button
             {
                 Text = "ذخیره",
                 Font = new Font("Tahoma", 11F),
@@ -160,13 +160,13 @@ namespace library_system
             };
             btnSave.Click += (s, e) =>
             {
-                var name = txtName.Text.Trim();
-                var phone = txtPhone.Text.Trim();
-                var password = txtPassword.Text.Trim();
+                string name = txtName.Text.Trim();
+                string phone = txtPhone.Text.Trim();
+                string password = txtPassword.Text.Trim();
 
-                var hasName = !string.IsNullOrEmpty(name);
-                var hasPhone = !string.IsNullOrEmpty(phone);
-                var hasPassword = !string.IsNullOrEmpty(password);
+                bool hasName = !string.IsNullOrEmpty(name);
+                bool hasPhone = !string.IsNullOrEmpty(phone);
+                bool hasPassword = !string.IsNullOrEmpty(password);
 
                 if (!hasName && !hasPhone)
                 {
@@ -207,7 +207,7 @@ namespace library_system
 
             if (!_isUser)
             {
-                var btnDelete = new Button
+                Button btnDelete = new Button
                 {
                     Text = "حذف حساب",
                     Font = new Font("Tahoma", 11F),
@@ -230,7 +230,7 @@ namespace library_system
 
         private void BuildBackButton()
         {
-            var btnBack = new Button
+            Button btnBack = new Button
             {
                 Text = "بازگشت",
                 Dock = DockStyle.Bottom,

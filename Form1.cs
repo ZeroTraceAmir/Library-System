@@ -24,7 +24,7 @@ namespace library_system
             // Header
             Label header = new Label
             {
-                Text = "کتابخانه",
+                Text = "سامانه امانت الکترونیک",
                 // Font = new Font("Tahoma", 24F, FontStyle.Bold),
                 AutoSize = false,
                 TextAlign = ContentAlignment.MiddleCenter,
@@ -37,7 +37,7 @@ namespace library_system
             // Paragraph
             Label paragraph = new Label
             {
-                Text = "برای استفاده از کتابخانه، وارد شوید",
+                Text = "برای استفاده از سامانه، وارد شوید",
                 // Font = new Font("Tahoma", 12F, FontStyle.Regular),
                 AutoSize = false,
                 TextAlign = ContentAlignment.MiddleCenter,

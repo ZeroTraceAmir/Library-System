@@ -14,6 +14,7 @@ namespace library_system
             _user = user;
             this.Text = "Staff Panel";
             this.WindowState = FormWindowState.Maximized;
+            this.BackColor = ColorTranslator.FromHtml("#111520");
             BuildHeader(user.Name, user.Number, user.GetRoleLabel());
             BuildMenu();
         }
@@ -24,7 +25,7 @@ namespace library_system
             {
                 Dock = DockStyle.Top,
                 Height = 60,
-                BackColor = Color.FromArgb(52, 73, 94)
+                BackColor = ColorTranslator.FromHtml("#252836"),
             };
 
             Button btnProfile = new Button
@@ -32,38 +33,30 @@ namespace library_system
                 Text = "پروفایل",
                 Dock = DockStyle.Left,
                 FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(52, 73, 94),
                 FlatAppearance = { BorderSize = 0 },
-                BackColor = Color.FromArgb(41, 128, 185),
                 ForeColor = Color.White,
-                Font = new Font("Tahoma", 10F, FontStyle.Bold),
+                Font = new Font("Vazir", 10F, FontStyle.Bold),
                 Width = 100,
             };
             btnProfile.Click += BtnProfile_Click;
-
-            FlowLayoutPanel flow = new FlowLayoutPanel
+            Panel separator = new Panel
             {
-                Dock = DockStyle.Fill,
-                FlowDirection = FlowDirection.RightToLeft,
-                Padding = new Padding(15),
+                Dock = DockStyle.Left,
+                Width = 15,
             };
 
-            void AddLabel(string text, float fontSize, bool bold, Color color)
+            Label greeting = new Label
             {
-                flow.Controls.Add(new Label
-                {
-                    Text = text,
-                    Font = new Font("Tahoma", fontSize, bold ? FontStyle.Bold : FontStyle.Regular),
-                    ForeColor = color,
-                    AutoSize = true,
-                    Margin = new Padding(20, 15, 0, 0)
-                });
-            }
-
-            AddLabel(role, 11F, true, Color.FromArgb(46, 204, 113));
-            AddLabel(phone, 10F, false, Color.White);
-            AddLabel(name, 11F, true, Color.White);
-
-            panel.Controls.Add(flow);
+                Text = $"به سامانه امانت الکترونیک خوش امدی !{name} سلام",
+                Font = new Font("Vazir", 15F, FontStyle.Bold),
+                ForeColor = Color.Wheat,
+                Dock = DockStyle.Right,
+                AutoSize = true,
+                TextAlign = ContentAlignment.MiddleCenter,
+            };
+            panel.Controls.Add(greeting);
+            panel.Controls.Add(separator);
             panel.Controls.Add(btnProfile);
             Controls.Add(panel);
         }
@@ -72,10 +65,11 @@ namespace library_system
         {
             FlowLayoutPanel flow = new FlowLayoutPanel
             {
-                Dock = DockStyle.Fill,
-                FlowDirection = FlowDirection.TopDown,
+                FlowDirection = FlowDirection.RightToLeft,
                 WrapContents = false,
-                Padding = new Padding(50, 40, 50, 0),
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                Padding = new Padding(0, 300, 0, 0),
             };
 
             void AddButton(string text, EventHandler onClick)
@@ -83,16 +77,19 @@ namespace library_system
                 Button btn = new Button
                 {
                     Text = text,
-                    Font = new Font("Tahoma", 11F),
-                    BackColor = Color.FromArgb(52, 73, 94),
-                    ForeColor = Color.White,
+                    Font = new Font("Vazir", 11F, FontStyle.Bold),
+                    BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                    ForeColor = ColorTranslator.FromHtml("#111520"),
                     FlatStyle = FlatStyle.Flat,
                     FlatAppearance = { BorderSize = 0 },
                     AutoSize = true,
                     Padding = new Padding(40, 15, 40, 15),
-                    Margin = new Padding(0, 0, 0, 15),
+                    Margin = new Padding(0, 0, 0, 100),
                 };
+
+                Panel secondSeparator = new Panel { Dock = DockStyle.Left, Width = 15 };
                 btn.Click += onClick;
+                flow.Controls.Add(secondSeparator);
                 flow.Controls.Add(btn);
             }
 
@@ -116,12 +113,16 @@ namespace library_system
             });
 
             Controls.Add(flow);
+
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width;
+            int centerX = screenWidth / 2;
+            flow.Location = new Point(centerX - (flow.Width / 2), flow.Location.Y);
         }
 
         private void BtnProfile_Click(object? sender, EventArgs e)
         {
             Profile pf = new Profile(_user.Name, _user.Number, _user.GetRoleLabel(), true);
-pf.ShowDialog(this);
+            pf.ShowDialog(this);
         }
     }
 }

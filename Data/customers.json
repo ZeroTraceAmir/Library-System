@@ -3,30 +3,10 @@
     "HasBorrowedBook": false,
     "HasReservedBook": false,
     "Debt": 0,
-    "Number": "123",
-    "Password": "1234",
+    "Number": "Customer",
+    "Password": "Mire",
     "IsLogedin": false,
-    "Name": "123",
+    "Name": "Customer",
     "Id": 1
-  },
-  {
-    "HasBorrowedBook": true,
-    "HasReservedBook": false,
-    "Debt": 95000,
-    "Number": "456",
-    "Password": "4567",
-    "IsLogedin": true,
-    "Name": "test",
-    "Id": 2
-  },
-  {
-    "HasBorrowedBook": false,
-    "HasReservedBook": false,
-    "Debt": 0,
-    "Number": "1234",
-    "Password": "notif",
-    "IsLogedin": false,
-    "Name": "notif",
-    "Id": 3
   }
 ]

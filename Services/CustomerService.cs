@@ -134,6 +134,21 @@ namespace library_system.Services
             };
         }
 
+        public List<Customer> this[string searchTerm]
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(searchTerm))
+                    return GetAllCustomers();
+
+                return GetAllCustomers()
+                    .Where(c =>
+                        c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+                        || c.Number.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+        }
+
         public void DeleteCustomerAcc(string phone)
         {
             List<Customer> customers = customerRepository.GetAll();

@@ -11,6 +11,7 @@ namespace library_system
         private readonly Customer customer;
 
         private DataGridView dgvBooks;
+        private TextBox _txtSearch;
         private Button btnBorrow;
         private Button btnReserve;
         private Button btnBack;
@@ -59,6 +60,27 @@ namespace library_system
         {
             Text = "کتاب ها";
             WindowState = FormWindowState.Maximized;
+
+            FlowLayoutPanel topPanel = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Top,
+                FlowDirection = FlowDirection.RightToLeft,
+                Height = 50,
+                Padding = new Padding(10),
+                BackColor = ColorTranslator.FromHtml("#40404d"),
+            };
+
+            _txtSearch = new TextBox
+            {
+                Font = new Font("Vazir", 11F),
+                Width = 200,
+                PlaceholderText = "جستجو...",
+                BackColor = ColorTranslator.FromHtml("#252836"),
+                ForeColor = Color.White,
+            };
+            _txtSearch.TextChanged += (s, e) => LoadBooks();
+
+            topPanel.Controls.Add(_txtSearch);
 
             dgvBooks = new DataGridView
             {
@@ -117,6 +139,7 @@ namespace library_system
             btnReserve.Click += BtnReserve_Click;
 
             Controls.Add(dgvBooks);
+            Controls.Add(topPanel);
             Controls.Add(btnBorrow);
             Controls.Add(btnReserve);
             Controls.Add(btnBack);
@@ -125,7 +148,7 @@ namespace library_system
         private void LoadBooks()
         {
             dgvBooks.DataSource = null;
-            dgvBooks.DataSource = bookService.GetAllBooks();
+            dgvBooks.DataSource = bookService[_txtSearch.Text.Trim()];
         }
 
         private void BtnBorrow_Click(object? sender, EventArgs e)

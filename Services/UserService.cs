@@ -96,6 +96,21 @@ namespace library_system.Services
             };
         }
 
+        public List<User> this[string searchTerm]
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(searchTerm))
+                    return GetAllUsers();
+
+                return GetAllUsers()
+                    .Where(u =>
+                        u.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+                        || u.Number.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+        }
+
         public void DeleteUser(int id)
         {
             userRepository.Delete(id);

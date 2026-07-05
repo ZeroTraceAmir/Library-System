@@ -99,15 +99,19 @@ namespace library_system
 
         private void RefreshGrid()
         {
-            string search = _txtSearch.Text.Trim().ToLower();
+            string search = _txtSearch.Text.Trim();
 
-            var customers = _customerService
-                .GetFilteredCustomers((CustomerFilter)_cmbFilter.SelectedIndex)
+            var customers = _customerService[search]
                 .Where(c =>
-                    string.IsNullOrEmpty(search)
-                    || c.Name.ToLower().Contains(search)
-                    || c.Number.ToLower().Contains(search)
-                )
+                {
+                    return (CustomerFilter)_cmbFilter.SelectedIndex switch
+                    {
+                        CustomerFilter.HasBorrowed => c.HasBorrowedBook,
+                        CustomerFilter.HasReserved => c.HasReservedBook,
+                        CustomerFilter.HasDebt => c.Debt > 0,
+                        _ => true,
+                    };
+                })
                 .Select(c => new { نام = c.Name, شماره = c.Number })
                 .ToList();
 

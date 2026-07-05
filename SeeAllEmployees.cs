@@ -169,15 +169,18 @@ namespace library_system
 
         private void RefreshGrid()
         {
-            string search = _txtSearch.Text.Trim().ToLower();
+            string search = _txtSearch.Text.Trim();
 
-            var users = _userService
-                .GetFilteredUsers((UserFilter)_cmbFilter.SelectedIndex)
+            var users = _userService[search]
                 .Where(u =>
-                    string.IsNullOrEmpty(search)
-                    || u.Name.ToLower().Contains(search)
-                    || u.Number.ToLower().Contains(search)
-                )
+                {
+                    return (UserFilter)_cmbFilter.SelectedIndex switch
+                    {
+                        UserFilter.Admins => u.Role == UserStatus.admin,
+                        UserFilter.Staff => u.Role == UserStatus.staff,
+                        _ => true,
+                    };
+                })
                 .Select(u => new
                 {
                     Id = u.Id,

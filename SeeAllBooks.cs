@@ -184,39 +184,18 @@ namespace library_system // This project's root namespace (defined in the .cspro
         // and search text filter, then binds the result to the DataGridView.
         private void RefreshGrid()
         {
-            // Grab the search text, trim leading/trailing spaces, convert to lowercase
-            // for a case-insensitive comparison with book titles and authors.
-            string search = _txtSearch.Text.Trim().ToLower();
+            string search = _txtSearch.Text.Trim();
 
-            // LINQ query over all books returned by BookService.GetAllBooks().
-            var books = _bookService
-                .GetAllBooks() // List<Book> from JSON file via BookService → JsonBookRepository.
-                .Where(b => // Filter the book list.
+            var books = _bookService[search]
+                .Where(b =>
                 {
-                    // ── Genre Filter ─────────────────────────────────────────────
-                    // If the user selected a specific genre (index > 0 means not "همه"),
-                    // check whether this book's Genre matches the selected genre.
                     if (_cmbFilter.SelectedIndex > 0)
                     {
-                        // Retrieve the currently selected genre string from the ComboBox.
-                        // .ToString() is safe here because the items are all strings.
                         string selectedGenre = _cmbFilter.SelectedItem.ToString();
-                        // Case-insensitive comparison. If the genres differ, exclude this book.
                         if (!b.Genre.Equals(selectedGenre, StringComparison.OrdinalIgnoreCase))
-                            return false; // Book does not match genre filter → skip it.
+                            return false;
                     }
 
-                    // ── Search-Text Filter ───────────────────────────────────────
-                    // If the user typed something in the search box, check if the
-                    // book's Title or Author contains the search string (case-insensitive).
-                    if (
-                        !string.IsNullOrEmpty(search) // Only filter if there is actual search text.
-                        && !b.Title.ToLower().Contains(search) // Title does NOT contain the search term.
-                        && !b.Author.ToLower().Contains(search) // Author does NOT contain the search term.
-                    )
-                        return false; // Neither Title nor Author matched → skip this book.
-
-                    // The book passed all active filters → include it in the result.
                     return true;
                 })
                 .Select(b => new // Project each Book into an anonymous object.

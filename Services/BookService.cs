@@ -181,6 +181,21 @@ namespace library_system.Services // All service-layer classes live in this name
                 .ToList();
         }
 
+        public List<Book> this[string searchTerm]
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(searchTerm))
+                    return GetAllBooks();
+
+                return GetAllBooks()
+                    .Where(b =>
+                        b.Title.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+                        || b.Author.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+        }
+
         // ── Validate (override from BaseService<Book>) ──────────────────────────
         // BaseService<Book> (Services/BaseService.cs) declares:
         //   protected abstract void Validate(T entity);

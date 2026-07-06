@@ -3,7 +3,7 @@
     "Role": 0,
     "Number": "Admin",
     "Password": "Mire",
-    "IsLogedin": true,
+    "IsLogedin": false,
     "Name": "Admin",
     "Id": 5
   },

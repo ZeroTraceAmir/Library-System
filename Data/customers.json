@@ -48,5 +48,15 @@
     "HasBorrowedBook": false,
     "HasReservedBook": false,
     "Debt": 0
+  },
+  {
+    "Id": 6,
+    "Name": "bita",
+    "Number": "09873254681",
+    "Password": "Bita85",
+    "IsLogedin": true,
+    "HasBorrowedBook": false,
+    "HasReservedBook": false,
+    "Debt": 0
   }
 ]

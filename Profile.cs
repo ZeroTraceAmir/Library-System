@@ -26,6 +26,7 @@ namespace library_system
 
             this.Text = "پروفایل";
             this.WindowState = FormWindowState.Maximized;
+            this.BackColor = Color.FromArgb(17, 21, 32);
 
             BuildHeader(name, phone, role);
             BuildLogoutButton();
@@ -39,7 +40,7 @@ namespace library_system
             {
                 Dock = DockStyle.Top,
                 Height = 60,
-                BackColor = Color.FromArgb(52, 73, 94),
+                BackColor = Color.FromArgb(17, 21, 32),
             };
 
             FlowLayoutPanel flow = new FlowLayoutPanel
@@ -84,7 +85,11 @@ namespace library_system
                 AutoSize = true,
                 Height = 40,
                 Margin = new Padding(15),
+                BackColor = Color.FromArgb(0, 255, 156),
+                ForeColor = Color.Black,
+                FlatStyle = FlatStyle.Flat,
             };
+            btnLogout.FlatAppearance.BorderSize = 0;
             btnLogout.Click += (s, e) =>
             {
                 if (_isUser)
@@ -148,6 +153,9 @@ namespace library_system
                 inputs[i].Font = new Font("Tahoma", 11F);
                 inputs[i].Dock = DockStyle.Fill;
                 inputs[i].Padding = new Padding(5);
+                inputs[i].BackColor = Color.FromArgb(37, 40, 54);
+                inputs[i].ForeColor = Color.White;
+                inputs[i].BorderStyle = BorderStyle.FixedSingle;
                 table.Controls.Add(inputs[i], 1, i);
             }
 
@@ -157,7 +165,11 @@ namespace library_system
                 Font = new Font("Tahoma", 11F),
                 Height = 40,
                 AutoSize = true,
+                BackColor = Color.FromArgb(0, 255, 156),
+                ForeColor = Color.Black,
+                FlatStyle = FlatStyle.Flat,
             };
+            btnSave.FlatAppearance.BorderSize = 0;
             btnSave.Click += (s, e) =>
             {
                 string name = txtName.Text.Trim();
@@ -235,7 +247,11 @@ namespace library_system
                 Text = "بازگشت",
                 Dock = DockStyle.Bottom,
                 Height = 50,
+                BackColor = Color.FromArgb(0, 255, 156),
+                ForeColor = Color.Black,
+                FlatStyle = FlatStyle.Flat,
             };
+            btnBack.FlatAppearance.BorderSize = 0;
             btnBack.Click += (s, e) => this.Close();
             Controls.Add(btnBack);
         }

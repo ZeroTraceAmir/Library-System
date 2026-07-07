@@ -1,7 +1,7 @@
-using library_system.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using library_system.Interfaces;
 using library_system.Models;
 
 namespace library_system.Services
@@ -14,20 +14,24 @@ namespace library_system.Services
         {
             this.reservationRepository = reservationRepository;
         }
+
         public List<Reservation> GetAllReservations()
         {
             return reservationRepository.GetAll();
         }
+
         public Reservation? GetReservationById(int id)
         {
             return reservationRepository.GetById(id);
         }
+
         public void AddReservation(Reservation reservation)
         {
             List<Reservation> reservations = reservationRepository.GetAll();
             reservation.Id = reservations.Count == 0 ? 1 : reservations.Max(r => r.Id) + 1;
             reservationRepository.Add(reservation);
         }
+
         public void UpdateReservation(Reservation reservation)
         {
             reservationRepository.Update(reservation);
@@ -40,25 +44,27 @@ namespace library_system.Services
 
         public List<Reservation> GetReservationsByCustomerId(int customerId)
         {
-            return reservationRepository.GetAll()
-            .Where(r => r.CustomerId == customerId)
-                .ToList();
+            return reservationRepository.GetAll().Where(r => r.CustomerId == customerId).ToList();
         }
+
+        public event BookEventHandler? BookReserved;
 
         public void ReserveBook(Book book, int customerId)
         {
             Reservation reservation = new Reservation
             {
-                Id = reservationRepository.GetAll().Any()?
-                reservationRepository.GetAll().Max(r => r.Id) + 1 : 1,
+                Id = reservationRepository.GetAll().Any()
+                    ? reservationRepository.GetAll().Max(r => r.Id) + 1
+                    : 1,
 
                 CustomerId = customerId,
                 BookId = book.Id,
                 ReservationDate = DateTime.Now,
-                IsActive = true
+                IsActive = true,
             };
 
             reservationRepository.Add(reservation);
+            BookReserved?.Invoke(book, null, customerId);
         }
 
         public void CancelReservation(int reservationId)
@@ -73,6 +79,5 @@ namespace library_system.Services
 
             reservationRepository.Update(reservation);
         }
-
     }
 }

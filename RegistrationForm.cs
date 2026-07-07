@@ -18,6 +18,12 @@ namespace library_system
         public RegisterForm(CustomerService customerService)
         {
             this.customerService = customerService;
+            customerService.CustomerRegistered += c =>
+                ShowMessage(
+                    $"خوش آمدید {c.Name}! ثبت نام با موفقیت انجام شد",
+                    "موفق",
+                    MessageBoxIcon.Information
+                );
             BuildUi();
         }
 
@@ -34,13 +40,13 @@ namespace library_system
             ClientSize = new Size(380, 320);
             BackColor = Color.White;
 
-            var layout = new TableLayoutPanel
+            TableLayoutPanel layout = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
                 Padding = new Padding(20),
                 ColumnCount = 2,
                 RowCount = 5,
-                RightToLeft = RightToLeft.Yes
+                RightToLeft = RightToLeft.Yes,
             };
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35));
             layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65));
@@ -77,13 +83,14 @@ namespace library_system
             AcceptButton = btnRegister;
         }
 
-        private static Label MakeLabel(string text) => new()
-        {
-            Text = text,
-            Dock = DockStyle.Fill,
-            TextAlign = ContentAlignment.MiddleRight,
-            RightToLeft = RightToLeft.Yes
-        };
+        private static Label MakeLabel(string text) =>
+            new()
+            {
+                Text = text,
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleRight,
+                RightToLeft = RightToLeft.Yes,
+            };
 
         private static TextBox Configure(TextBox box)
         {
@@ -103,17 +110,16 @@ namespace library_system
                 if (txtPassword.Text.Length < 4)
                     throw new Exception("رمز عبور باید حداقل ۴ کاراکتر باشد");
 
-                var customer = new Customer
+                Customer customer = new Customer
                 {
                     Name = txtName.Text.Trim(),
                     Number = txtNumber.Text.Trim(),
                     Password = txtPassword.Text,
-                    IsLogedin = false
+                    IsLogedin = false,
                 };
 
                 customerService.AddCustomer(customer);
 
-                ShowMessage("ثبت نام با موفقیت انجام شد", "موفق", MessageBoxIcon.Information);
                 Close();
             }
             catch (Exception ex)
@@ -123,8 +129,14 @@ namespace library_system
         }
 
         private void ShowMessage(string text, string caption, MessageBoxIcon icon) =>
-            MessageBox.Show(this, text, caption, MessageBoxButtons.OK, icon,
+            MessageBox.Show(
+                this,
+                text,
+                caption,
+                MessageBoxButtons.OK,
+                icon,
                 MessageBoxDefaultButton.Button1,
-                MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
+                MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign
+            );
     }
 }

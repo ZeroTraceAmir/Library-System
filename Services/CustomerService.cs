@@ -2,14 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using library_system.Enums;
 using library_system.Interfaces;
 using library_system.Models;
 
 namespace library_system.Services
 {
-    public class CustomerService
+    public delegate void CustomerEventHandler(Customer customer);
+    // har func ke void bashe va Customer ro be onvane parameter migire mitone dakhele delegate CustomerEventHandler zakhire beshe
+
+    public class CustomerService : BaseService<Customer>
     {
         private readonly ICustomerRepository customerRepository;
+
+        public event CustomerEventHandler? CustomerRegistered;
 
         public CustomerService(ICustomerRepository customerRepository)
         {
@@ -18,7 +24,7 @@ namespace library_system.Services
 
         public void AddCustomer(Customer customer)
         {
-            ValidateCustomer(customer);
+            Validate(customer);
             List<Customer> customers = customerRepository.GetAll();
             bool numberExist = customers.Any(c => c.Number == customer.Number);
             if (numberExist)
@@ -27,6 +33,17 @@ namespace library_system.Services
             }
             customer.Id = customers.Count == 0 ? 1 : customers.Max(c => c.Id) + 1;
             customerRepository.Add(customer);
+            CustomerRegistered?.Invoke(customer);
+        }
+
+        public void AddCustomer(string name, string phone, string password)
+        {
+            AddCustomer(new Customer
+            {
+                Name = name,
+                Number = phone,
+                Password = password,
+            });
         }
 
         public Customer? GetLoggedInCustomer()
@@ -70,7 +87,7 @@ namespace library_system.Services
             customerRepository.Update(customer);
         }
 
-        private void ValidateCustomer(Customer customer)
+        protected override void Validate(Customer customer)
         {
             if (customer == null)
             {
@@ -104,17 +121,32 @@ namespace library_system.Services
             return customerRepository.GetAll();
         }
 
-        public List<Customer> GetFilteredCustomers(int filterIndex)
+        public List<Customer> GetFilteredCustomers(CustomerFilter filter)
         {
-            var customers = customerRepository.GetAll();
+            List<Customer> customers = customerRepository.GetAll();
 
-            return filterIndex switch
+            return filter switch
             {
-                1 => customers.Where(c => c.HasBorrowedBook).ToList(),
-                2 => customers.Where(c => c.HasReservedBook).ToList(),
-                3 => customers.Where(c => c.Debt > 0).ToList(),
+                CustomerFilter.HasBorrowed => customers.Where(c => c.HasBorrowedBook).ToList(),
+                CustomerFilter.HasReserved => customers.Where(c => c.HasReservedBook).ToList(),
+                CustomerFilter.HasDebt => customers.Where(c => c.Debt > 0).ToList(),
                 _ => customers,
             };
+        }
+
+        public List<Customer> this[string searchTerm]
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(searchTerm))
+                    return GetAllCustomers();
+
+                return GetAllCustomers()
+                    .Where(c =>
+                        c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+                        || c.Number.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
         }
 
         public void DeleteCustomerAcc(string phone)

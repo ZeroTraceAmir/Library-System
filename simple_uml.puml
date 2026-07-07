@@ -1,0 +1,256 @@
+@startuml
+skinparam style strict
+
+' ================= ENUMS =================
+enum UserStatus {
+  admin
+  staff
+}
+
+enum CustomerFilter {
+  All
+  HasBorrowed
+  HasReserved
+  HasDebt
+}
+
+enum UserFilter {
+  All
+  Admins
+  Staff
+}
+
+' ================= INTERFACES =================
+interface IEntity {
+  + Id : int
+}
+
+interface IRepository {
+  + GetAll()
+  + GetById(id : int)
+  + Add(entity)
+  + Update(entity)
+  + Delete(id : int)
+}
+
+interface ICustomer {
+  + Name : string
+  + Number : string
+  + Password : string
+  + IsLogedin : bool
+}
+
+interface IUser {
+  + Id : int
+  + Name : string
+  + Password : string
+  + Role : UserStatus
+  + IsLogedin : bool
+}
+
+interface IBook {
+  + Title : string
+  + Author : string
+  + CopiesAvailable : int
+  + Genre : string
+  + PublicationYear : int
+  + LostChargePrice : double
+}
+
+interface ILoan {
+  + CustomerId : int
+  + BookId : int
+  + LoanDate : DateTime
+  + DueDate : DateTime
+  + ReturnDate : DateTime
+}
+
+interface IReservation {
+  + CustomerId : int
+  + BookId : int
+  + ReservationDate : DateTime
+  + IsActive : bool
+}
+
+interface IDebt {
+  + CustomerId : int
+  + Amount : decimal
+  + Reason : string
+  + IsPaid : bool
+}
+
+' ================= EMPTY REPOSITORY INTERFACES =================
+interface ICustomerRepository
+interface IUserRepository
+interface IBookRepository
+interface ILoanRepository
+interface IReservationRepository
+interface IDebtRepository
+
+' ================= MODELS =================
+abstract class BaseEntity {
+  + Id : int
+}
+
+abstract class Person {
+  + Name : string
+}
+
+abstract class Account {
+  + Number : string
+  + Password : string
+  + IsLogedin : bool
+  + GetRoleLabel()
+}
+
+class Customer {
+  + HasBorrowedBook : bool
+  + HasReservedBook : bool
+  + Debt : decimal
+  + GetRoleLabel()
+}
+
+class User {
+  + Role : UserStatus
+  + GetRoleLabel()
+}
+
+class Book {
+  + Title : string
+  + Author : string
+  + CopiesAvailable : int
+  + Genre : string
+  + PublicationYear : int
+  + LostChargePrice : double
+}
+
+class Loan {
+  + CustomerId : int
+  + BookId : int
+  + LoanDate : DateTime
+  + DueDate : DateTime
+  + ReturnDate : DateTime
+}
+
+class Reservation {
+  + CustomerId : int
+  + BookId : int
+  + ReservationDate : DateTime
+  + IsActive : bool
+}
+
+class Debt {
+  + CustomerId : int
+  + Amount : decimal
+  + Reason : string
+  + IsPaid : bool
+}
+
+' ================= INHERITANCE =================
+BaseEntity <|-- Person
+Person <|-- Account
+Account <|-- Customer
+Account <|-- User
+
+BaseEntity <|-- Book
+BaseEntity <|-- Loan
+BaseEntity <|-- Reservation
+BaseEntity <|-- Debt
+
+Customer ..|> ICustomer
+User ..|> IUser
+Book ..|> IBook
+Loan ..|> ILoan
+Reservation ..|> IReservation
+Debt ..|> IDebt
+
+' ================= REPOSITORY LAYER =================
+class JsonDataStore {
+  + Load(fileName)
+  + Save(fileName, data)
+}
+
+class JsonRepository {
+  + GetAll()
+  + GetById(id : int)
+  + Add(entity)
+  + Update(entity)
+  + Delete(id : int)
+  + this[id : int]
+}
+
+class JsonCustomerRepository
+class JsonUserRepository
+class JsonBookRepository
+class JsonLoanRepository
+class JsonReservationRepository
+class JsonDebtRepository
+
+JsonCustomerRepository <|-- JsonRepository
+JsonUserRepository <|-- JsonRepository
+JsonBookRepository <|-- JsonRepository
+JsonLoanRepository <|-- JsonRepository
+JsonReservationRepository <|-- JsonRepository
+JsonDebtRepository <|-- JsonRepository
+
+JsonRepository --> JsonDataStore : uses
+
+JsonCustomerRepository ..|> ICustomerRepository
+JsonUserRepository ..|> IUserRepository
+JsonBookRepository ..|> IBookRepository
+JsonLoanRepository ..|> ILoanRepository
+JsonReservationRepository ..|> IReservationRepository
+JsonDebtRepository ..|> IDebtRepository
+
+' ================= SERVICES =================
+abstract class BaseService {
+  + Validate(entity)
+}
+
+class CustomerService
+class UserService
+class BookService
+class LoanService
+class ReservationService
+class DebtService
+
+CustomerService <|-- BaseService
+UserService <|-- BaseService
+BookService <|-- BaseService
+
+CustomerService --> ICustomerRepository
+UserService --> IUserRepository
+BookService --> IBookRepository
+LoanService --> ILoanRepository
+ReservationService --> IReservationRepository
+DebtService --> IDebtRepository
+
+' ================= FORMS =================
+class Form1
+class RegisterForm
+class LoginForm
+class Home
+class AdminPanel
+class StaffPanel
+class Profile
+class SeeBooks
+class SeeAllBooks
+class SeeAllCustomers
+class SeeAllEmployees
+class AddBook
+class AddEmployee
+class MyLoans
+class MyReservations
+class PayDebt
+
+Form1 --> RegisterForm
+Form1 --> LoginForm
+LoginForm --> Home
+LoginForm --> AdminPanel
+LoginForm --> StaffPanel
+
+' ================= EVENTS (SAFE VERSION) =================
+class BookEventHandler <<delegate>>
+class CustomerEventHandler <<delegate>>
+
+@enduml

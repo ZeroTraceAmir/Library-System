@@ -6,8 +6,6 @@ namespace library_system.Repositories
     public class JsonBookRepository : JsonRepository<Book>, IBookRepository
     {
         public JsonBookRepository(JsonDataStore store)
-            : base(store, "books.json")
-        {
-        }
+            : base(store, "books.json") { }
     }
 }

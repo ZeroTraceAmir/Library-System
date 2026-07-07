@@ -52,11 +52,11 @@ namespace library_system
             Application.SetCompatibleTextRenderingDefault(false);
 
             // build the dependency chain just for the login check
-            var store = new JsonDataStore();
-            var customerRepository = new JsonCustomerRepository(store);
-            var customerService = new CustomerService(customerRepository);
-            var userRepository = new JsonUserRepository(store);
-            var userService = new UserService(userRepository);
+            JsonDataStore store = new JsonDataStore();
+            JsonCustomerRepository customerRepository = new JsonCustomerRepository(store);
+            CustomerService customerService = new CustomerService(customerRepository);
+            JsonUserRepository userRepository = new JsonUserRepository(store);
+            UserService userService = new UserService(userRepository);
 
             Customer? CustomerLoggedIn = customerService.GetLoggedInCustomer();
             User? UserLoggedIn = userService.GetLoggedInUser();

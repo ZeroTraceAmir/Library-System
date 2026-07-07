@@ -17,7 +17,7 @@ using library_system.Models;
 
 namespace library_system.Services
 {
-    public class UserService
+    public class UserService : BaseService<User>
     {
         private readonly IUserRepository userRepository;
 
@@ -84,16 +84,31 @@ namespace library_system.Services
             return userRepository.GetAll();
         }
 
-        public List<User> GetFilteredUsers(int filterIndex)
+        public List<User> GetFilteredUsers(UserFilter filter)
         {
-            var users = userRepository.GetAll();
+            List<User> users = userRepository.GetAll();
 
-            return filterIndex switch
+            return filter switch
             {
-                1 => users.Where(u => u.Role == UserStatus.admin).ToList(),
-                2 => users.Where(u => u.Role == UserStatus.staff).ToList(),
+                UserFilter.Admins => users.Where(u => u.Role == UserStatus.admin).ToList(),
+                UserFilter.Staff => users.Where(u => u.Role == UserStatus.staff).ToList(),
                 _ => users,
             };
+        }
+
+        public List<User> this[string searchTerm]
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(searchTerm))
+                    return GetAllUsers();
+
+                return GetAllUsers()
+                    .Where(u =>
+                        u.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+                        || u.Number.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
         }
 
         public void DeleteUser(int id)
@@ -106,7 +121,7 @@ namespace library_system.Services
             string phone,
             string password,
             string repeatPassword,
-            int role
+            UserStatus role
         )
         {
             if (password != repeatPassword)
@@ -120,11 +135,11 @@ namespace library_system.Services
                 Name = name,
                 Number = phone,
                 Password = password,
-                Role = (UserStatus)role,
+                Role = role,
                 IsLogedin = false,
             };
 
-            ValidateUser(user);
+            Validate(user);
             List<User> users = userRepository.GetAll();
             bool numberExist = users.Any(c => c.Number == user.Number);
             if (numberExist)
@@ -134,7 +149,7 @@ namespace library_system.Services
             userRepository.Add(user);
         }
 
-        private void ValidateUser(User user)
+        protected override void Validate(User user)
         {
             if (user == null)
             {

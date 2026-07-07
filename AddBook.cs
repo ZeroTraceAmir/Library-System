@@ -12,13 +12,13 @@ namespace library_system
 
         public AddBook()
         {
-            var store = new Repositories.JsonDataStore();
+            Repositories.JsonDataStore store = new Repositories.JsonDataStore();
             _bookService = new BookService(new Repositories.JsonBookRepository(store));
 
             this.Text = "اضافه کردن کتاب";
             this.WindowState = FormWindowState.Maximized;
 
-            var table = new TableLayoutPanel
+            TableLayoutPanel table = new TableLayoutPanel
             {
                 Dock = DockStyle.Top,
                 ColumnCount = 2,
@@ -30,12 +30,12 @@ namespace library_system
             table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70));
 
             string[] labels = { "عنوان:", "نویسنده:", "ژانر:", "سال انتشار:", "تعداد موجود:", "هزینه جریمه:" };
-            var txtTitle = new TextBox();
-            var txtAuthor = new TextBox();
-            var txtGenre = new TextBox();
-            var txtYear = new TextBox();
-            var txtCopies = new TextBox();
-            var txtLostCharge = new TextBox();
+            TextBox txtTitle = new TextBox();
+            TextBox txtAuthor = new TextBox();
+            TextBox txtGenre = new TextBox();
+            TextBox txtYear = new TextBox();
+            TextBox txtCopies = new TextBox();
+            TextBox txtLostCharge = new TextBox();
             Control[] inputs = { txtTitle, txtAuthor, txtGenre, txtYear, txtCopies, txtLostCharge };
 
             for (int i = 0; i < 6; i++)
@@ -54,7 +54,7 @@ namespace library_system
                 table.Controls.Add(inputs[i], 1, i);
             }
 
-            var btnAdd = new Button
+            Button btnAdd = new Button
             {
                 Text = "اضافه کردن",
                 Font = new Font("Tahoma", 11F),
@@ -65,14 +65,14 @@ namespace library_system
             {
                 try
                 {
-                    var title = txtTitle.Text.Trim();
-                    var author = txtAuthor.Text.Trim();
-                    var genre = txtGenre.Text.Trim();
-                    var year = int.Parse(txtYear.Text.Trim());
-                    var copies = int.Parse(txtCopies.Text.Trim());
-                    var lostCharge = double.Parse(txtLostCharge.Text.Trim());
+                    string title = txtTitle.Text.Trim();
+                    string author = txtAuthor.Text.Trim();
+                    string genre = txtGenre.Text.Trim();
+                    int year = int.Parse(txtYear.Text.Trim());
+                    int copies = int.Parse(txtCopies.Text.Trim());
+                    double lostCharge = double.Parse(txtLostCharge.Text.Trim());
 
-                    var book = new Book
+                    Book book = new Book
                     {
                         Title = title,
                         Author = author,

@@ -116,7 +116,6 @@ namespace library_system
             dgvLoans.Columns["DueDate"].HeaderText = "تاریخ بازگشت";
             dgvLoans.Columns["ReturnDate"].HeaderText = "تاریخ برگردانده شده";
         }
-
         private void BtnReturn_Click(object? sender, EventArgs e)
         {
             if (dgvLoans.CurrentRow == null)
@@ -127,34 +126,15 @@ namespace library_system
 
             int loanId = Convert.ToInt32(dgvLoans.CurrentRow.Cells["Id"].Value);
 
-            Loan? loan = _loanService.GetLoanById(loanId);
+            Loan? selectedLoan = _loanService.GetLoanById(loanId);
 
-            if (loan == null)
+            if (selectedLoan == null)
                 return;
 
-            Book? book = _bookService.GetBookById(loan.BookId);
+            Book? book = _bookService.GetBookById(selectedLoan.BookId);
 
-            if (book == null)
-                return;
-
-            //_loanService.ReturnBook(loanId, book);
-            //
-            //LoadLoans();
-            //
-            //MessageBox.Show("کتاب با موفقیت برگردانده شد");
-
-            try
-            {
-                _loanService.ReturnBook(loanId, book);
-
-                LoadLoans();
-
-                MessageBox.Show("کتاب با موفقیت برگردانده شد");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            ReturnBook form = new ReturnBook(selectedLoan, book);
+            form.ShowDialog();
         }
 
         private record LoanDisplay

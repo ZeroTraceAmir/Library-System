@@ -5,7 +5,7 @@
     "Debt": 167903.5,
     "Number": "Customer",
     "Password": "Mire",
-    "IsLogedin": true,
+    "IsLogedin": false,
     "Name": "Customer",
     "Id": 1
   }

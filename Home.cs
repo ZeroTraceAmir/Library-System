@@ -33,9 +33,9 @@ namespace library_system
                 Text = "پروفایل",
                 Dock = DockStyle.Left,
                 FlatStyle = FlatStyle.Flat,
-                BackColor = Color.FromArgb(52, 73, 94),
+                BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                ForeColor = ColorTranslator.FromHtml("#111520"),
                 FlatAppearance = { BorderSize = 0 },
-                ForeColor = Color.White,
                 Font = new Font("Vazir", 10F, FontStyle.Bold),
                 Width = 100,
             };
@@ -51,8 +51,8 @@ namespace library_system
                 Dock = DockStyle.Left,
                 FlatStyle = FlatStyle.Flat,
                 FlatAppearance = { BorderSize = 0 },
-                BackColor = Color.FromArgb(52, 88, 94),
-                ForeColor = Color.White,
+                BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                ForeColor = ColorTranslator.FromHtml("#111520"),
                 Font = new Font("Vazir", 10F, FontStyle.Bold),
                 Width = 80,
             };

@@ -37,7 +37,7 @@ namespace library_system.Services
         }
 
         public void AddCustomer(string name, string phone, string password)
-        {
+        { 
             AddCustomer(new Customer
             {
                 Name = name,
@@ -132,6 +132,12 @@ namespace library_system.Services
                 CustomerFilter.HasDebt => customers.Where(c => c.Debt > 0).ToList(),
                 _ => customers,
             };
+            //switch(filter)
+            //{
+            //  case CustomerFilter.HasBorrowed:
+            //      return ...;
+            //  case CustomerFilter.HasReserved:
+            //      return ...;
         }
 
         public List<Customer> this[string searchTerm]

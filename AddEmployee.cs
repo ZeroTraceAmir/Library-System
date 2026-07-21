@@ -16,6 +16,7 @@ namespace library_system
 
             this.Text = "اضافه کردن کارمند به کتاب خانه";
             this.WindowState = FormWindowState.Maximized;
+            this.BackColor = ColorTranslator.FromHtml("#111520");
 
             TableLayoutPanel table = new TableLayoutPanel
             {
@@ -24,6 +25,7 @@ namespace library_system
                 RowCount = 6,
                 Padding = new Padding(80, 40, 80, 0),
                 AutoSize = true,
+                BackColor = ColorTranslator.FromHtml("#111520"),
             };
             table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30));
             table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70));
@@ -51,6 +53,7 @@ namespace library_system
                         Font = new Font("Vazir", 11F),
                         TextAlign = ContentAlignment.MiddleRight,
                         Dock = DockStyle.Fill,
+                        ForeColor = Color.White,
                     },
                     0,
                     i
@@ -59,6 +62,8 @@ namespace library_system
                 inputs[i].Font = new Font("Vazir", 11F);
                 inputs[i].Dock = DockStyle.Fill;
                 inputs[i].Padding = new Padding(5);
+                inputs[i].BackColor = ColorTranslator.FromHtml("#252836");
+                inputs[i].ForeColor = Color.White;
                 table.Controls.Add(inputs[i], 1, i);
             }
 
@@ -68,8 +73,12 @@ namespace library_system
                 Font = new Font("Vazir", 11F),
                 Height = 40,
                 AutoSize = true,
+                BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                ForeColor = ColorTranslator.FromHtml("#111520"),
+                FlatStyle = FlatStyle.Flat,
             };
             btnAdd.Click += (s, e) =>
+            btnAdd.FlatAppearance.BorderSize = 0;
             {
                 try
                 {
@@ -116,6 +125,9 @@ namespace library_system
                     Dock = DockStyle.Bottom,
                     Height = 50,
                     DialogResult = DialogResult.Cancel,
+                    BackColor = ColorTranslator.FromHtml("#252836"),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
                 }
             );
         }

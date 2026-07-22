@@ -47,24 +47,6 @@ namespace library_system
                 ForeColor = Color.White,
             };
 
-            // Buttons panel
-            // FlowLayoutPanel buttonPanel = new FlowLayoutPanel
-            // {
-            //     FlowDirection = FlowDirection.RightToLeft,
-            //     Height = 80,
-            //     Width = 300,
-            //     Padding = new Padding(0, 20, 0, 0),
-
-            // };
-
-            // FlowLayoutPanel buttonPanel = new FlowLayoutPanel
-            // {
-            //     AutoSize = true,
-            //     FlowDirection = FlowDirection.RightToLeft,
-            //     Padding = new Padding(0, 20, 0, 0),
-            //     Height = 80,
-            //     WrapContents = false,
-            // };
             Panel buttonPanel = new Panel { Dock = DockStyle.Top, Height = 80 };
 
             Button btnRegister = new Button

@@ -45,7 +45,7 @@ namespace library_system
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Font = new Font("Vazir", 11F),
                 Width = 150,
-                Items = { "همه", "کتاب قرض گرفته", "کتاب رزرو کرده", "بدهکار" },
+                Items = { "همه", "کتاب قرض گرفته", "بدهکار" },
                 SelectedIndex = 0,
                 BackColor = ColorTranslator.FromHtml("#252836"),
                 ForeColor = Color.WhiteSmoke,
@@ -107,7 +107,6 @@ namespace library_system
                     return (CustomerFilter)_cmbFilter.SelectedIndex switch
                     {
                         CustomerFilter.HasBorrowed => c.HasBorrowedBook,
-                        CustomerFilter.HasReserved => c.HasReservedBook,
                         CustomerFilter.HasDebt => c.Debt > 0,
                         _ => true,
                     };

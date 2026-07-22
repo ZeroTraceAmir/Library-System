@@ -219,15 +219,6 @@ namespace library_system
                     this.Show();
                 }
             );
-            // AddButton(
-            //     "دیدن کتاب هایی که رزرو کردید",
-            //     (s, e) =>
-            //     {
-            //         this.Hide();
-            //         new MyReservations().ShowDialog();
-            //         this.Show();
-            //     }
-            // );
             AddButton(
                 "دیدن کتاب هایی که قرض گرفتید",
                 (s, e) =>

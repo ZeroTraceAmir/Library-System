@@ -95,8 +95,6 @@ namespace library_system
             {
                 NotificationType.Overdue => Color.FromArgb(231, 76, 60),
                 NotificationType.ReturnReminder => Color.FromArgb(243, 156, 18),
-                NotificationType.ReservationConfirmed => Color.FromArgb(46, 204, 113),
-                NotificationType.ReservationCancelled => Color.FromArgb(149, 165, 166),
                 NotificationType.BookBorrowed => Color.FromArgb(41, 128, 185),
                 _ => Color.FromArgb(52, 73, 94),
             };

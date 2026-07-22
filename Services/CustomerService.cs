@@ -9,6 +9,7 @@ using library_system.Models;
 namespace library_system.Services
 {
     public delegate void CustomerEventHandler(Customer customer);
+
     // har func ke void bashe va Customer ro be onvane parameter migire mitone dakhele delegate CustomerEventHandler zakhire beshe
 
     public class CustomerService : BaseService<Customer>
@@ -38,12 +39,14 @@ namespace library_system.Services
 
         public void AddCustomer(string name, string phone, string password)
         {
-            AddCustomer(new Customer
-            {
-                Name = name,
-                Number = phone,
-                Password = password,
-            });
+            AddCustomer(
+                new Customer
+                {
+                    Name = name,
+                    Number = phone,
+                    Password = password,
+                }
+            );
         }
 
         public Customer? GetLoggedInCustomer()
@@ -58,10 +61,15 @@ namespace library_system.Services
             Customer? customer = customers.FirstOrDefault(c => c.Number == phone);
 
             if (customer == null)
-                return false;
+            {
+                throw new Exception("کاربری با این شماره پیدا نشد");
+            }
 
             if (customer.Password != password)
-                return false;
+            {
+                throw new Exception("رمز عبور اشتباه است");
+            }
+            // dalili ke inja is method validate ke payin tar hast estefade nemikonim ine ke Validate(Customer customer) entezare ye object Customer full ro dare vali toye method login dare har kodom az property haye customer ro joda joda migire
 
             customer.IsLogedin = true;
             customerRepository.Update(customer);
@@ -128,10 +136,10 @@ namespace library_system.Services
             return filter switch
             {
                 CustomerFilter.HasBorrowed => customers.Where(c => c.HasBorrowedBook).ToList(),
-                CustomerFilter.HasReserved => customers.Where(c => c.HasReservedBook).ToList(),
                 CustomerFilter.HasDebt => customers.Where(c => c.Debt > 0).ToList(),
                 _ => customers,
             };
+            
         }
 
         public List<Customer> this[string searchTerm]
@@ -144,7 +152,8 @@ namespace library_system.Services
                 return GetAllCustomers()
                     .Where(c =>
                         c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
-                        || c.Number.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+                        || c.Number.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)
+                    )
                     .ToList();
             }
         }

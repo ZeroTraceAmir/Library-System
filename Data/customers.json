@@ -1,12 +1,11 @@
 [
   {
     "HasBorrowedBook": false,
-    "HasReservedBook": false,
     "Debt": 167903.5,
-    "Number": "Customer",
+    "Number": "Customer1",
     "Password": "Mire",
-    "IsLogedin": false,
-    "Name": "Customer",
+    "IsLogedin": true,
+    "Name": "Customer1",
     "Id": 1
   }
 ]

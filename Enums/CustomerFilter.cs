@@ -4,7 +4,6 @@ namespace library_system.Enums
     {
         All,
         HasBorrowed,
-        HasReserved,
         HasDebt,
     }
 }

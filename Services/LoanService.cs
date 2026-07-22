@@ -64,50 +64,6 @@ namespace library_system.Services
             return loanRepository.GetAll().Where(l => l.CustomerId == customerId).ToList();
         }
 
-        //public void ReturnBook(int loanId, Book book)
-        //{
-        //    Loan? loan = loanRepository.GetById(loanId);
-        //
-        //    if (loan == null)
-        //    {
-        //        throw new Exception("امانت مورد نظر یافت نشد");
-        //    }
-        //
-        //    loan.ReturnDate = DateTime.Now;
-        //
-        //    book.CopiesAvailable++;
-        //
-        //    loanRepository.Update(loan);
-        //    bookRepository.Update(book);
-        //
-        //    if (loan.ReturnDate > loan.DueDate)
-        //    {
-        //        TimeSpan overdue = loan.ReturnDate.Value - loan.DueDate;
-        //        int daysOverdue = (int)Math.Ceiling(overdue.TotalDays);
-        //        decimal amount = daysOverdue * DailyLateFee;
-        //
-        //        List<Debt> debts = debtRepository.GetAll();
-        //        Debt debt = new Debt
-        //        {
-        //            Id = debts.Any() ? debts.Max(d => d.Id) + 1 : 1,
-        //            CustomerId = loan.CustomerId,
-        //            Amount = amount,
-        //            Reason = $"جریمه دیرکرد {book.Title} ({daysOverdue} روز)",
-        //            IsPaid = false,
-        //        };
-        //        debtRepository.Add(debt);
-        //
-        //        Customer? customer = customerRepository.GetById(loan.CustomerId);
-        //        if (customer != null)
-        //        {
-        //            customer.Debt += amount;
-        //            customerRepository.Update(customer);
-        //        }
-        //    }
-        //
-        //    BookReturned?.Invoke(book, loan, loan.CustomerId);
-        //}
-
         public void ReturnBook(int loanId, Book book)
         {
             Loan? loan = loanRepository.GetById(loanId);
@@ -136,15 +92,26 @@ namespace library_system.Services
                 decimal amount = daysOverdue * DailyLateFee;
 
                 List<Debt> debts = debtRepository.GetAll();
-                Debt debt = new Debt
+                Debt? existingDebt = debts.FirstOrDefault(d => d.CustomerId == loan.CustomerId && !d.IsPaid);
+
+                if (existingDebt != null)
                 {
-                    Id = debts.Any() ? debts.Max(d => d.Id) + 1 : 1,
-                    CustomerId = loan.CustomerId,
-                    Amount = amount,
-                    Reason = $"جریمه دیرکرد {book.Title} ({daysOverdue} روز)",
-                    IsPaid = false,
-                };
-                debtRepository.Add(debt);
+                    existingDebt.Amount += amount;
+                    existingDebt.Reason += $" | جریمه دیرکرد {book.Title} ({daysOverdue} روز)";
+                    debtRepository.Update(existingDebt);
+                }
+                else
+                {
+                    Debt debt = new Debt
+                    {
+                        Id = debts.Any() ? debts.Max(d => d.Id) + 1 : 1,
+                        CustomerId = loan.CustomerId,
+                        Amount = amount,
+                        Reason = $"جریمه دیرکرد {book.Title} ({daysOverdue} روز)",
+                        IsPaid = false,
+                    };
+                    debtRepository.Add(debt);
+                }
 
                 Customer? customer = customerRepository.GetById(loan.CustomerId);
                 if (customer != null)

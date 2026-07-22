@@ -10,5 +10,6 @@ namespace library_system.Models
         public DateTime LoanDate { get; set; }
         public DateTime DueDate { get; set; }
         public DateTime? ReturnDate { get; set; }
+        //? baraye ineke ketab mitone hanoz bargardonde nashode bashe. pas ReturnData momkene null bashe
     }
 }

@@ -1,11 +1,3 @@
-// staff:see all books
-// see all users
-// edit books
-// edit profile
-// search in users
-// search in books
-// filter user results
-// filter book results
 
 using System;
 using System.Collections.Generic;

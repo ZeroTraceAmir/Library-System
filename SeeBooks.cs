@@ -13,12 +13,10 @@ namespace library_system
         private DataGridView dgvBooks;
         private TextBox _txtSearch;
         private Button btnBorrow;
-        //private Button btnReserve;
         private Button btnBack;
 
         private readonly BookService bookService;
         private readonly LoanService loanService;
-        //private readonly ReservationService reservationService;
         private readonly NotificationService notificationService;
 
         public SeeBooks(Customer customer)
@@ -29,7 +27,6 @@ namespace library_system
 
             JsonBookRepository bookRepository = new JsonBookRepository(store);
             JsonLoanRepository loanRepository = new JsonLoanRepository(store);
-            //JsonReservationRepository reservationRepository = new JsonReservationRepository(store);
             JsonNotificationRepository notificationRepository = new JsonNotificationRepository(
                 store
             );
@@ -43,11 +40,7 @@ namespace library_system
                 debtRepository,
                 customerRepository
             );
-            //reservationService = new ReservationService(reservationRepository);
             notificationService = new NotificationService(notificationRepository);
-
-            //reservationService.BookReserved += (book, _, customerId) =>
-            //    notificationService.CreateReservationConfirmedNotification(customerId, book.Id);
 
             loanService.BookBorrowed += (book, _, customerId) =>
                 notificationService.CreateBookBorrowedNotification(customerId, book.Id);
@@ -100,16 +93,6 @@ namespace library_system
                 Height = 50,
             };
 
-            //btnReserve = new Button
-            //{
-            //    Text = "رزرو کردن",
-            //    Dock = DockStyle.Bottom,
-            //    BackColor = ColorTranslator.FromHtml("#00ff9c"),
-            //    ForeColor = ColorTranslator.FromHtml("#111520"),
-            //    Font = new Font("Vazir", 11F, FontStyle.Bold),
-            //    Height = 50,
-            //};
-
             btnBack = new Button
             {
                 Text = "بازگشت",
@@ -136,12 +119,10 @@ namespace library_system
                 DataGridViewContentAlignment.MiddleCenter;
 
             btnBorrow.Click += BtnBorrow_Click;
-            //btnReserve.Click += BtnReserve_Click;
 
             Controls.Add(dgvBooks);
             Controls.Add(topPanel);
             Controls.Add(btnBorrow);
-            //Controls.Add(btnReserve);
             Controls.Add(btnBack);
         }
 
@@ -173,18 +154,5 @@ namespace library_system
             }
         }
 
-        //private void BtnReserve_Click(object? sender, EventArgs e)
-        //{
-        //    if (dgvBooks.CurrentRow == null)
-        //        return;
-        //
-        //    Book book = (Book)dgvBooks.CurrentRow.DataBoundItem;
-        //
-        //    reservationService.ReserveBook(book, customer.Id);
-        //
-        //    MessageBox.Show("کتاب با موفقیت رزرو شد");
-        //
-        //    LoadBooks();
-        //}
     }
 }

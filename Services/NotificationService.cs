@@ -46,34 +46,6 @@ namespace library_system.Services
             _repository.Add(notification);
         }
 
-        public void CreateReservationConfirmedNotification(int customerId, int bookId)
-        {
-            ReservationConfirmedNotification notification = new ReservationConfirmedNotification
-            {
-                Id = GetNextId(),
-                CustomerId = customerId,
-                BookId = bookId,
-                Type = NotificationType.ReservationConfirmed,
-                CreatedAt = DateTime.Now,
-            };
-
-            _repository.Add(notification);
-        }
-
-        public void CreateReservationCancelledNotification(int customerId, int bookId)
-        {
-            ReservationCancelledNotification notification = new ReservationCancelledNotification
-            {
-                Id = GetNextId(),
-                CustomerId = customerId,
-                BookId = bookId,
-                Type = NotificationType.ReservationCancelled,
-                CreatedAt = DateTime.Now,
-            };
-
-            _repository.Add(notification);
-        }
-
         public void CreateBookBorrowedNotification(int customerId, int bookId)
         {
             BookBorrowedNotification notification = new BookBorrowedNotification

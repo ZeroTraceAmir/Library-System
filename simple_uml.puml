@@ -10,7 +10,6 @@ enum UserStatus {
 enum CustomerFilter {
   All
   HasBorrowed
-  HasReserved
   HasDebt
 }
 
@@ -18,6 +17,12 @@ enum UserFilter {
   All
   Admins
   Staff
+}
+
+enum NotificationType {
+  Overdue
+  ReturnReminder
+  BookBorrowed
 }
 
 ' ================= INTERFACES =================
@@ -48,7 +53,7 @@ interface IUser {
   + IsLogedin : bool
 }
 
-interface IBook {
+interface IBook extends IEntity {
   + Title : string
   + Author : string
   + CopiesAvailable : int
@@ -57,35 +62,35 @@ interface IBook {
   + LostChargePrice : double
 }
 
-interface ILoan {
+interface ILoan extends IEntity {
   + CustomerId : int
   + BookId : int
   + LoanDate : DateTime
   + DueDate : DateTime
-  + ReturnDate : DateTime
+  + ReturnDate : DateTime?
 }
 
-interface IReservation {
-  + CustomerId : int
-  + BookId : int
-  + ReservationDate : DateTime
-  + IsActive : bool
-}
-
-interface IDebt {
+interface IDebt extends IEntity {
   + CustomerId : int
   + Amount : decimal
   + Reason : string
   + IsPaid : bool
 }
 
-' ================= EMPTY REPOSITORY INTERFACES =================
+' ================= REPOSITORY INTERFACES =================
 interface ICustomerRepository
 interface IUserRepository
 interface IBookRepository
 interface ILoanRepository
-interface IReservationRepository
 interface IDebtRepository
+interface INotificationRepository
+
+ICustomerRepository --|> IRepository
+IUserRepository --|> IRepository
+IBookRepository --|> IRepository
+ILoanRepository --|> IRepository
+IDebtRepository --|> IRepository
+INotificationRepository --|> IRepository
 
 ' ================= MODELS =================
 abstract class BaseEntity {
@@ -105,7 +110,6 @@ abstract class Account {
 
 class Customer {
   + HasBorrowedBook : bool
-  + HasReservedBook : bool
   + Debt : decimal
   + GetRoleLabel()
 }
@@ -129,14 +133,7 @@ class Loan {
   + BookId : int
   + LoanDate : DateTime
   + DueDate : DateTime
-  + ReturnDate : DateTime
-}
-
-class Reservation {
-  + CustomerId : int
-  + BookId : int
-  + ReservationDate : DateTime
-  + IsActive : bool
+  + ReturnDate : DateTime?
 }
 
 class Debt {
@@ -144,6 +141,34 @@ class Debt {
   + Amount : decimal
   + Reason : string
   + IsPaid : bool
+}
+
+' ================= NOTIFICATION HIERARCHY =================
+abstract class Notification {
+  + CustomerId : int
+  + CreatedAt : DateTime
+  + Type : NotificationType
+  + GetMessage()
+}
+
+abstract class BookNotification {
+  + BookId : int
+}
+
+abstract class LoanNotification {
+  + DueDate : DateTime
+}
+
+class BookBorrowedNotification {
+  + GetMessage()
+}
+
+class OverdueNotification {
+  + GetMessage()
+}
+
+class ReturnReminderNotification {
+  + GetMessage()
 }
 
 ' ================= INHERITANCE =================
@@ -154,14 +179,21 @@ Account <|-- User
 
 BaseEntity <|-- Book
 BaseEntity <|-- Loan
-BaseEntity <|-- Reservation
 BaseEntity <|-- Debt
+BaseEntity <|-- Notification
+
+Notification <|-- BookNotification
+BookNotification <|-- BookBorrowedNotification
+BookNotification <|-- LoanNotification
+LoanNotification <|-- OverdueNotification
+LoanNotification <|-- ReturnReminderNotification
+
+BaseEntity ..|> IEntity
 
 Customer ..|> ICustomer
 User ..|> IUser
 Book ..|> IBook
 Loan ..|> ILoan
-Reservation ..|> IReservation
 Debt ..|> IDebt
 
 ' ================= REPOSITORY LAYER =================
@@ -183,15 +215,15 @@ class JsonCustomerRepository
 class JsonUserRepository
 class JsonBookRepository
 class JsonLoanRepository
-class JsonReservationRepository
 class JsonDebtRepository
+class JsonNotificationRepository
 
-JsonCustomerRepository <|-- JsonRepository
-JsonUserRepository <|-- JsonRepository
-JsonBookRepository <|-- JsonRepository
-JsonLoanRepository <|-- JsonRepository
-JsonReservationRepository <|-- JsonRepository
-JsonDebtRepository <|-- JsonRepository
+JsonCustomerRepository --|> JsonRepository
+JsonUserRepository --|> JsonRepository
+JsonBookRepository --|> JsonRepository
+JsonLoanRepository --|> JsonRepository
+JsonDebtRepository --|> JsonRepository
+JsonNotificationRepository --|> JsonRepository
 
 JsonRepository --> JsonDataStore : uses
 
@@ -199,31 +231,43 @@ JsonCustomerRepository ..|> ICustomerRepository
 JsonUserRepository ..|> IUserRepository
 JsonBookRepository ..|> IBookRepository
 JsonLoanRepository ..|> ILoanRepository
-JsonReservationRepository ..|> IReservationRepository
 JsonDebtRepository ..|> IDebtRepository
+JsonNotificationRepository ..|> INotificationRepository
 
 ' ================= SERVICES =================
 abstract class BaseService {
   + Validate(entity)
 }
 
-class CustomerService
+class CustomerService {
+  + CustomerRegistered : CustomerEventHandler
+}
 class UserService
 class BookService
-class LoanService
-class ReservationService
+class LoanService {
+  + BookBorrowed : BookEventHandler
+  + BookReturned : BookEventHandler
+}
 class DebtService
+class NotificationService
 
-CustomerService <|-- BaseService
-UserService <|-- BaseService
-BookService <|-- BaseService
+BookService --|> BaseService
+CustomerService --|> BaseService
+UserService --|> BaseService
 
 CustomerService --> ICustomerRepository
 UserService --> IUserRepository
 BookService --> IBookRepository
 LoanService --> ILoanRepository
-ReservationService --> IReservationRepository
+LoanService --> IBookRepository
+LoanService --> IDebtRepository
+LoanService --> ICustomerRepository
 DebtService --> IDebtRepository
+NotificationService --> INotificationRepository
+
+' ================= DELEGATES =================
+class BookEventHandler <<delegate>>
+class CustomerEventHandler <<delegate>>
 
 ' ================= FORMS =================
 class Form1
@@ -240,8 +284,9 @@ class SeeAllEmployees
 class AddBook
 class AddEmployee
 class MyLoans
-class MyReservations
 class PayDebt
+class Notifications
+class ReturnBook
 
 Form1 --> RegisterForm
 Form1 --> LoginForm
@@ -249,8 +294,22 @@ LoginForm --> Home
 LoginForm --> AdminPanel
 LoginForm --> StaffPanel
 
-' ================= EVENTS (SAFE VERSION) =================
-class BookEventHandler <<delegate>>
-class CustomerEventHandler <<delegate>>
+Home --> SeeBooks
+Home --> MyLoans
+Home --> PayDebt
+Home --> Profile
+Home --> Notifications
+
+StaffPanel --> SeeAllBooks
+StaffPanel --> SeeAllCustomers
+StaffPanel --> AddBook
+StaffPanel --> Profile
+
+AdminPanel --> SeeAllEmployees
+AdminPanel --> SeeAllCustomers
+AdminPanel --> AddEmployee
+AdminPanel --> Profile
+
+MyLoans --> ReturnBook
 
 @enduml

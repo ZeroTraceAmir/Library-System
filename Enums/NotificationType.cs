@@ -4,8 +4,6 @@ namespace library_system.Enums
     {
         Overdue,
         ReturnReminder,
-        ReservationConfirmed,
-        ReservationCancelled,
         BookBorrowed,
     }
 }

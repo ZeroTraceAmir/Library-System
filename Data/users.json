@@ -1,0 +1,19 @@
+[
+  {
+    "Id": 1,
+    "Name": "admin",
+    "Number": "09103254371",
+    "Password": "1234",
+    "IsLogedin": false,
+    "Role": "admin"
+  }
+
+  {
+    "Id": 2,
+    "Name": "Admin",
+    "Number": "Admin",
+    "Password": "Admin",
+    "IsLogedin": true,
+    "Role": "admin"
+  }
+]

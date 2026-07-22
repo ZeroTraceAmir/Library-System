@@ -76,6 +76,7 @@ namespace library_system
             // RTL Support for Persian Layout
             this.RightToLeft = RightToLeft.Yes;
             this.RightToLeftLayout = true;
+            this.BackColor = ColorTranslator.FromHtml("#111520");
 
             // Title
             lblTitle = new Label
@@ -85,7 +86,7 @@ namespace library_system
                 Location = new Point(20, 25),
                 Size = new Size(345, 40),
                 TextAlign = ContentAlignment.MiddleCenter,
-                ForeColor = Color.DarkSlateGray
+                ForeColor = ColorTranslator.FromHtml("#00ff9c")
             };
 
             // Phone Number Label & Input
@@ -94,14 +95,17 @@ namespace library_system
                 Text = "شماره موبایل:",
                 Location = new Point(30, 85),
                 Size = new Size(100, 25),
-                TextAlign = ContentAlignment.MiddleLeft
+                TextAlign = ContentAlignment.MiddleLeft,
+                ForeColor = Color.White
             };
 
             txtPhoneNumber = new TextBox
             {
                 Location = new Point(140, 85),
                 Size = new Size(200, 25),
-                MaxLength = 11
+                MaxLength = 11,
+                BackColor = ColorTranslator.FromHtml("#252836"),
+                ForeColor = Color.White
             };
 
             // Password Label & Input
@@ -110,14 +114,17 @@ namespace library_system
                 Text = "رمز عبور:",
                 Location = new Point(30, 130),
                 Size = new Size(100, 25),
-                TextAlign = ContentAlignment.MiddleLeft
+                TextAlign = ContentAlignment.MiddleLeft,
+                ForeColor = Color.White
             };
 
             txtPassword = new TextBox
             {
                 Location = new Point(140, 130),
                 Size = new Size(200, 25),
-                UseSystemPasswordChar = true
+                UseSystemPasswordChar = true,
+                BackColor = ColorTranslator.FromHtml("#252836"),
+                ForeColor = Color.White
             };
 
             // Login Button
@@ -126,8 +133,8 @@ namespace library_system
                 Text = "ورود",
                 Location = new Point(230, 200),
                 Size = new Size(110, 35),
-                BackColor = Color.LightSeaGreen,
-                ForeColor = Color.White,
+                BackColor = ColorTranslator.FromHtml("#00ff9c"),
+                ForeColor = ColorTranslator.FromHtml("#111520"),
                 FlatStyle = FlatStyle.Flat
             };
             btnLogin.FlatAppearance.BorderSize = 0;
@@ -139,7 +146,8 @@ namespace library_system
                 Text = "بازگشت",
                 Location = new Point(110, 200),
                 Size = new Size(110, 35),
-                BackColor = Color.LightGray,
+                BackColor = ColorTranslator.FromHtml("#252836"),
+                ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat
             };
             btnBack.FlatAppearance.BorderSize = 0;
